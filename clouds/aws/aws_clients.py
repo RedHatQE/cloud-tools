@@ -1,20 +1,24 @@
 import boto3
 import botocore.errorfactory
-import botocore.exceptions
 from simple_logger.logger import get_logger
 
 LOGGER = get_logger(name=__name__)
 
-ROLE_NAME = "ManagedOpenShift-Support-Role"
-POLICY_NAME = "rhoam-sre-support-policy"
-JSON_FILE = "rhoam-sre-support-policy.json"
 
-
-class IAMClient:
-    def __init__(self, region="us-east-1"):
+class AWSClient:
+    def __init__(self, region="us-east-1", service_name=""):
         """Default region is us-east-1 also when param region_name is not given"""
-        LOGGER.info(f"Creating IAM client using region {region}.")
-        self.iam_client = boto3.client(service_name="iam")
+        LOGGER.info(f"Creating {service_name or 'AWS'} client using region {region}.")
+        try:
+            self.client = boto3.client(service_name=service_name)
+        except Exception:
+            LOGGER.info("Failed to connect with AWS client.")
+            raise
+
+
+class IAMClient(AWSClient):
+    def __init__(self):
+        super().__init__(service_name="iam")
 
     def create_role_policy(self, role_name, policy_name, policy_json_path):
         """
@@ -38,15 +42,16 @@ class IAMClient:
                 )
                 raise
             try:
-                self.iam_client.put_role_policy(
+                self.client.put_role_policy(
                     RoleName=role_name,
                     PolicyName=policy_name,
                     PolicyDocument=policy_doc,
                 )
-            except botocore.exceptions as exc:
+                LOGGER.info("Done")
+            except Exception as exc:
                 LOGGER.info(f"Failed with role policy creation:\n{exc}")
 
-    def check_available_role_policy(self, role_name):
+    def check_available_role_policy(self, role_name=""):
         """
         Finds role policy by given name, using boto3 list_roles_policies.
 
@@ -58,19 +63,9 @@ class IAMClient:
              This is the only way to check existence since the list method raises if the role doesn't exist.
         """
         try:
-            self.iam_client.list_role_policies(RoleName=role_name)
+            self.client.list_role_policies(RoleName=role_name)
             LOGGER.info(f"Policy role {role_name} exists.")
             return True
         except botocore.errorfactory.ClientError:
+            # Fails when role policy doesn't exist.
             return False
-
-
-def main():
-    iam_client = IAMClient()
-    iam_client.create_role_policy(
-        role_name=ROLE_NAME, policy_name=POLICY_NAME, policy_json_path=JSON_FILE
-    )
-
-
-if __name__ == "__main__":
-    main()
