@@ -1,6 +1,5 @@
-import boto3
 import botocore.errorfactory
-from aws_clients import *
+from aws.aws_clients import IAMClient
 from simple_logger.logger import get_logger
 
 LOGGER = get_logger(name=__name__)
@@ -43,9 +42,9 @@ class AWSRolePolicies(AWSRoles):
                 raise
             try:
                 self.client.put_role_policy(
-                    RoleName=role_name,
-                    PolicyName=policy_name,
-                    PolicyDocument=policy_doc,
+                    role_name=role_name,
+                    policy_name=policy_name,
+                    policy_document=policy_doc,
                 )
                 LOGGER.info("Done")
             except Exception as exc:
@@ -63,7 +62,7 @@ class AWSRolePolicies(AWSRoles):
              This is the only way to check existence since the list method raises if the role doesn't exist.
         """
         try:
-            self.client.list_role_policies(RoleName=role_name)
+            self.client.list_role_policies(role_name=role_name)
             LOGGER.info(f"Policy role {role_name} exists.")
             return True
         except botocore.errorfactory.ClientError:

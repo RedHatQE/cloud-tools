@@ -1,5 +1,5 @@
-import aws_clients
-from aws_roles import AWSRolePolicies
+from aws import aws_clients
+from aws.aws_roles.aws_roles import AWSRolePolicies
 from simple_logger.logger import get_logger
 
 LOGGER = get_logger(name=__name__)
