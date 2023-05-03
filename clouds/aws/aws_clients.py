@@ -1,16 +1,16 @@
 import boto3
-import botocore.errorfactory
 from simple_logger.logger import get_logger
 
 LOGGER = get_logger(name=__name__)
 
 
 class AWSClient:
-    def __init__(self, region="us-east-1", service_name=""):
+    def __init__(self, *args, **kwargs):
         """Default region is us-east-1 also when param region_name is not given"""
-        LOGGER.info(f"Creating {service_name or 'AWS'} client using region {region}.")
+        region = kwargs.get("region") or "us-east-1"
+        LOGGER.info(f"Creating {kwargs.get('service_name') or 'AWS'} client using region {region}.")
         try:
-            self.client = boto3.client(service_name=service_name)
+            self.client = boto3.client(*args, **kwargs)
         except Exception:
             LOGGER.info("Failed to connect with AWS client.")
             raise
@@ -20,52 +20,12 @@ class IAMClient(AWSClient):
     def __init__(self):
         super().__init__(service_name="iam")
 
-    def create_role_policy(self, role_name, policy_name, policy_json_path):
-        """
-        Create the role policy with specifications.
+    def list_role_policies(self, RoleName):
+        return self.client.list_role_policies(RoleName=RoleName)
 
-        Args:
-            role_name (str): role policy name
-            policy_name (str): policy name
-            policy_json_path (str): path to json file that holds the policy documents
-
-        Raises:
-            If POST request failed
-        """
-        if not self.check_available_role_policy(role_name):
-            LOGGER.info(f"Creating new role {role_name} for policy {policy_name}.")
-            try:
-                policy_doc = open(policy_json_path, "r").read()
-            except Exception:
-                LOGGER.info(
-                    "Json policy document couldn't load. Please validate file path."
-                )
-                raise
-            try:
-                self.client.put_role_policy(
-                    RoleName=role_name,
-                    PolicyName=policy_name,
-                    PolicyDocument=policy_doc,
-                )
-                LOGGER.info("Done")
-            except Exception as exc:
-                LOGGER.info(f"Failed with role policy creation:\n{exc}")
-
-    def check_available_role_policy(self, role_name=""):
-        """
-        Finds role policy by given name, using boto3 list_roles_policies.
-
-        Args:
-            role_name (str): role policy name
-
-        Returns:
-            False if the request fails with botocore 'NoSuchEntity' exception.
-             This is the only way to check existence since the list method raises if the role doesn't exist.
-        """
-        try:
-            self.client.list_role_policies(RoleName=role_name)
-            LOGGER.info(f"Policy role {role_name} exists.")
-            return True
-        except botocore.errorfactory.ClientError:
-            # Fails when role policy doesn't exist.
-            return False
+    def put_role_policy(self, RoleName, PolicyName, PolicyDocument):
+        return self.client.put_role_policy(
+            RoleName=RoleName,
+            PolicyName=PolicyName,
+            PolicyDocument=PolicyDocument,
+        )
