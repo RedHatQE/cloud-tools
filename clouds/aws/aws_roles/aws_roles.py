@@ -16,11 +16,6 @@ class AWSRoles:
         """
         self.client = client
 
-
-class AWSRolePolicies(AWSRoles):
-    def __init__(self, client):
-        super().__init__(client=client)
-
     def create_role_policy(self, role_name, policy_name, policy_json_path):
         """
         Create the role policy with specific configuration.
