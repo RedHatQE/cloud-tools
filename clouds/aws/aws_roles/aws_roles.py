@@ -29,11 +29,11 @@ class AWSRoles:
             If POST request failed
         """
         LOGGER.info(f"Creating new role {role_name} for policy {policy_name}.")
-        if not self.check_available_role_policy(role_name=role_name):
+        if not self.check_if_role_policy_exists(role_name=role_name):
             try:
-                with open(policy_json_path, "r") as f:
-                    policy_doc = f.read()
-            except Exception:
+                with open(policy_json_path, "r") as fd:
+                    policy_doc = fd.read()
+            except (FileNotFoundError, OSError):
                 LOGGER.error(
                     "Json policy document couldn't load. Please validate file path."
                 )
@@ -46,8 +46,9 @@ class AWSRoles:
                 )
             except BotoCoreError as exc:
                 LOGGER.error(f"Failed with role policy creation:\n{exc}")
+                raise
 
-    def check_available_role_policy(self, role_name: str):
+    def check_if_role_policy_exists(self, role_name: str):
         """
         Finds role policy existence by given name.
 
@@ -55,7 +56,7 @@ class AWSRoles:
             role_name (str): role policy name
 
         Returns:
-            True if a policy role is found else False.
+            bool: True if a policy role is found else False.
         """
         try:
             self.client.list_role_policies(role_name=role_name)
