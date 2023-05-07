@@ -5,10 +5,8 @@ This repository manages IAM roles and role-policies with [Boto3 IAM client](http
 
 An `IAM role` is an IAM identity that you can create in your account that has specific permissions.
 
-We will create a `role policy` in AWS by creating policies and attaching them to IAM identities.
+Create a `role policy` by creating policies and attaching them to IAM identities.
 
-`IAM policies` define permissions for an action regardless of the method that you use to perform the operation.
-Most policies are stored in AWS as JSON documents
 
 ##  Using `rhoam_add_role_policy.py`:
 Required when installing RHOAM addon on a ROSA cluster.
