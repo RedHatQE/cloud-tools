@@ -16,18 +16,3 @@ class AWSClient:
         except BotoCoreError as exc:
             LOGGER.error(f"Failed to connect with AWS client.\n{exc}")
             raise
-
-
-class IAMClient(AWSClient):
-    def __init__(self):
-        super().__init__(service_name="iam")
-
-    def list_role_policies(self, role_name):
-        return self.client.list_role_policies(RoleName=role_name)
-
-    def put_role_policy(self, role_name, policy_name, policy_document):
-        return self.client.put_role_policy(
-            RoleName=role_name,
-            PolicyName=policy_name,
-            PolicyDocument=policy_document,
-        )
