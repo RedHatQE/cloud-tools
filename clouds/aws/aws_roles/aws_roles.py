@@ -6,11 +6,11 @@ from simple_logger.logger import get_logger
 LOGGER = get_logger(name=__name__)
 
 
-def get_iam_client():
+def iam_client():
     return AWSClient(service_name="iam").client
 
 
-def create_role_policy(role_name, policy_name, policy_document_path):
+def create_or_update_role_policy(role_name, policy_name, policy_document_path):
     """
     Create the role policy with specific configuration.
 
@@ -23,9 +23,8 @@ def create_role_policy(role_name, policy_name, policy_document_path):
         OSError: If file read failed
         BotoCoreError: If POST request failed
     """
-    client = get_iam_client()
-    exists = check_if_role_policy_exists(iam_client=client, role_name=role_name)
-    if exists:
+    client = iam_client()
+    if role_policy_exists_by_name(iam_client=client, role_name=role_name):
         LOGGER.info(f"Updating role by documented policy in {policy_document_path}.")
     else:
         LOGGER.info(f"Creating new role {role_name} for policy {policy_name}.")
@@ -33,7 +32,10 @@ def create_role_policy(role_name, policy_name, policy_document_path):
         with open(policy_document_path, "r") as fd:
             policy_document = fd.read()
     except OSError:
-        LOGGER.error("Json policy document couldn't load. Please validate file path.")
+        LOGGER.error(
+            f"Json policy document couldn't load. Please validate file path, "
+            f"got: '{policy_document_path}'."
+        )
         raise
     try:
         client.put_role_policy(
@@ -46,7 +48,7 @@ def create_role_policy(role_name, policy_name, policy_document_path):
         raise
 
 
-def check_if_role_policy_exists(iam_client, role_name):
+def role_policy_exists_by_name(iam_client, role_name):
     """
     Finds role policy existence by given name.
 

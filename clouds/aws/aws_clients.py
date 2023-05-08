@@ -7,7 +7,15 @@ LOGGER = get_logger(name=__name__)
 
 class AWSClient:
     def __init__(self, region="us-east-1", **kwargs):
-        """Default region is us-east-1 also when param region_name is not given"""
+        """Module for create an AWS client and manage its resources.
+
+        Args:
+            region (str): Region to use for session. Defaults to us-east-1.
+            **kwargs: Arbitrary keyword arguments.
+
+        Raises:
+            BotoCoreError: If Failed with creating an AWS client session request.
+        """
         LOGGER.info(
             f"Creating {kwargs.get('service_name') or 'AWS'} client using region {region}."
         )
