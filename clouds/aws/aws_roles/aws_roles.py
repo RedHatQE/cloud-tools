@@ -1,5 +1,5 @@
 import botocore.errorfactory
-from aws.aws_clients import AWSClient
+from aws.aws_clients import aws_client
 from botocore.exceptions import BotoCoreError
 from simple_logger.logger import get_logger
 
@@ -7,12 +7,12 @@ LOGGER = get_logger(name=__name__)
 
 
 def iam_client():
-    return AWSClient(service_name="iam").client
+    return aws_client(service_name="iam")
 
 
 def create_or_update_role_policy(role_name, policy_name, policy_document_path):
     """
-    Create the role policy with specific configuration.
+    Create a new policy role or update an existing one.
 
     Args:
         role_name (str): role policy name
@@ -33,8 +33,7 @@ def create_or_update_role_policy(role_name, policy_name, policy_document_path):
             policy_document = fd.read()
     except OSError:
         LOGGER.error(
-            f"Json policy document couldn't load. Please validate file path, "
-            f"got: '{policy_document_path}'."
+            f"Json policy document couldn't load. Please validate file path: '{policy_document_path}'."
         )
         raise
     try:
@@ -53,7 +52,7 @@ def role_policy_exists_by_name(iam_client, role_name):
     Finds role policy existence by given name.
 
     Args:
-        iam_client (AWSClient): AWS client active session, expects an IAM client entity
+        iam_client (botocore.client.IAM): AWS client
         role_name (str): role policy name
 
     Returns:
