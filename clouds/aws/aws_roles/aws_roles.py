@@ -1,13 +1,29 @@
+import boto3
 import botocore.errorfactory
-from aws.aws_clients import aws_client
 from botocore.exceptions import BotoCoreError
 from simple_logger.logger import get_logger
 
 LOGGER = get_logger(name=__name__)
 
 
-def iam_client():
-    return aws_client(service_name="iam")
+def iam_client(region="us-east-1"):
+    """Creates an IAM client.
+
+    Args:
+        region (str): Region to use for session, a client is associated with a single region. Defaults to us-east-1.
+
+    Returns:
+        botocore.client.IAM: Service client instance.
+
+    Raises:
+        BotoCoreError: If Failed with creating an AWS client session request.
+    """
+    LOGGER.info(f"Creating IAM client using region {region}.")
+    try:
+        return boto3.client(service_name="iam", region_name=region)
+    except BotoCoreError as exc:
+        LOGGER.error(f"Failed to connect with AWS client.\n{exc}")
+        raise
 
 
 def create_or_update_role_policy(role_name, policy_name, policy_document_path):
