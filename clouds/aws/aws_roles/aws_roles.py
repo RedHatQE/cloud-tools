@@ -41,7 +41,9 @@ def create_or_update_role_policy(role_name, policy_name, policy_document_path):
     """
     client = iam_client()
     if role_policy_exists_by_name(iam_client=client, role_name=role_name):
-        LOGGER.info(f"Updating role by documented policy in {policy_document_path}.")
+        LOGGER.info(
+            f"Updating role {role_name} by documented policy in {policy_document_path}."
+        )
     else:
         LOGGER.info(f"Creating new role {role_name} for policy {policy_name}.")
     try:
