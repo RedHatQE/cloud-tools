@@ -1,3 +1,5 @@
+import os.path
+
 import boto3
 import botocore.errorfactory
 from botocore.exceptions import BotoCoreError
@@ -10,7 +12,7 @@ def iam_client(region="us-east-1"):
     """Creates an IAM client.
 
     Args:
-        region (str): Region to use for session, a client is associated with a single region. Defaults to us-east-1.
+        region (str, default: "us-east-1"): Region to use for session, a client is associated with a single region.
 
     Returns:
         botocore.client.IAM: Service client instance.
@@ -46,14 +48,12 @@ def create_or_update_role_policy(role_name, policy_name, policy_document_path):
         )
     else:
         LOGGER.info(f"Creating new role {role_name} for policy {policy_name}.")
-    try:
-        with open(policy_document_path, "r") as fd:
-            policy_document = fd.read()
-    except OSError:
-        LOGGER.error(
-            f"Json policy document couldn't load. Please validate file path: '{policy_document_path}'."
+    if not os.path.isfile(policy_document_path):
+        raise FileNotFoundError(
+            f"File doesn't exists. Please validate file path: '{policy_document_path}'."
         )
-        raise
+    with open(policy_document_path, "r") as fd:
+        policy_document = fd.read()
     try:
         client.put_role_policy(
             RoleName=role_name,
@@ -81,5 +81,5 @@ def role_policy_exists_by_name(iam_client, role_name):
         LOGGER.info(f"Policy role {role_name} exists.")
         return True
     except botocore.errorfactory.ClientError:
-        # Fails when role policy doesn't exist.
+        LOGGER.info(f"Role policy {role_name} doesn't exist.")
         return False
