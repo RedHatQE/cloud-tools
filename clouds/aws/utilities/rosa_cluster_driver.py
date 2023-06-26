@@ -42,7 +42,7 @@ def main():
     num_replicas = os.getenv(key="REPLICAS", default="2")
     compute_machine_type = os.getenv(key="INFRA_TYPE", default="m5.xlarge")
     cluster_name = os.getenv(key="CLUSTER_NAME", default="msi-rosa")
-    openshift_version = os.getenv(key="OPENSHIFT_VERSION", default="4.13.3")
+    openshift_version = os.getenv(key="OPENSHIFT_VERSION", default="4.13.4")
     aws_region = os.getenv(key="AWS_REGION", default="us-east-1")
     channel_group = os.getenv(key="CHANNEL", default="candidate")
 
