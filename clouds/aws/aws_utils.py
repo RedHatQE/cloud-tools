@@ -22,6 +22,10 @@ def set_and_verify_existing_config_in_env_vars_or_file(
     """
     Verify vars are either set as environment variables or in a config file.
 
+    When var exists as OS environment then continue.
+    When vars exists in config file, set them as OS environment.
+    If none of the above raise.
+
     Args:
         vars_list (list): A list of variable names
         file_path (str): Absolute path to config file
