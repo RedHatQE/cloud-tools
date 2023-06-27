@@ -6,9 +6,7 @@ from http import HTTPStatus
 from simple_logger.logger import get_logger
 
 LOGGER = get_logger(name=__name__)
-AWS_CONFIG_FILE = os.environ.get(
-    "AWS_CONFIG_FILE", os.path.expanduser("~/.aws/config")
-)
+AWS_CONFIG_FILE = os.environ.get("AWS_CONFIG_FILE", os.path.expanduser("~/.aws/config"))
 AWS_CREDENTIALS_FILE = os.environ.get(
     "AWS_CONFIG_FILE", os.path.expanduser("~/.aws/credentials")
 )
@@ -18,7 +16,9 @@ class AWSConfigurationError(Exception):
     pass
 
 
-def set_and_verify_existing_config_in_env_vars_or_file(vars_list, file_path, section="default"):
+def set_and_verify_existing_config_in_env_vars_or_file(
+    vars_list, file_path, section="default"
+):
     """
     Verify vars are either set as environment variables or in a config file.
 
