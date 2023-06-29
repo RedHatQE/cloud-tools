@@ -196,8 +196,6 @@ def clean_aws_resources(aws_regions):
 
     if rerun_cleanup_regions_list:
         clean_aws_resources(aws_regions=rerun_cleanup_regions_list)
-    else:
-        return
 
 
 def clean_aws_region(aws_region, queue):
