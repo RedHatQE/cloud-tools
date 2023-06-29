@@ -82,7 +82,7 @@ def delete_roles(region_name):
     for role in roles_dict["Roles"]:
         role_name = role["RoleName"]
         if not re.search(
-            r"ManagedOpenShift|AWS|OrganizationAccountAccessRole|pco-|RedHatIT",
+            r"ManagedOpenShift|AWS|OrganizationAccountAccessRole|pco-|RedHatIT|RH-",
             role_name,
         ):
             # Need to iterate over both list_attached_role_policies and list_role_policies
@@ -175,19 +175,6 @@ def main(aws_regions, all_aws_regions):
 
 
 def clean_aws_resources(aws_regions):
-    """Deletes AWS resources.
-
-    Deletes open id connector providers, instance profiles and roles.
-    (calls rds instances and vpc peerings connections - currently to only log data).
-    Runs `cloud-nuke` utility - https://github.com/gruntwork-io/cloud-nuke
-    Deletes S2 buckets.
-
-    Args:
-        aws_regions (list): list of AWS region names
-
-    Returns:
-        list: list of cleanup functions return values
-    """
     rerun_cleanup_regions_list = []
     jobs = []
     cleanup_queue = multiprocessing.Queue()
@@ -207,15 +194,26 @@ def clean_aws_resources(aws_regions):
     for _job in jobs:
         _job.join()
 
-    print(rerun_cleanup_regions_list)
-
-    while rerun_cleanup_regions_list:
-        rerun_cleanup_regions_list = clean_aws_resources(
-            aws_regions=rerun_cleanup_regions_list
-        )
+    if rerun_cleanup_regions_list:
+        clean_aws_resources(aws_regions=rerun_cleanup_regions_list)
+    else:
+        return
 
 
 def clean_aws_region(aws_region, queue):
+    """Deletes AWS resources.
+
+    Deletes open id connector providers, instance profiles and roles.
+    (calls rds instances and vpc peerings connections - currently to only log data).
+    Runs `cloud-nuke` utility - https://github.com/gruntwork-io/cloud-nuke
+    Deletes S2 buckets.
+    Adds aws_region to queue in case additional cleanup is needed.
+
+    Args:
+        aws_region (str): AWS region name
+        queue (Queue): multiprocessing queue to pass result
+
+    """
     LOGGER.info(f"Deleting resources in region {aws_region}")
     rerun_results = [
         delete_rds_instances(region_name=aws_region),
