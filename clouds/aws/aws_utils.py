@@ -70,7 +70,8 @@ def set_and_verify_aws_credentials(region_name=None):
         vars_list=["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY"],
         file_path=AWS_CREDENTIALS_FILE,
     )
-    ec2_client().describe_regions(region_name=region_name)
+
+    ec2_client(region_name=region_name).describe_regions()
 
 
 def set_and_verify_aws_config():
