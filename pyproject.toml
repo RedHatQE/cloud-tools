@@ -24,9 +24,18 @@ authors = ["Meni Yakove", "Ruth Netser"]
 readme = "README.md"
 repository = "https://github.com/RedHatQE/cloud-tools"
 packages = [{include = "clouds"}]
+license = "Apache-2.0"
+homepage = "https://github.com/RedHatQE/cloud-tools"
+documentation = "https://github.com/RedHatQE/cloud-tools/blob/main/README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+#TODO: keywords ?
 
 [tool.poetry.dependencies]
-python = "^3.8"
+# Ipython requires Python >=3.9
+python = "^3.9"
 boto3 = "^1.28.1"
 colorlog = "^6.7.0"
 openshift-python-utilities = "^4.14.2"
@@ -34,11 +43,21 @@ python-simple-logger = "^1.0.5"
 click = "^8.1.4"
 configparser = "^6.0.0"
 
+[tool.poetry.urls]
+Download = "https://pypi.org/project/redhat-qe-cloud-tools/"
+"Bug Tracker" = "https://github.com/RedHatQE/cloud-tools/issues"
 
 [tool.poetry.dev-dependencies]
-ipython = "*"
-ipdb = "*"
+ipdb = "^0.13.13"
+ipython = "^8.14.0"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry_dynamic_versioning.backend"
+
+[tool.poetry-dynamic-versioning.substitution]
+files = ["VERSION"]
+
+[tool.poetry-dynamic-versioning]
+enable = true
+pattern = "((?P<epoch>\\d+)!)?(?P<base>\\d+(\\.\\d+)*)"
