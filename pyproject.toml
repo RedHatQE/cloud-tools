@@ -40,6 +40,7 @@ openshift-python-utilities = "^5.0.0"
 python-simple-logger = "^1.0.5"
 click = "^8.1.4"
 configparser = "^6.0.0"
+google-cloud-compute = "^1.14.1"
 
 [tool.poetry.urls]
 Download = "https://pypi.org/project/redhat-qe-cloud-tools/"
