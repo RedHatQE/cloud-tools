@@ -114,13 +114,11 @@ def delete_roles(region_name):
             LOGGER.info(f"Delete role {role_name}")
             _iam_client.delete_role(RoleName=role_name)
 
-    return any(
-        [
-            roles_dict["IsTruncated"],
-            attached_role_policies_dict.get("IsTruncated"),
-            detached_policy_names_dict.get("IsTruncated"),
-        ]
-    )
+    return any([
+        roles_dict["IsTruncated"],
+        attached_role_policies_dict.get("IsTruncated"),
+        detached_policy_names_dict.get("IsTruncated"),
+    ])
 
 
 def delete_buckets(region_name):
