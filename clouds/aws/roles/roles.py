@@ -19,9 +19,7 @@ def iam_client(region=DEFAULT_AWS_REGION):
     return boto3.client(service_name="iam", region_name=region)
 
 
-def create_or_update_role_policy(
-    role_name, policy_name, policy_document, region=DEFAULT_AWS_REGION
-):
+def create_or_update_role_policy(role_name, policy_name, policy_document, region=DEFAULT_AWS_REGION):
     """
     Create a new policy role or update an existing one.
 
@@ -32,9 +30,7 @@ def create_or_update_role_policy(
         region (str): aws region
     """
     client = iam_client(region=region)
-    LOGGER.info(
-        f"Create/Update role {role_name} for policy {policy_name} by documented policy."
-    )
+    LOGGER.info(f"Create/Update role {role_name} for policy {policy_name} by documented policy.")
     client.put_role_policy(
         RoleName=role_name,
         PolicyName=policy_name,
