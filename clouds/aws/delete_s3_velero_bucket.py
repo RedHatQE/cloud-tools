@@ -36,9 +36,7 @@ def delete_velero_cluster_buckets(cluster, boto_client) -> None:
             cluster_name=cluster,
             bucket_name=bucket_name,
         ):
-            delete_all_objects_from_s3_folder(
-                bucket_name=bucket_name, boto_client=boto_client
-            )
+            delete_all_objects_from_s3_folder(bucket_name=bucket_name, boto_client=boto_client)
             delete_bucket(bucket_name=bucket_name, boto_client=boto_client)
             # A cluster is mapped to only one bucket, so don't check any remaining buckets
             return
@@ -59,11 +57,7 @@ def get_velero_buckets(boto_client) -> list:
     LOGGER.info("Get a list of velero buckets")
 
     buckets = boto_client.list_buckets()["Buckets"]
-    return [
-        bucket
-        for bucket in buckets
-        if re.search("managed-velero-backups-", bucket["Name"])
-    ]
+    return [bucket for bucket in buckets if re.search("managed-velero-backups-", bucket["Name"])]
 
 
 def get_velero_infrastructure_name(bucket_name: str, boto_client) -> Union[str, None]:
@@ -104,13 +98,10 @@ def verify_cluster_matches_velero_infrastructure_name(
     """
 
     LOGGER.info(
-        "Verify cluster matches a velero infrastructure name via its bucket tag:"
-        f" {bucket_name}",
+        "Verify cluster matches a velero infrastructure name via its bucket tag:" f" {bucket_name}",
     )
 
-    velero_infrastructure_name = get_velero_infrastructure_name(
-        bucket_name=bucket_name, boto_client=boto_client
-    )
+    velero_infrastructure_name = get_velero_infrastructure_name(bucket_name=bucket_name, boto_client=boto_client)
 
     # Verify if the bucket is associated with the cluster
     if velero_infrastructure_name and re.search(
@@ -129,19 +120,13 @@ def verify_cluster_matches_velero_infrastructure_name(
 @click.command()
 @click.option(
     "--aws-access-key-id",
-    help=(
-        "Set AWS access key id, default if taken from environment variable:"
-        " AWS_ACCESS_KEY_ID"
-    ),
+    help=("Set AWS access key id, default if taken from environment variable:" " AWS_ACCESS_KEY_ID"),
     required=True,
     default=os.getenv("AWS_ACCESS_KEY_ID"),
 )
 @click.option(
     "--aws-secret-access-key",
-    help=(
-        "Set AWS secret access key id,default if taken from environment variable:"
-        " AWS_SECRET_ACCESS_KEY"
-    ),
+    help=("Set AWS secret access key id,default if taken from environment variable:" " AWS_SECRET_ACCESS_KEY"),
     required=True,
     default=os.getenv("AWS_SECRET_ACCESS_KEY"),
 )

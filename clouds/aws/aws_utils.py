@@ -9,18 +9,14 @@ from clouds.aws.session_clients import ec2_client
 
 LOGGER = get_logger(name=__name__)
 AWS_CONFIG_FILE = os.environ.get("AWS_CONFIG_FILE", os.path.expanduser("~/.aws/config"))
-AWS_CREDENTIALS_FILE = os.environ.get(
-    "AWS_CONFIG_FILE", os.path.expanduser("~/.aws/credentials")
-)
+AWS_CREDENTIALS_FILE = os.environ.get("AWS_CONFIG_FILE", os.path.expanduser("~/.aws/credentials"))
 
 
 class AWSConfigurationError(Exception):
     pass
 
 
-def set_and_verify_existing_config_in_env_vars_or_file(
-    vars_list, file_path, section="default"
-):
+def set_and_verify_existing_config_in_env_vars_or_file(vars_list, file_path, section="default"):
     """
     Verify vars are either set as environment variables or in a config file.
 
@@ -44,10 +40,7 @@ def set_and_verify_existing_config_in_env_vars_or_file(
         if os.getenv(var.upper()):
             continue
 
-        LOGGER.info(
-            f"Variable {var} is not set as environment variables, checking in config"
-            " file."
-        )
+        LOGGER.info(f"Variable {var} is not set as environment variables, checking in config" " file.")
         try:
             var_in_file = var.lower()
             # `AWS_REGION` environment variable is set as `region` in the config file
@@ -108,16 +101,13 @@ def delete_all_objects_from_s3_folder(bucket_name: str, boto_client) -> None:
         Delete={"Objects": files_to_delete, "Quiet": True},
     )
 
-    delete_response_http_status_code = delete_response["ResponseMetadata"][
-        "HTTPStatusCode"
-    ]
+    delete_response_http_status_code = delete_response["ResponseMetadata"]["HTTPStatusCode"]
     if delete_response_http_status_code == HTTPStatus.OK:
         LOGGER.info("Objects deleted successfully")
         return
     else:
         LOGGER.error(
-            "Objects not deleted:\n:"
-            f"{json.dumps(delete_response, default=str, indent=4)}",
+            "Objects not deleted:\n:" f"{json.dumps(delete_response, default=str, indent=4)}",
         )
 
 

@@ -24,9 +24,7 @@ def aws_region_names():
 
 
 def delete_rds_instances(region_name):
-    db_instances = rds_client(region_name=region_name).describe_db_instances()[
-        "DBInstances"
-    ]
+    db_instances = rds_client(region_name=region_name).describe_db_instances()["DBInstances"]
     for db_instance_identifier in db_instances:
         LOGGER.warning(f"DB instance identifier: {db_instance_identifier}")
         # TODO: once we have the contents of db_instance_identifier, update code to delete it
@@ -34,9 +32,7 @@ def delete_rds_instances(region_name):
 
 
 def delete_vpc_peering_connections(region_name):
-    for conn in ec2_client(region_name=region_name).describe_vpc_peering_connections()[
-        "VpcPeeringConnections"
-    ]:
+    for conn in ec2_client(region_name=region_name).describe_vpc_peering_connections()["VpcPeeringConnections"]:
         LOGGER.warning(f"VPC peering connection: {conn}")
         # TODO: once we have the contents of conn, update code to delete it
         # aws ec2 delete-vpc-peering-connection --vpc-peering-connection-id "${pc}"
@@ -45,9 +41,7 @@ def delete_vpc_peering_connections(region_name):
 def delete_open_id_connect_providers(region_name):
     LOGGER.info("Executing delete_open_id_connect_provider")
     _iam_client = iam_client(region_name=region_name)
-    for conn in _iam_client.list_open_id_connect_providers()[
-        "OpenIDConnectProviderList"
-    ]:
+    for conn in _iam_client.list_open_id_connect_providers()["OpenIDConnectProviderList"]:
         conn_name = conn["Arn"]
         LOGGER.info(f"Delete open id connection provider {conn_name}")
         _iam_client.delete_open_id_connect_provider(OpenIDConnectProviderArn=conn_name)
@@ -59,14 +53,10 @@ def delete_instance_profiles(region_name):
     instance_profiles_dict = _iam_client.list_instance_profiles(MaxItems=MAX_ITEMS)
     for profile in instance_profiles_dict["InstanceProfiles"]:
         profile_name = profile["InstanceProfileName"]
-        for role in _iam_client.get_instance_profile(InstanceProfileName=profile_name)[
-            "InstanceProfile"
-        ]["Roles"]:
+        for role in _iam_client.get_instance_profile(InstanceProfileName=profile_name)["InstanceProfile"]["Roles"]:
             role_name = role["RoleName"]
             LOGGER.info(f"Remove role {role_name} from instance profile {profile_name}")
-            _iam_client.remove_role_from_instance_profile(
-                InstanceProfileName=profile_name, RoleName=role_name
-            )
+            _iam_client.remove_role_from_instance_profile(InstanceProfileName=profile_name, RoleName=role_name)
         LOGGER.info(f"Delete Profile {profile_name}")
         _iam_client.delete_instance_profile(InstanceProfileName=profile_name)
 
@@ -87,38 +77,28 @@ def delete_roles(region_name):
         ):
             # Need to iterate over both list_attached_role_policies and list_role_policies
             # For attached policies, we need to detach them using ARN
-            attached_role_policies_dict = _iam_client.list_attached_role_policies(
-                RoleName=role_name, MaxItems=1000
-            )
+            attached_role_policies_dict = _iam_client.list_attached_role_policies(RoleName=role_name, MaxItems=1000)
             for attached_policy in attached_role_policies_dict["AttachedPolicies"]:
                 attached_policy_name = attached_policy["PolicyName"]
-                LOGGER.info(
-                    f"Detach policy {attached_policy_name} for role {role_name}"
-                )
-                _iam_client.detach_role_policy(
-                    RoleName=role_name, PolicyArn=attached_policy["PolicyArn"]
-                )
+                LOGGER.info(f"Detach policy {attached_policy_name} for role {role_name}")
+                _iam_client.detach_role_policy(RoleName=role_name, PolicyArn=attached_policy["PolicyArn"])
 
             # For detached policies, we need to delete them by name
-            detached_policy_names_dict = _iam_client.list_role_policies(
-                RoleName=role_name, MaxItems=1000
-            )
+            detached_policy_names_dict = _iam_client.list_role_policies(RoleName=role_name, MaxItems=1000)
             for detached_policy_name in detached_policy_names_dict["PolicyNames"]:
-                LOGGER.info(
-                    f"Delete policy {detached_policy_name} for role {role_name}"
-                )
-                _iam_client.delete_role_policy(
-                    RoleName=role_name, PolicyName=detached_policy_name
-                )
+                LOGGER.info(f"Delete policy {detached_policy_name} for role {role_name}")
+                _iam_client.delete_role_policy(RoleName=role_name, PolicyName=detached_policy_name)
 
             LOGGER.info(f"Delete role {role_name}")
             _iam_client.delete_role(RoleName=role_name)
 
-    return any([
-        roles_dict["IsTruncated"],
-        attached_role_policies_dict.get("IsTruncated"),
-        detached_policy_names_dict.get("IsTruncated"),
-    ])
+    return any(
+        [
+            roles_dict["IsTruncated"],
+            attached_role_policies_dict.get("IsTruncated"),
+            detached_policy_names_dict.get("IsTruncated"),
+        ]
+    )
 
 
 def delete_buckets(region_name):
@@ -126,9 +106,7 @@ def delete_buckets(region_name):
     _s3_client = s3_client(region_name=region_name)
     buckets_dict = _s3_client.list_buckets(MaxItems=MAX_ITEMS)
     for bucket in buckets_dict["Buckets"]:
-        delete_all_objects_from_s3_folder(
-            bucket_name=bucket["Name"], boto_client=_s3_client
-        )
+        delete_all_objects_from_s3_folder(bucket_name=bucket["Name"], boto_client=_s3_client)
         delete_bucket(bucket_name=bucket["Name"], boto_client=_s3_client)
 
     return buckets_dict.get("IsTruncated")
@@ -162,10 +140,7 @@ def main(aws_regions, all_aws_regions):
         raise click.Abort()
 
     if not shutil.which("cloud-nuke"):
-        click.echo(
-            "cloud-nuke is not installed; install from"
-            " https://github.com/gruntwork-io/cloud-nuke"
-        )
+        click.echo("cloud-nuke is not installed; install from" " https://github.com/gruntwork-io/cloud-nuke")
         raise click.Abort()
 
     set_and_verify_aws_credentials(region_name=_aws_regions[0])
