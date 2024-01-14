@@ -13,12 +13,14 @@ class MissingAzureCredentials(Exception):
 def assert_azure_credentials():
     azure_required_env_vars = azure_client_credentials_env_vars.values()
     if not all([os.getenv(azure_env_var) for azure_env_var in azure_required_env_vars]):
-        raise MissingAzureCredentials(f"Some required environment variables for Azure clients auth are missing, "
-                                      f"required keys: {azure_required_env_vars}")
+        raise MissingAzureCredentials(
+            f"Some required environment variables for Azure clients auth are missing, "
+            f"required keys: {azure_required_env_vars}"
+        )
 
 
 def get_subscription_id():
-    return os.getenv(azure_client_credentials_env_vars["subscription_id"])
+    return os.getenv(key=azure_client_credentials_env_vars["subscription_id"])
 
 
 def get_azure_credentials():
@@ -38,21 +40,12 @@ def get_azure_credentials():
 
 
 def get_aro_client(credential=None):
-    return AzureRedHatOpenShiftClient(
-        credential=credential,
-        subscription_id=get_subscription_id()
-    )
+    return AzureRedHatOpenShiftClient(credential=credential, subscription_id=get_subscription_id())
 
 
 def get_network_client(credential=None):
-    return NetworkManagementClient(
-        credential=credential,
-        subscription_id=get_subscription_id()
-    )
+    return NetworkManagementClient(credential=credential, subscription_id=get_subscription_id())
 
 
 def get_resource_client(credential=None):
-    return ResourceManagementClient(
-        credential=credential,
-        subscription_id=get_subscription_id()
-    )
+    return ResourceManagementClient(credential=credential, subscription_id=get_subscription_id())
