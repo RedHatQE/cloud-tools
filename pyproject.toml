@@ -32,6 +32,10 @@ python-simple-logger = "^1.0.5"
 click = "^8.1.4"
 configparser = "^6.0.0"
 google-cloud-compute = "^1.14.1"
+azure-mgmt-resource = "^23.0.1"
+azure-identity = "^1.15.0"
+azure-mgmt-redhatopenshift = "^1.4.0"
+azure-mgmt-network = "^25.2.0"
 
 [tool.poetry.urls]
 Download = "https://pypi.org/project/redhat-qe-cloud-tools/"
