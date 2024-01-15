@@ -1,7 +1,17 @@
+import random
+import string
 from session_clients import get_resource_client, get_network_client, get_azure_credentials
 from simple_logger.logger import get_logger
 
 LOGGER = get_logger(name=__name__)
+
+
+def random_resource_postfix(length=4):
+    return "".join(random.choice(string.ascii_lowercase) for _ in range(length))
+
+
+def get_aro_supported_versions(aro_client=None, region=None):
+    return [aro_version.version for aro_version in aro_client.open_shift_versions.list(location=region)]
 
 
 def cleanup_azure_resources():
