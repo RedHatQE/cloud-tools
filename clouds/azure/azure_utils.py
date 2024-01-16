@@ -47,3 +47,11 @@ def cleanup_azure_resources():
         resource_client.resource_groups.begin_delete(resource_group_name=resource_group_name).result()
 
     LOGGER.info("All Azure resources deleted successfully.")
+
+
+def main():
+    print(get_azure_supported_regions())
+
+
+if __name__ == "__main__":
+    main()
