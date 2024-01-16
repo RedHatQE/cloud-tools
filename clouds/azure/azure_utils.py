@@ -1,6 +1,12 @@
 import random
 import string
-from session_clients import get_resource_client, get_network_client, get_azure_credentials
+from clouds.azure.session_clients import (
+    get_resource_client,
+    get_network_client,
+    get_subscription_client,
+    get_azure_credentials,
+    get_subscription_id,
+)
 from simple_logger.logger import get_logger
 
 LOGGER = get_logger(name=__name__)
@@ -12,6 +18,15 @@ def random_resource_postfix(length=4):
 
 def get_aro_supported_versions(aro_client=None, region=None):
     return [aro_version.version for aro_version in aro_client.open_shift_versions.list(location=region)]
+
+
+def get_azure_supported_regions():
+    return [
+        region.name
+        for region in get_subscription_client(credential=get_azure_credentials()).subscriptions.list_locations(
+            subscription_id=get_subscription_id()
+        )
+    ]
 
 
 def cleanup_azure_resources():
@@ -32,3 +47,11 @@ def cleanup_azure_resources():
         resource_client.resource_groups.begin_delete(resource_group_name=resource_group_name).result()
 
     LOGGER.info("All Azure resources deleted successfully.")
+
+
+def main():
+    print(get_azure_supported_regions())
+
+
+if __name__ == "__main__":
+    main()

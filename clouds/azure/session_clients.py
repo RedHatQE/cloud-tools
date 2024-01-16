@@ -1,9 +1,10 @@
 import os
 from azure.identity import DefaultAzureCredential
+from azure.mgmt.subscription import SubscriptionClient
 from azure.mgmt.network import NetworkManagementClient
 from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.redhatopenshift import AzureRedHatOpenShiftClient
-from vars import azure_client_credentials_env_vars
+from clouds.azure.vars import azure_client_credentials_env_vars
 
 
 class MissingAzureCredentials(Exception):
@@ -51,3 +52,7 @@ def get_network_client(credential=None):
 
 def get_resource_client(credential=None):
     return ResourceManagementClient(credential=credential, subscription_id=get_subscription_id())
+
+
+def get_subscription_client(credential=None):
+    return SubscriptionClient(credential=credential)
