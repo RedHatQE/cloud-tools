@@ -20,7 +20,9 @@ def assert_azure_credentials():
 
 
 def get_subscription_id():
-    return os.getenv(key=azure_client_credentials_env_vars["subscription_id"])
+    subscription_id = os.getenv(key=azure_client_credentials_env_vars["subscription_id"])
+    assert subscription_id, "Azure subscription ID must be set as an environment variable."
+    return subscription_id
 
 
 def get_azure_credentials():

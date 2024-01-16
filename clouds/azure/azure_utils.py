@@ -27,8 +27,8 @@ def cleanup_azure_resources():
             network_client.virtual_networks.begin_delete(
                 resource_group_name=resource_group_name,
                 virtual_network_name=vnet_name,
-            )
+            ).result()
         LOGGER.info(f"Deleting {resource_group_name} resource group")
-        resource_client.resource_groups.begin_delete(resource_group_name=resource_group_name)
+        resource_client.resource_groups.begin_delete(resource_group_name=resource_group_name).result()
 
     LOGGER.info("All Azure resources deleted successfully.")
