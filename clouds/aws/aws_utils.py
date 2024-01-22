@@ -158,7 +158,7 @@ def get_least_crowded_aws_vpc_region(region_list):
     Selects region with the least number of VPCs.
 
     Args:
-        region_list: list of regions
+        region_list: list of region names
 
     Returns:
         str: region name with have the least number of VPCs
