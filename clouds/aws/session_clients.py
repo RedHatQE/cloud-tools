@@ -20,7 +20,3 @@ def s3_client(**kwargs):
 
 def rds_client(**kwargs):
     return aws_session(**kwargs).client(service_name="rds")
-
-
-def ec2_regional_client(region_name, **kwargs):
-    return aws_session(**kwargs).client(service_name="ec2", region_name=region_name)

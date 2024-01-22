@@ -5,7 +5,7 @@ from http import HTTPStatus
 
 from simple_logger.logger import get_logger
 
-from clouds.aws.session_clients import ec2_client, ec2_regional_client
+from clouds.aws.session_clients import ec2_client
 
 LOGGER = get_logger(name=__name__)
 AWS_CONFIG_FILE = os.environ.get("AWS_CONFIG_FILE", os.path.expanduser("~/.aws/config"))
@@ -166,8 +166,7 @@ def get_least_crowded_aws_vpc_region(region_list):
     """
     region, vpcs = 0, 0
     for _region in region_list:
-        num_vpcs = len(ec2_regional_client(region_name=_region).describe_vpcs()["Vpcs"])
-        if num_vpcs <= vpcs:
+        if (num_vpcs := len(ec2_client(region_name=_region).describe_vpcs()["Vpcs"])) <= vpcs:
             region = _region
             vpcs = num_vpcs
     return region
