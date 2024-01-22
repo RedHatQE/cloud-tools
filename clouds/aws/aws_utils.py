@@ -5,7 +5,7 @@ from http import HTTPStatus
 
 from simple_logger.logger import get_logger
 
-from clouds.aws.session_clients import ec2_client
+from clouds.aws.session_clients import ec2_client, ec2_regional_client
 
 LOGGER = get_logger(name=__name__)
 AWS_CONFIG_FILE = os.environ.get("AWS_CONFIG_FILE", os.path.expanduser("~/.aws/config"))
@@ -139,3 +139,35 @@ def delete_bucket(bucket_name: str, boto_client) -> None:
         f"Bucket {bucket_name} not deleted",
         json.dumps(response, defualt=str, indent=4),
     )
+
+
+def aws_region_names():
+    """
+    Lists AWS regions
+
+    Returns:
+        list: list of AWS regions name
+
+    """
+    regions = ec2_client().describe_regions()["Regions"]
+    return [region["RegionName"] for region in regions]
+
+
+def get_least_crowded_aws_vpc_region(region_list):
+    """
+    Selects region with the least number of VPCs.
+
+    Args:
+        region_list: list of regions
+
+    Returns:
+        str: region name with have the least number of VPCs
+
+    """
+    region, vpcs = 0, 0
+    for _region in region_list:
+        num_vpcs = len(ec2_regional_client(region_name=_region).describe_vpcs()["Vpcs"])
+        if num_vpcs <= vpcs:
+            region = _region
+            vpcs = num_vpcs
+    return region
