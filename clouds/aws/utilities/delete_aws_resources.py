@@ -11,16 +11,12 @@ from clouds.aws.aws_utils import (
     delete_all_objects_from_s3_folder,
     delete_bucket,
     set_and_verify_aws_credentials,
+    aws_region_names,
 )
 from clouds.aws.session_clients import ec2_client, iam_client, rds_client, s3_client
 
 LOGGER = get_logger(name="delete-aws-resources", filename="delete_aws_resources.log")
 MAX_ITEMS = 1000
-
-
-def aws_region_names():
-    regions = ec2_client().describe_regions()["Regions"]
-    return [region["RegionName"] for region in regions]
 
 
 def delete_rds_instances(region_name):
