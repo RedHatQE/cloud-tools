@@ -139,3 +139,37 @@ def delete_bucket(bucket_name: str, boto_client) -> None:
         f"Bucket {bucket_name} not deleted",
         json.dumps(response, defualt=str, indent=4),
     )
+
+
+def aws_region_names():
+    """
+    Lists AWS regions
+
+    Returns:
+        list: list of AWS regions name
+
+    """
+    regions = ec2_client().describe_regions()["Regions"]
+    return [region["RegionName"] for region in regions]
+
+
+def get_least_crowded_aws_vpc_region(region_list):
+    """
+    Selects region with the least number of VPCs.
+
+    Args:
+        region_list: list of region names
+
+    Returns:
+        str: region name with have the least number of VPCs
+
+    """
+    if not region_list:
+        raise ValueError("`region_list` must not be empty")
+
+    region, vpcs = region_list[0], 0
+    for _region in region_list:
+        if (num_vpcs := len(ec2_client(region_name=_region).describe_vpcs()["Vpcs"])) <= vpcs:
+            region = _region
+            vpcs = num_vpcs
+    return region
