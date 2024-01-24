@@ -164,7 +164,10 @@ def get_least_crowded_aws_vpc_region(region_list):
         str: region name with have the least number of VPCs
 
     """
-    region, vpcs = 0, 0
+    if not region_list:
+        raise ValueError("Region list must be provided.")
+
+    region, vpcs = region_list[0], 0
     for _region in region_list:
         if (num_vpcs := len(ec2_client(region_name=_region).describe_vpcs()["Vpcs"])) <= vpcs:
             region = _region
