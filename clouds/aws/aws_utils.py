@@ -165,7 +165,7 @@ def get_least_crowded_aws_vpc_region(region_list):
 
     """
     if not region_list:
-        raise ValueError("Region list must be provided.")
+        raise ValueError("`region_list` must not be empty")
 
     region, vpcs = region_list[0], 0
     for _region in region_list:
