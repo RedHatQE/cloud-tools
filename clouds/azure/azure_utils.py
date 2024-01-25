@@ -1,6 +1,5 @@
 from clouds.azure.session_clients import (
     get_resource_client,
-    get_network_client,
     get_subscription_client,
     get_azure_credentials,
     get_subscription_id,
@@ -26,17 +25,8 @@ def get_azure_supported_regions():
 def cleanup_azure_resources():
     credential = get_azure_credentials()
     resource_client = get_resource_client(credential=credential)
-    network_client = get_network_client(credential=credential)
 
     for resource_group_name in [resource_group.name for resource_group in resource_client.resource_groups.list()]:
-        LOGGER.info(f"Deleting resources in {resource_group_name} resource group")
-        for vnet_name in [
-            vnet.name for vnet in network_client.virtual_networks.list(resource_group_name=resource_group_name)
-        ]:
-            network_client.virtual_networks.begin_delete(
-                resource_group_name=resource_group_name,
-                virtual_network_name=vnet_name,
-            ).result()
         LOGGER.info(f"Deleting {resource_group_name} resource group")
         resource_client.resource_groups.begin_delete(resource_group_name=resource_group_name).result()
 
