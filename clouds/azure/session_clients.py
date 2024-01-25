@@ -28,7 +28,6 @@ def get_subscription_id():
 
 
 def get_azure_credentials():
-    # TODO: check how to get credentials using an identity provider.
     assert_azure_credentials()
     return DefaultAzureCredential(
         exclude_environment_credential=False,
