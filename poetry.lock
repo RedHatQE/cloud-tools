@@ -567,13 +567,13 @@ files = [
 
 [[package]]
 name = "kubernetes"
-version = "28.1.0"
+version = "29.0.0"
 description = "Kubernetes python client"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "kubernetes-28.1.0-py2.py3-none-any.whl", hash = "sha256:10f56f8160dcb73647f15fafda268e7f60cf7dbc9f8e46d52fcd46d3beb0c18d"},
-    {file = "kubernetes-28.1.0.tar.gz", hash = "sha256:1468069a573430fb1cb5ad22876868f57977930f80a6749405da31cd6086a7e9"},
+    {file = "kubernetes-29.0.0-py2.py3-none-any.whl", hash = "sha256:ab8cb0e0576ccdfb71886366efb102c6a20f268d817be065ce7f9909c631e43e"},
+    {file = "kubernetes-29.0.0.tar.gz", hash = "sha256:c4812e227ae74d07d53c88293e564e54b850452715a59a927e7e1bc6b9a60459"},
 ]
 
 [package.dependencies]
@@ -585,7 +585,7 @@ pyyaml = ">=5.4.1"
 requests = "*"
 requests-oauthlib = "*"
 six = ">=1.9.0"
-urllib3 = ">=1.24.2,<2.0"
+urllib3 = ">=1.24.2"
 websocket-client = ">=0.32.0,<0.40.0 || >0.40.0,<0.41.dev0 || >=0.43.dev0"
 
 [package.extras]
@@ -692,52 +692,54 @@ signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openshift-python-utilities"
-version = "5.0.20"
+version = "5.0.23"
 description = "A utilities repository for https://github.com/RedHatQE/openshift-python-wrapper"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "openshift_python_utilities-5.0.20.tar.gz", hash = "sha256:b8e5da341b7503287e4f7eaf01981ec37913ce70709775e9bce34d6c5fde6654"},
+    {file = "openshift_python_utilities-5.0.23.tar.gz", hash = "sha256:0e1ca538dea592d0a94de010196fe8ae72ad44c2f4d6395cb4bec3569a663ca4"},
 ]
 
 [package.dependencies]
 colorlog = ">=6.7.0,<7.0.0"
-openshift-python-wrapper-data-collector = ">=1.0.4,<2.0.0"
-python-simple-logger = ">=1.0.5,<2.0.0"
+openshift-python-wrapper = ">=10.0.4"
+openshift-python-wrapper-data-collector = ">=1.0.4"
+python-simple-logger = ">=1.0.5"
 pyyaml = ">=6.0.1,<7.0.0"
-timeout-sampler = ">=0.0.1,<0.0.2"
+timeout-sampler = ">=0.0.1"
 
 [[package]]
 name = "openshift-python-wrapper"
-version = "4.15.14"
+version = "10.0.5"
 description = "Wrapper around https://github.com/kubernetes-client/python"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "openshift_python_wrapper-4.15.14.tar.gz", hash = "sha256:4c5e25cc64ae05e48afbea327d4ff8150fe4e07952df314821fb0fa01d017cf4"},
+    {file = "openshift_python_wrapper-10.0.5.tar.gz", hash = "sha256:bc5d1f2e1b4a8c2e73675d1f44499d9c87ff0fd987874ebe5fd18fde2c84e09c"},
 ]
 
 [package.dependencies]
 colorlog = ">=6.7.0,<7.0.0"
 jinja2 = ">=3.1.2,<4.0.0"
-kubernetes = ">=28.1.0b1,<29.0.0"
+kubernetes = ">=29.0.0,<30.0.0"
 packaging = ">=23.1,<24.0"
-python-benedict = ">=0.32.0,<0.33.0"
-python-simple-logger = ">=1.0.6,<2.0.0"
+python-benedict = ">=0.33.0,<0.34.0"
+python-simple-logger = ">=1.0.6"
+timeout-sampler = ">=0.0.2"
 xmltodict = ">=0.13.0,<0.14.0"
 
 [[package]]
 name = "openshift-python-wrapper-data-collector"
-version = "1.0.6"
+version = "1.0.11"
 description = "Data collector for https://github.com/openshift/openshift-python-wrapper when running with PyTest"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "openshift_python_wrapper_data_collector-1.0.6.tar.gz", hash = "sha256:07f5d0bb9bbae6aba21bc781a8060480d9b679c3edcbd67751cd4b677471cd23"},
+    {file = "openshift_python_wrapper_data_collector-1.0.11.tar.gz", hash = "sha256:6e7a40ccec5d7239dfd966f87448112645bc6b8d920e866b9e821f8551a7bd97"},
 ]
 
 [package.dependencies]
-openshift-python-wrapper = ">=4.15.13,<5.0.0"
+openshift-python-wrapper = ">=10.0.0"
 pyyaml = ">=6.0.1,<7.0.0"
 
 [[package]]
@@ -909,13 +911,13 @@ windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "python-benedict"
-version = "0.32.1"
+version = "0.33.1"
 description = "python-benedict is a dict subclass with keylist/keypath/keyattr support, normalized I/O operations (base64, csv, ini, json, pickle, plist, query-string, toml, xls, xml, yaml) and many utilities... for humans, obviously."
 optional = false
 python-versions = "*"
 files = [
-    {file = "python-benedict-0.32.1.tar.gz", hash = "sha256:d669cbd0ca4e6cd9fbdc10b8f68ae57ac3224b49f7f55e9b2c13622c0434a148"},
-    {file = "python_benedict-0.32.1-py3-none-any.whl", hash = "sha256:61272f128ea5046399d261047b33d53e0836c951d9697b23a02d0723f9322e1d"},
+    {file = "python-benedict-0.33.1.tar.gz", hash = "sha256:e65ecfc16b505b0fefa08ed97c65f6f93cf32c0309dd2e1614fc0f58f22b2c4e"},
+    {file = "python_benedict-0.33.1-py3-none-any.whl", hash = "sha256:8838ebe33ed7508d37472346e67516fcf525ebc717a6f48b37aa00e0b89bc463"},
 ]
 
 [package.dependencies]
@@ -925,8 +927,9 @@ requests = ">=2.26.0,<3.0.0"
 
 [package.extras]
 all = ["python-benedict[io,parse,s3]"]
-io = ["python-benedict[toml,xls,xml,yaml]"]
-parse = ["ftfy (>=6.0.0,<7.0.0)", "mailchecker (>=4.1.0,<6.0.0)", "phonenumbers (>=8.12.0,<9.0.0)", "python-dateutil (>=2.8.0,<3.0.0)"]
+html = ["beautifulsoup4 (>=4.12.0,<5.0.0)", "python-benedict[xml]"]
+io = ["python-benedict[html,toml,xls,xml,yaml]"]
+parse = ["ftfy (>=6.0.0,<7.0.0)", "mailchecker (>=4.1.0,<7.0.0)", "phonenumbers (>=8.12.0,<9.0.0)", "python-dateutil (>=2.8.0,<3.0.0)"]
 s3 = ["boto3 (>=1.24.89,<2.0.0)"]
 toml = ["toml (>=0.10.2,<1.0.0)"]
 xls = ["openpyxl (>=3.0.0,<4.0.0)", "xlrd (>=2.0.0,<3.0.0)"]
@@ -1013,7 +1016,6 @@ files = [
     {file = "PyYAML-6.0.1-cp311-cp311-win_amd64.whl", hash = "sha256:bf07ee2fef7014951eeb99f56f39c9bb4af143d8aa3c21b1677805985307da34"},
     {file = "PyYAML-6.0.1-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:855fb52b0dc35af121542a76b9a84f8d1cd886ea97c84703eaa6d88e37a2ad28"},
     {file = "PyYAML-6.0.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:40df9b996c2b73138957fe23a16a4f0ba614f4c0efce1e9406a184b6d07fa3a9"},
-    {file = "PyYAML-6.0.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:a08c6f0fe150303c1c6b71ebcd7213c2858041a7e01975da3a99aed1e7a378ef"},
     {file = "PyYAML-6.0.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:6c22bec3fbe2524cde73d7ada88f6566758a8f7227bfbf93a408a9d86bcc12a0"},
     {file = "PyYAML-6.0.1-cp312-cp312-musllinux_1_1_x86_64.whl", hash = "sha256:8d4e9c88387b0f5c7d5f281e55304de64cf7f9c0021a3525bd3b1c542da3b0e4"},
     {file = "PyYAML-6.0.1-cp312-cp312-win32.whl", hash = "sha256:d483d2cdf104e7c9fa60c544d92981f12ad66a457afae824d146093b8c294c54"},
@@ -1161,12 +1163,12 @@ files = [
 
 [[package]]
 name = "timeout-sampler"
-version = "0.0.1"
+version = "0.0.2"
 description = "Timeout utility class to wait for any function output and interact with it in given time"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "timeout_sampler-0.0.1.tar.gz", hash = "sha256:e148f6e04a19b64f36209bbf3a7f8eb44ce6d9746edc09923fa8ea9dc6a110e9"},
+    {file = "timeout_sampler-0.0.2.tar.gz", hash = "sha256:addd9799f49dc1a9d7b053a63624d5f7438b09626e4a614295095431f7c66426"},
 ]
 
 [package.dependencies]
@@ -1266,4 +1268,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "00fd0c4c39e3784f5c39f32994b8734206ecd7e321082f0768a26f3f0bc88a2b"
+content-hash = "c7cee192eff6a6bb5fcebd8a145fdea27d07c29f3e56ea7836b2072c300c052d"
