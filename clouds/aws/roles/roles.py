@@ -16,7 +16,19 @@ def iam_client(region=DEFAULT_AWS_REGION):
 
     """
     LOGGER.info(f"Creating IAM client using region {region}.")
-    return boto3.client(service_name="iam", region_name=region)
+
+    iam = boto3.client(service_name="iam", region_name=region)
+    marker = None
+    roles = []
+
+    while True:
+        response = iam.list_roles(Marker=marker) if marker else iam.list_roles()
+        roles.extend(response["Roles"])
+        marker = response["Marker"] if response.get("IsTruncated", False) else None
+        if not marker:
+            break
+
+    return roles
 
 
 def create_or_update_role_policy(role_name, policy_name, policy_document, region=DEFAULT_AWS_REGION):
