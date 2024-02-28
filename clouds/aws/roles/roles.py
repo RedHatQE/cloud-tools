@@ -19,7 +19,7 @@ def iam_client(region=DEFAULT_AWS_REGION):
     return boto3.client(service_name="iam", region_name=region)
 
 
-def get_roles(client=iam_client(region=DEFAULT_AWS_REGION)):
+def get_roles(client=None):
     """
     Get all roles from IAM.
     Args:
@@ -29,6 +29,9 @@ def get_roles(client=iam_client(region=DEFAULT_AWS_REGION)):
          List of roles.
     """
     LOGGER.info("Retrieving all roles from IAM.")
+
+    if not client:
+        client = iam_client()
 
     marker = None
     is_truncated = True
