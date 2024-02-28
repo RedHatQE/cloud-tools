@@ -16,16 +16,31 @@ def iam_client(region=DEFAULT_AWS_REGION):
 
     """
     LOGGER.info(f"Creating IAM client using region {region}.")
+    return boto3.client(service_name="iam", region_name=region)
 
-    iam = boto3.client(service_name="iam", region_name=region)
+
+def get_roles(client=iam_client(region=DEFAULT_AWS_REGION)):
+    """
+    Get all roles from IAM.
+    Args:
+        client: A boto3 client for IAM.
+
+    Returns:
+         List of roles.
+    """
+    LOGGER.info("Retrieving all roles from IAM.")
+
     marker = None
+    is_truncated = True
     roles = []
 
-    while True:
-        response = iam.list_roles(Marker=marker) if marker else iam.list_roles()
+    while is_truncated:
+        response = client.list_roles(Marker=marker, MaxItems=1000) if marker else client.list_roles()
         roles.extend(response["Roles"])
-        marker = response["Marker"] if response.get("IsTruncated", False) else None
-        if not marker:
+
+        if response["IsTruncated"]:
+            marker = response["Marker"]
+        else:
             break
 
     return roles
