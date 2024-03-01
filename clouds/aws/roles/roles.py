@@ -30,21 +30,21 @@ def get_roles(client=None):
     """
     LOGGER.info("Retrieving all roles from IAM.")
 
-    if not client:
-        client = iam_client()
+    client = client or iam_client()
 
-    marker = None
-    is_truncated = True
-    roles = []
+    response = client.list_roles(MaxItems=1000)
+    roles = response["Roles"]
+    is_truncated = response["IsTruncated"]
+    marker = response.get("Marker", None)
+
+    if not is_truncated:
+        return roles
 
     while is_truncated:
-        response = client.list_roles(Marker=marker, MaxItems=1000) if marker else client.list_roles()
+        response = client.list_roles(Marker=marker, MaxItems=1000)
         roles.extend(response["Roles"])
-
-        if response["IsTruncated"]:
-            marker = response["Marker"]
-        else:
-            break
+        is_truncated = response["IsTruncated"]
+        marker = response["Marker"]
 
     return roles
 
