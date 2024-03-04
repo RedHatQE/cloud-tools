@@ -36,12 +36,11 @@ def get_roles(client=None):
 
     response = client.list_roles(MaxItems=IAM_ROLES_MAX_ITEMS)
     roles = response["Roles"]
-    marker = response.get("Marker")
 
-    while is_truncated := response["IsTruncated"]:
+    while response["IsTruncated"]:
+        marker = response["Marker"]
         response = client.list_roles(Marker=marker, MaxItems=IAM_ROLES_MAX_ITEMS)
         roles.extend(response["Roles"])
-        marker = response["Marker"]
 
     return roles
 
