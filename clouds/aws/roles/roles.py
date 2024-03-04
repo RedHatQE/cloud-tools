@@ -3,7 +3,6 @@ from simple_logger.logger import get_logger
 
 LOGGER = get_logger(name=__name__)
 DEFAULT_AWS_REGION = "us-east-1"
-IAM_ROLES_MAX_ITEMS = 1000
 
 
 def iam_client(region=DEFAULT_AWS_REGION):
@@ -32,14 +31,14 @@ def get_roles(client=None):
     """
     LOGGER.info("Retrieving all roles from IAM.")
 
+    iam_max_items = 1000
     client = client or iam_client()
-
-    response = client.list_roles(MaxItems=IAM_ROLES_MAX_ITEMS)
+    response = client.list_roles(MaxItems=iam_max_items)
     roles = response["Roles"]
 
     while response["IsTruncated"]:
         marker = response["Marker"]
-        response = client.list_roles(Marker=marker, MaxItems=IAM_ROLES_MAX_ITEMS)
+        response = client.list_roles(Marker=marker, MaxItems=iam_max_items)
         roles.extend(response["Roles"])
 
     return roles
