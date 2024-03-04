@@ -21,12 +21,13 @@ def iam_client(region=DEFAULT_AWS_REGION):
 
 def get_roles(client=None):
     """
-    Get all roles from IAM.
+    Get all IAM roles.
+
     Args:
-        client: A boto3 client for IAM.
+        client (botocore.client.IAM, optional): A boto3 client for IAM. Defaults to None.
 
     Returns:
-         List of roles.
+        List[Dict[Any, Any]]: A list of IAM roles
     """
     LOGGER.info("Retrieving all roles from IAM.")
 
