@@ -19,6 +19,31 @@ def iam_client(region=DEFAULT_AWS_REGION):
     return boto3.client(service_name="iam", region_name=region)
 
 
+def get_roles(client=None):
+    """
+    Get all IAM roles.
+
+    Args:
+        client (botocore.client.IAM, optional): A boto3 client for IAM. Defaults to None.
+
+    Returns:
+        List[Dict[Any, Any]]: A list of IAM roles
+    """
+    LOGGER.info("Retrieving all roles from IAM.")
+
+    iam_max_items = 1000
+    client = client or iam_client()
+    response = client.list_roles(MaxItems=iam_max_items)
+    roles = response["Roles"]
+
+    while response["IsTruncated"]:
+        marker = response["Marker"]
+        response = client.list_roles(Marker=marker, MaxItems=iam_max_items)
+        roles.extend(response["Roles"])
+
+    return roles
+
+
 def create_or_update_role_policy(role_name, policy_name, policy_document, region=DEFAULT_AWS_REGION):
     """
     Create a new policy role or update an existing one.
