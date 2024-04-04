@@ -1,41 +1,25 @@
 from clouds.azure.session_clients import (
-    get_resource_client,
+    get_aro_client,
     get_subscription_client,
-    get_azure_credentials,
-    get_subscription_id,
 )
 from simple_logger.logger import get_logger
 
 LOGGER = get_logger(name=__name__)
 
 
-def get_aro_supported_versions(aro_client=None, region=None):
-    return [aro_version.version for aro_version in aro_client.open_shift_versions.list(location=region)]
-
-
-def get_azure_supported_regions():
+def get_aro_supported_versions(credential, subscription_id, region):
     return [
-        region.name
-        for region in get_subscription_client(credential=get_azure_credentials()).subscriptions.list_locations(
-            subscription_id=get_subscription_id()
-        )
+        aro_version.version
+        for aro_version in get_aro_client(
+            credential=credential, subscription_id=subscription_id
+        ).open_shift_versions.list(location=region)
     ]
 
 
-def cleanup_azure_resources():
-    credential = get_azure_credentials()
-    resource_client = get_resource_client(credential=credential)
-
-    for resource_group_name in [resource_group.name for resource_group in resource_client.resource_groups.list()]:
-        LOGGER.info(f"Deleting {resource_group_name} resource group")
-        resource_client.resource_groups.begin_delete(resource_group_name=resource_group_name).result()
-
-    LOGGER.info("All Azure resources deleted successfully.")
-
-
-def main():
-    print(get_azure_supported_regions())
-
-
-if __name__ == "__main__":
-    main()
+def get_azure_supported_regions(credential, subscription_id):
+    return [
+        region.name
+        for region in get_subscription_client(credential=credential).subscriptions.list_locations(
+            subscription_id=subscription_id
+        )
+    ]
