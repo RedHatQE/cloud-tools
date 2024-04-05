@@ -63,17 +63,17 @@ lxml = ["lxml"]
 
 [[package]]
 name = "boto3"
-version = "1.34.93"
+version = "1.34.79"
 description = "The AWS SDK for Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "boto3-1.34.93-py3-none-any.whl", hash = "sha256:b59355bf4a1408563969526f314611dbeacc151cf90ecb22af295dcc4fe18def"},
-    {file = "boto3-1.34.93.tar.gz", hash = "sha256:e39516e4ca21612932599819662759c04485d53ca457996a913163da11f052a4"},
+    {file = "boto3-1.34.79-py3-none-any.whl", hash = "sha256:265b0b4865e8c07e27abb32a31d2bd9129bb009b1d89ca0783776ec084886123"},
+    {file = "boto3-1.34.79.tar.gz", hash = "sha256:139dd2d94eaa0e3213ff37ba7cf4cb2e3823269178fe8f3e33c965f680a9ddde"},
 ]
 
 [package.dependencies]
-botocore = ">=1.34.93,<1.35.0"
+botocore = ">=1.34.79,<1.35.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.10.0,<0.11.0"
 
@@ -82,13 +82,13 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.34.93"
+version = "1.34.79"
 description = "Low-level, data-driven core of boto 3."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "botocore-1.34.93-py3-none-any.whl", hash = "sha256:6fbd5a53a2adc9b3d4ebd90ae0ede83a91a41d96231f8a5984051f75495f246d"},
-    {file = "botocore-1.34.93.tar.gz", hash = "sha256:79d39b0b87e962991c6dd55e78ce15155099f6fb741be88b1b8a456a702cc150"},
+    {file = "botocore-1.34.79-py3-none-any.whl", hash = "sha256:a42a014d3dbaa9ef123810592af69f9e55b456c5be3ac9efc037325685519e83"},
+    {file = "botocore-1.34.79.tar.gz", hash = "sha256:6b59b0f7de219d383a2a633f6718c2600642ebcb707749dc6c67a6a436474b7a"},
 ]
 
 [package.dependencies]
@@ -100,7 +100,7 @@ urllib3 = [
 ]
 
 [package.extras]
-crt = ["awscrt (==0.20.9)"]
+crt = ["awscrt (==0.19.19)"]
 
 [[package]]
 name = "cachetools"
@@ -267,18 +267,18 @@ development = ["black", "flake8", "mypy", "pytest", "types-colorama"]
 
 [[package]]
 name = "configparser"
-version = "7.0.0"
+version = "6.0.1"
 description = "Updated configparser from stdlib for earlier Pythons."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "configparser-7.0.0-py3-none-any.whl", hash = "sha256:f46d52a12811c637104c6bb8eb33693be0038ab6bf01d69aae009c39ec8c2017"},
-    {file = "configparser-7.0.0.tar.gz", hash = "sha256:af3c618a67aaaedc4d689fd7317d238f566b9aa03cae50102e92d7f0dfe78ba0"},
+    {file = "configparser-6.0.1-py3-none-any.whl", hash = "sha256:5a0da275bea56f871abaa9e0806331791e9d8ae2938e8b8797b99ab3e8e192c4"},
+    {file = "configparser-6.0.1.tar.gz", hash = "sha256:db45513e971e509496b150be31bd67b0e14ab20b78a383b677e4b158e2c682d8"},
 ]
 
 [package.extras]
-docs = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-lint"]
-testing = ["pytest (>=6,!=8.1.1)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-mypy", "pytest-ruff (>=0.2.1)", "types-backports"]
+docs = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (<7.2.5)", "sphinx (>=3.5)", "sphinx-lint"]
+testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-mypy", "pytest-ruff (>=0.2.1)", "types-backports"]
 
 [[package]]
 name = "decorator"
@@ -714,12 +714,12 @@ signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openshift-python-utilities"
-version = "5.0.39"
+version = "5.0.34"
 description = "A utilities repository for https://github.com/RedHatQE/openshift-python-wrapper"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "openshift_python_utilities-5.0.39.tar.gz", hash = "sha256:5bf4c689a50bbd00229eaee7b7212b47053570714d2b502ef588f69da048b7ec"},
+    {file = "openshift_python_utilities-5.0.34.tar.gz", hash = "sha256:c087b1b1cccb0956a37007d08d92152f15da5db051fb99f21fd173698e4bae8c"},
 ]
 
 [package.dependencies]
@@ -988,12 +988,12 @@ files = [
 
 [[package]]
 name = "python-simple-logger"
-version = "1.0.22"
+version = "1.0.19"
 description = "A simple logger for python"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "python_simple_logger-1.0.22.tar.gz", hash = "sha256:4f8bd4fcb1e94117dbdc96429c73d8f328e0fa6a267ef5559ee6697a5d8e77c9"},
+    {file = "python_simple_logger-1.0.19.tar.gz", hash = "sha256:09e012b7eae28d22cd00725576aac0ec06f283838a57888d4d23b8935fc8092e"},
 ]
 
 [package.dependencies]
@@ -1316,4 +1316,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "96ce91be144f48d36b85dd831e47a031dfcd23b35d2b7e3b64a1aa4f95138f6e"
+content-hash = "c7cee192eff6a6bb5fcebd8a145fdea27d07c29f3e56ea7836b2072c300c052d"
