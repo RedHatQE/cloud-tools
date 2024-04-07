@@ -5,7 +5,7 @@ from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.redhatopenshift import AzureRedHatOpenShiftClient
 
 
-def azure_credentials(tenant_id: str, client_id: str, client_secret: str) -> ClientSecretCredential:
+def azure_credentials(tenant_id, client_id, client_secret) -> ClientSecretCredential:
     return ClientSecretCredential(
         tenant_id=tenant_id,
         client_id=client_id,
@@ -13,17 +13,17 @@ def azure_credentials(tenant_id: str, client_id: str, client_secret: str) -> Cli
     )
 
 
-def aro_client(credential: ClientSecretCredential, subscription_id: str) -> AzureRedHatOpenShiftClient:
+def aro_client(credential, subscription_id) -> AzureRedHatOpenShiftClient:
     return AzureRedHatOpenShiftClient(credential=credential, subscription_id=subscription_id)
 
 
-def network_client(credential: ClientSecretCredential, subscription_id: str) -> NetworkManagementClient:
+def network_client(credential, subscription_id) -> NetworkManagementClient:
     return NetworkManagementClient(credential=credential, subscription_id=subscription_id)
 
 
-def resource_client(credential: ClientSecretCredential, subscription_id: str) -> ResourceManagementClient:
+def resource_client(credential, subscription_id) -> ResourceManagementClient:
     return ResourceManagementClient(credential=credential, subscription_id=subscription_id)
 
 
-def subscription_client(credential: ClientSecretCredential) -> SubscriptionClient:
+def subscription_client(credential) -> SubscriptionClient:
     return SubscriptionClient(credential=credential)
