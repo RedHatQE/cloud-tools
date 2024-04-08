@@ -1,15 +1,17 @@
 from simple_logger.logger import get_logger
+from azure.mgmt.subscription import SubscriptionClient
+from azure.mgmt.redhatopenshift import AzureRedHatOpenShiftClient
 
 LOGGER = get_logger(name=__name__)
 
 
-def get_aro_supported_versions(aro_client, region):
+def get_aro_supported_versions(aro_client: AzureRedHatOpenShiftClient, region: str):
     supported_versions = [aro_version.version for aro_version in aro_client.open_shift_versions.list(location=region)]
     LOGGER.info(f"ARO supported versions: {supported_versions}")
     return supported_versions
 
 
-def get_azure_supported_regions(subscription_client, subscription_id):
+def get_azure_supported_regions(subscription_client: SubscriptionClient, subscription_id: str):
     supported_regions = [
         region.name for region in subscription_client.subscriptions.list_locations(subscription_id=subscription_id)
     ]
