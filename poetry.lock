@@ -61,20 +61,20 @@ aio = ["aiohttp (>=3.0)"]
 
 [[package]]
 name = "azure-identity"
-version = "1.15.0"
+version = "1.16.0"
 description = "Microsoft Azure Identity Library for Python"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "azure-identity-1.15.0.tar.gz", hash = "sha256:4c28fc246b7f9265610eb5261d65931183d019a23d4b0e99357facb2e6c227c8"},
-    {file = "azure_identity-1.15.0-py3-none-any.whl", hash = "sha256:a14b1f01c7036f11f148f22cd8c16e05035293d714458d6b44ddf534d93eb912"},
+    {file = "azure-identity-1.16.0.tar.gz", hash = "sha256:6ff1d667cdcd81da1ceab42f80a0be63ca846629f518a922f7317a7e3c844e1b"},
+    {file = "azure_identity-1.16.0-py3-none-any.whl", hash = "sha256:722fdb60b8fdd55fa44dc378b8072f4b419b56a5e54c0de391f644949f3a826f"},
 ]
 
 [package.dependencies]
-azure-core = ">=1.23.0,<2.0.0"
+azure-core = ">=1.23.0"
 cryptography = ">=2.5"
-msal = ">=1.24.0,<2.0.0"
-msal-extensions = ">=0.3.0,<2.0.0"
+msal = ">=1.24.0"
+msal-extensions = ">=0.3.0"
 
 [[package]]
 name = "azure-mgmt-authorization"
@@ -750,13 +750,13 @@ protobuf = ">=4.21.6"
 
 [[package]]
 name = "idna"
-version = "3.6"
+version = "3.7"
 description = "Internationalized Domain Names in Applications (IDNA)"
 optional = false
 python-versions = ">=3.5"
 files = [
-    {file = "idna-3.6-py3-none-any.whl", hash = "sha256:c05567e9c24a6b9faaa835c4821bad0590fbb9d5779e7caa6e1cc4978e7eb24f"},
-    {file = "idna-3.6.tar.gz", hash = "sha256:9ecdbbd083b06798ae1e86adcbfe8ab1479cf864e4ee30fe4e46a003d12491ca"},
+    {file = "idna-3.7-py3-none-any.whl", hash = "sha256:82fee1fc78add43492d3a1898bfa6d8a904cc97d8427f683ed8e798d07761aa0"},
+    {file = "idna-3.7.tar.gz", hash = "sha256:028ff3aadf0609c1fd278d8ea3089299412a7a8b9bd005dd08b9f8285bcb5cfc"},
 ]
 
 [[package]]
@@ -1093,12 +1093,12 @@ timeout-sampler = ">=0.0.17"
 
 [[package]]
 name = "openshift-python-wrapper"
-version = "10.0.29"
+version = "10.0.32"
 description = "Wrapper around https://github.com/kubernetes-client/python"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "openshift_python_wrapper-10.0.29.tar.gz", hash = "sha256:a00a4c3d7745645994ff08dcb5c42fc552e0e24f463fa6c21563ec223a20e563"},
+    {file = "openshift_python_wrapper-10.0.32.tar.gz", hash = "sha256:98e9e62cda83ecefc5f5f924b5fac6f4fd6540bd83f61011c6640acc177979dd"},
 ]
 
 [package.dependencies]
@@ -1113,12 +1113,12 @@ xmltodict = ">=0.13.0,<0.14.0"
 
 [[package]]
 name = "openshift-python-wrapper-data-collector"
-version = "1.0.36"
+version = "1.0.38"
 description = "Data collector for https://github.com/openshift/openshift-python-wrapper when running with PyTest"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "openshift_python_wrapper_data_collector-1.0.36.tar.gz", hash = "sha256:51d2b645eb5fa434cb12656dc7e235665979793bb81c3704624ae549ff25eb4c"},
+    {file = "openshift_python_wrapper_data_collector-1.0.38.tar.gz", hash = "sha256:e227cf3f061c9934b4d96b9023cbf473db13f3071df9a58b2c7ec8b3134dc554"},
 ]
 
 [package.dependencies]
@@ -1696,12 +1696,12 @@ files = [
 
 [[package]]
 name = "timeout-sampler"
-version = "0.0.20"
+version = "0.0.21"
 description = "Timeout utility class to wait for any function output and interact with it in given time"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "timeout_sampler-0.0.20.tar.gz", hash = "sha256:76aa596fb812e17eff991bcd5b39a441dd0bc3d101fd57da2a407f38c2131e6d"},
+    {file = "timeout_sampler-0.0.21.tar.gz", hash = "sha256:047994b8a3996b6fc2deca5263a6061167d7caa1b8f8c9ba0d190f4f302c8fa9"},
 ]
 
 [package.dependencies]
