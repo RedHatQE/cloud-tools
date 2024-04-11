@@ -1,6 +1,7 @@
 from typing import List
 from simple_logger.logger import get_logger
 from azure.mgmt.subscription import SubscriptionClient
+from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.redhatopenshift import AzureRedHatOpenShiftClient
 
 
@@ -19,3 +20,12 @@ def get_azure_supported_regions(subscription_client: SubscriptionClient, subscri
     ]
     LOGGER.info(f"ARO supported regions: {supported_regions}")
     return supported_regions
+
+
+def azure_cleanup(resource_client: ResourceManagementClient, subscription_id: str) -> None:
+    LOGGER.info("Starting Azure cleanup")
+    for resource_group_name in [resource_group.name for resource_group in resource_client.resource_groups.list()]:
+        LOGGER.info(f"Deleting resource group {resource_group_name}")
+        resource_client.resource_groups.begin_delete(resource_group_name=resource_group_name)
+
+    LOGGER.info("Azure cleanup completed successfully")
