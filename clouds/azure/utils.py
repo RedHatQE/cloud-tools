@@ -22,7 +22,7 @@ def get_azure_supported_regions(subscription_client: SubscriptionClient, subscri
     return supported_regions
 
 
-def azure_cleanup(resource_client: ResourceManagementClient, subscription_id: str) -> None:
+def azure_cleanup(resource_client: ResourceManagementClient) -> None:
     LOGGER.info("Starting Azure cleanup")
     for resource_group_name in [resource_group.name for resource_group in resource_client.resource_groups.list()]:
         LOGGER.info(f"Deleting resource group {resource_group_name}")
