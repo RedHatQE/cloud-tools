@@ -5,7 +5,7 @@ from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.redhatopenshift import AzureRedHatOpenShiftClient
 
 
-def azure_credentials(tenant_id: str, client_id: str, client_secret: str) -> ClientSecretCredential:
+def client_secret_credentials(tenant_id: str, client_id: str, client_secret: str) -> ClientSecretCredential:
     return ClientSecretCredential(
         tenant_id=tenant_id,
         client_id=client_id,
