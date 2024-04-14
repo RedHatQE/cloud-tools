@@ -13,17 +13,17 @@ def azure_credentials(tenant_id, client_id, client_secret) -> ClientSecretCreden
     )
 
 
-def aro_client(credential, subscription_id) -> AzureRedHatOpenShiftClient:
+def aro_client(credential: ClientSecretCredential, subscription_id: str) -> AzureRedHatOpenShiftClient:
     return AzureRedHatOpenShiftClient(credential=credential, subscription_id=subscription_id)
 
 
-def network_client(credential, subscription_id) -> NetworkManagementClient:
+def network_client(credential: ClientSecretCredential, subscription_id: str) -> NetworkManagementClient:
     return NetworkManagementClient(credential=credential, subscription_id=subscription_id)
 
 
-def resource_client(credential, subscription_id) -> ResourceManagementClient:
+def resource_client(credential: ClientSecretCredential, subscription_id: str) -> ResourceManagementClient:
     return ResourceManagementClient(credential=credential, subscription_id=subscription_id)
 
 
-def subscription_client(credential) -> SubscriptionClient:
+def subscription_client(credential: ClientSecretCredential) -> SubscriptionClient:
     return SubscriptionClient(credential=credential)
