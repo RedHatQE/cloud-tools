@@ -33,11 +33,9 @@ def azure_resources_cleanup(resource_client: ResourceManagementClient) -> None:
     Args:
         resource_client: Azure resources client. see https://learn.microsoft.com/en-us/python/api/azure-mgmt-resource/azure.mgmt.resource.resources.resourcemanagementclient?view=azure-python
                             for more info.
-    Returns:
-        None
     """
-    failed_delete_resource_groups = []
-    azure_post_cleanup_message = "Azure cleanup completed successfully"
+    failed_delete_resource_groups: List[str] = []
+    azure_post_cleanup_message = "Azure cleanup completed"
 
     LOGGER.info("Starting Azure resources cleanup")
     for resource_group_name in [resource_group.name for resource_group in resource_client.resource_groups.list()]:
@@ -53,4 +51,4 @@ def azure_resources_cleanup(resource_client: ResourceManagementClient) -> None:
             f"{azure_post_cleanup_message} except for the following resource groups: {failed_delete_resource_groups}"
         )
     else:
-        LOGGER.info(f"{azure_post_cleanup_message}")
+        LOGGER.success(azure_post_cleanup_message)

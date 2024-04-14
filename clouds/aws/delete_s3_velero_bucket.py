@@ -79,6 +79,8 @@ def get_velero_infrastructure_name(bucket_name: str, boto_client) -> Union[str, 
         if tag["Key"] == "velero.io/infrastructureName":
             return tag["Value"]
 
+    return None
+
 
 def verify_cluster_matches_velero_infrastructure_name(
     boto_client,
