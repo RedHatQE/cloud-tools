@@ -9,7 +9,9 @@ LOGGER = get_logger(name=__name__)
 
 
 def get_aro_supported_versions(aro_client: AzureRedHatOpenShiftClient, region: str) -> List[str]:
-    supported_versions = [aro_version.version for aro_version in aro_client.open_shift_versions.list(location=region)]
+    supported_versions: List[str] = [
+        aro_version.version for aro_version in aro_client.open_shift_versions.list(location=region)
+    ]
     LOGGER.info(f"ARO supported versions: {supported_versions}")
     return supported_versions
 
@@ -29,7 +31,7 @@ def azure_resources_cleanup(resource_client: ResourceManagementClient) -> None:
     that are associated with the given resource client's subscription.
     Please note that this action is irreversible.
     Args:
-        resource_client: Azure resources client (see https://learn.microsoft.com/en-us/python/api/azure-mgmt-resource/azure.mgmt.resource.resources.resourcemanagementclient?view=azure-python)
+        resource_client: Azure resources client. see https://learn.microsoft.com/en-us/python/api/azure-mgmt-resource/azure.mgmt.resource.resources.resourcemanagementclient?view=azure-python
                             for more info.
     Returns:
         None
