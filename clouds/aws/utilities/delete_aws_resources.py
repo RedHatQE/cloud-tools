@@ -1,17 +1,13 @@
 import multiprocessing
 import re
 import shlex
-import shutil
 
-import click
 from ocp_utilities.utils import run_command
 from simple_logger.logger import get_logger
 
 from clouds.aws.aws_utils import (
     delete_all_objects_from_s3_folder,
     delete_bucket,
-    set_and_verify_aws_credentials,
-    aws_region_names,
 )
 from clouds.aws.session_clients import ec2_client, iam_client, rds_client, s3_client
 
@@ -106,42 +102,6 @@ def delete_buckets(region_name):
     return buckets_dict.get("IsTruncated")
 
 
-@click.command()
-@click.option(
-    "--aws-regions",
-    help="""
-        \b
-        Comma-separated string of AWS regions to delete resources from.
-        If not provided will iterate over all regions.
-        """,
-    required=False,
-)
-@click.option(
-    "--all-aws-regions",
-    help="""
-        \b
-        Run on all AWS regions.
-        """,
-    is_flag=True,
-)
-def main(aws_regions, all_aws_regions):
-    if all_aws_regions:
-        _aws_regions = aws_region_names()
-    elif aws_regions:
-        _aws_regions = aws_regions.split(",")
-    else:
-        click.echo("Either pass --all-aws-regions or --aws-regions to run cleanup")
-        raise click.Abort()
-
-    if not shutil.which("cloud-nuke"):
-        click.echo("cloud-nuke is not installed; install from" " https://github.com/gruntwork-io/cloud-nuke")
-        raise click.Abort()
-
-    set_and_verify_aws_credentials(region_name=_aws_regions[0])
-
-    clean_aws_resources(aws_regions=_aws_regions)
-
-
 def clean_aws_resources(aws_regions):
     rerun_cleanup_regions_list = []
     jobs = []
@@ -193,7 +153,3 @@ def clean_aws_region(aws_region, queue):
 
     if any(rerun_results):
         queue.put(aws_region)
-
-
-if __name__ == "__main__":
-    main()
