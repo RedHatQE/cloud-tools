@@ -45,6 +45,8 @@ azure-mgmt-resource = "^23.0.1"
 azure-identity = "^1.15.0"
 azure-mgmt-redhatopenshift = "^1.4.0"
 azure-mgmt-network = "^25.2.0"
+azure-mgmt-subscription = "^3.1.1"
+pyhelper-utils = "^0.0.9"
 
 [tool.poetry.urls]
 Download = "https://pypi.org/project/redhat-qe-cloud-tools/"
