@@ -6,7 +6,7 @@ from azure.mgmt.redhatopenshift import AzureRedHatOpenShiftClient
 from clouds.azure.session_clients import azure_credentials, resource_client
 
 
-LOGGER = get_logger(name=__name__)
+LOGGER = get_logger(name="azure-utils")
 
 
 def get_aro_supported_versions(aro_client: AzureRedHatOpenShiftClient, region: str) -> List[str]:
@@ -28,9 +28,7 @@ def get_azure_supported_regions(subscription_client: SubscriptionClient, subscri
 def nuke_all_azure_resources(tenant_id: str, client_id: str, client_secret: str, subscription_id: str) -> None:
     """
     Run nuke for all Azure cloud resources associated with the given credentials.
-
-    Note:
-        This action is irreversible and will permanently delete all resources.
+    This action is irreversible and will permanently delete all resources.
 
     Args:
         tenant_id (str): The Azure managed-identity tenant ID.
@@ -48,7 +46,7 @@ def nuke_all_azure_resources(tenant_id: str, client_id: str, client_secret: str,
     )
 
     failed_delete_resource_groups: List[str] = []
-    azure_post_cleanup_message = "Azure cleanup completed"
+    azure_post_cleanup_message: str = "Azure cleanup completed"
 
     LOGGER.info("Starting Azure resources cleanup")
     for resource_group_name in [resource_group.name for resource_group in _resource_client.resource_groups.list()]:
@@ -60,7 +58,7 @@ def nuke_all_azure_resources(tenant_id: str, client_id: str, client_secret: str,
             failed_delete_resource_groups.append(resource_group_name)
 
     if failed_delete_resource_groups:
-        LOGGER.info(
+        LOGGER.error(
             f"{azure_post_cleanup_message} except for the following resource groups: {failed_delete_resource_groups}"
         )
     else:
