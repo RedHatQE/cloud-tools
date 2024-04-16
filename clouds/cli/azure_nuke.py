@@ -1,6 +1,7 @@
 import os
 import click
 from clouds.azure.utils import nuke_all_azure_resources
+from pyhelper_utils.runners import function_runner_with_pdb
 
 
 @click.command()
@@ -41,4 +42,4 @@ def main(**kwargs):
 
 
 if __name__ == "__main__":
-    main()
+    function_runner_with_pdb(func=main)

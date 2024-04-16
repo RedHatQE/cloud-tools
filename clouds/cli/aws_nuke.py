@@ -1,5 +1,6 @@
 import click
 import shutil
+from pyhelper_utils.runners import function_runner_with_pdb
 from clouds.aws.utilities.delete_aws_resources import clean_aws_resources
 from clouds.aws.aws_utils import set_and_verify_aws_credentials, aws_region_names
 
@@ -22,9 +23,9 @@ from clouds.aws.aws_utils import set_and_verify_aws_credentials, aws_region_name
         """,
     is_flag=True,
 )
-def main(aws_regions, all_aws_regions):
+def main(aws_regions: str, all_aws_regions: bool):
     """
-    Nuke all AWS cloud resources in given regions/all regions
+    Nuke all AWS cloud resources in given/all regions
     """
 
     if all_aws_regions:
@@ -45,4 +46,4 @@ def main(aws_regions, all_aws_regions):
 
 
 if __name__ == "__main__":
-    main()
+    function_runner_with_pdb(func=main)
