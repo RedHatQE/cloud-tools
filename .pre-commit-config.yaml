@@ -40,6 +40,5 @@ repos:
     rev: v1.9.0
     hooks:
       - id: mypy
-        exclude: ^(tests/)
         include: clouds/azure/
         additional_dependencies: [types-all]
