@@ -11,7 +11,7 @@ from clouds.aws.aws_utils import (
 )
 from clouds.aws.session_clients import ec2_client, iam_client, rds_client, s3_client
 
-LOGGER = get_logger(name="delete-aws-resources", filename="delete_aws_resources.log")
+LOGGER = get_logger(name="aws-nuke-cli")
 MAX_ITEMS = 1000
 
 

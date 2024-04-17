@@ -188,17 +188,17 @@ lxml = ["lxml"]
 
 [[package]]
 name = "boto3"
-version = "1.34.84"
+version = "1.34.85"
 description = "The AWS SDK for Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "boto3-1.34.84-py3-none-any.whl", hash = "sha256:7a02f44af32095946587d748ebeb39c3fa15b9d7275307ff612a6760ead47e04"},
-    {file = "boto3-1.34.84.tar.gz", hash = "sha256:91e6343474173e9b82f603076856e1d5b7b68f44247bdd556250857a3f16b37b"},
+    {file = "boto3-1.34.85-py3-none-any.whl", hash = "sha256:135f1358fbc7d7dc89ad1a4346cb8da621fdc2aea69deb7b20c71ffec7cde111"},
+    {file = "boto3-1.34.85.tar.gz", hash = "sha256:de73d0f2dec1819074caf3f0888e18f6e13a9fb75ef5f17b1bdd9d1acc127b33"},
 ]
 
 [package.dependencies]
-botocore = ">=1.34.84,<1.35.0"
+botocore = ">=1.34.85,<1.35.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.10.0,<0.11.0"
 
@@ -207,13 +207,13 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.34.84"
+version = "1.34.85"
 description = "Low-level, data-driven core of boto 3."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "botocore-1.34.84-py3-none-any.whl", hash = "sha256:da1ae0a912e69e10daee2a34dafd6c6c106450d20b8623665feceb2d96c173eb"},
-    {file = "botocore-1.34.84.tar.gz", hash = "sha256:a2b309bf5594f0eb6f63f355ade79ba575ce8bf672e52e91da1a7933caa245e6"},
+    {file = "botocore-1.34.85-py3-none-any.whl", hash = "sha256:9abae3f7925a8cc2b91b6ff3f09e631476c74826d45dc44fb30d1d15960639db"},
+    {file = "botocore-1.34.85.tar.gz", hash = "sha256:18548525d4975bbe982f393f6470ba45249919a93f5dc6a69e37e435dd2cf579"},
 ]
 
 [package.dependencies]
@@ -225,7 +225,7 @@ urllib3 = [
 ]
 
 [package.extras]
-crt = ["awscrt (==0.19.19)"]
+crt = ["awscrt (==0.20.9)"]
 
 [[package]]
 name = "cachetools"
@@ -1091,12 +1091,12 @@ signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openshift-python-utilities"
-version = "5.0.37"
+version = "5.0.38"
 description = "A utilities repository for https://github.com/RedHatQE/openshift-python-wrapper"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "openshift_python_utilities-5.0.37.tar.gz", hash = "sha256:cfabb86b9a9a2706e649f24d4f9fd7124a4da3b9ac74a6d16115d1147d0b76cd"},
+    {file = "openshift_python_utilities-5.0.38.tar.gz", hash = "sha256:906c479ff615862e1d0f17e41cddaeb2b115a184f13d34ffd3a87377e7eae078"},
 ]
 
 [package.dependencies]
@@ -1112,12 +1112,12 @@ timeout-sampler = ">=0.0.17"
 
 [[package]]
 name = "openshift-python-wrapper"
-version = "10.0.33"
+version = "10.0.34"
 description = "Wrapper around https://github.com/kubernetes-client/python"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "openshift_python_wrapper-10.0.33.tar.gz", hash = "sha256:b865a3d704dcf0966048ddb43da13cd095e8b51f3c2fd2c091f98136ec8c7e24"},
+    {file = "openshift_python_wrapper-10.0.34.tar.gz", hash = "sha256:2379763ce3cf166d41594951b17a508c562d73271e78542e27873e960a15a514"},
 ]
 
 [package.dependencies]
@@ -1132,12 +1132,12 @@ xmltodict = ">=0.13.0,<0.14.0"
 
 [[package]]
 name = "openshift-python-wrapper-data-collector"
-version = "1.0.39"
+version = "1.0.41"
 description = "Data collector for https://github.com/openshift/openshift-python-wrapper when running with PyTest"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "openshift_python_wrapper_data_collector-1.0.39.tar.gz", hash = "sha256:e7a4fb18a7f33868bf2679604fa199db7181faba8bee574b19008907a7466bf4"},
+    {file = "openshift_python_wrapper_data_collector-1.0.41.tar.gz", hash = "sha256:a1abd6194308c953ce872920643e8abf7a51ca014ccc747f25955f1b15d7ecec"},
 ]
 
 [package.dependencies]
@@ -1485,12 +1485,12 @@ files = [
 
 [[package]]
 name = "python-simple-logger"
-version = "1.0.20"
+version = "1.0.21"
 description = "A simple logger for python"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "python_simple_logger-1.0.20.tar.gz", hash = "sha256:3bc6958ac7ac5a8e01f3515d94aa3edd5b1ecbc51afeeacf789b6cf06769f9c0"},
+    {file = "python_simple_logger-1.0.21.tar.gz", hash = "sha256:da012d77ab78995efe0fcc180684576758968ffa592bd4730d71ac8abd9aa441"},
 ]
 
 [package.dependencies]
@@ -1750,12 +1750,12 @@ files = [
 
 [[package]]
 name = "timeout-sampler"
-version = "0.0.22"
+version = "0.0.23"
 description = "Timeout utility class to wait for any function output and interact with it in given time"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "timeout_sampler-0.0.22.tar.gz", hash = "sha256:117ffcc93d2689f3ab47537772ac50616f125005160cd85c4b9d54ca48b5281c"},
+    {file = "timeout_sampler-0.0.23.tar.gz", hash = "sha256:8e64f0d98b21d54619cb599936ab129d3085ca3741ebf818dff52f1224458436"},
 ]
 
 [package.dependencies]
@@ -1872,4 +1872,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "9eefa175a0e40882307563be009883a6c075752e8ebafc600352cab8752bb277"
+content-hash = "a7eb955167925230ccd89d35d1fec6ab7c07e7282ed95129b91f0feec372dc07"
