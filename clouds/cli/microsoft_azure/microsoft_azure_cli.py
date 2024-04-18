@@ -1,6 +1,7 @@
 from typing import List
 from simple_logger.logger import get_logger
-from clouds.azure.session_clients import azure_credentials, resource_client
+from azure.core.exceptions import HttpResponseError
+from clouds.microsoft_azure.session_clients import azure_credentials, resource_client
 
 LOGGER = get_logger(name="azure-nuke-cli")
 
@@ -33,7 +34,7 @@ def nuke_all_azure_resources(tenant_id: str, client_id: str, client_secret: str,
         try:
             LOGGER.info(f"Deleting resource group {resource_group_name}")
             _resource_client.resource_groups.begin_delete(resource_group_name=resource_group_name)
-        except Exception as ex:
+        except HttpResponseError as ex:
             LOGGER.error(f"Failed to delete resource group {resource_group_name}: {ex}")
             failed_delete_resource_groups.append(resource_group_name)
 
