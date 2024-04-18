@@ -33,7 +33,7 @@ def aws():
         """,
     is_flag=True,
 )
-def aws_nuke(aws_regions: str, all_aws_regions: bool):
+def aws_nuke(aws_regions: str, all_aws_regions: bool) -> None:
     """
     Nuke all AWS cloud resources in given/all regions
     """
@@ -85,7 +85,9 @@ def azure():
     type=str,
     default=os.environ.get("AZURE_SUBSCRIPTION_ID"),
 )
-def azure_nuke(azure_tenant_id, azure_client_id, azure_client_secret, azure_subscription_id):
+def azure_nuke(
+    azure_tenant_id: str, azure_client_id: str, azure_client_secret: str, azure_subscription_id: str
+) -> None:
     """
     Nuke all Azure cloud resources.
     """
