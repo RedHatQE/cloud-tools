@@ -37,7 +37,7 @@ google-cloud-compute = "^1.14.1"
 Download = "https://pypi.org/project/redhat-qe-cloud-tools/"
 "Bug Tracker" = "https://github.com/RedHatQE/cloud-tools/issues"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 ipdb = "^0.13.13"
 ipython = "*"
 
