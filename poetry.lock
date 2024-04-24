@@ -714,12 +714,12 @@ signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openshift-python-utilities"
-version = "5.0.38"
+version = "5.0.39"
 description = "A utilities repository for https://github.com/RedHatQE/openshift-python-wrapper"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "openshift_python_utilities-5.0.38.tar.gz", hash = "sha256:906c479ff615862e1d0f17e41cddaeb2b115a184f13d34ffd3a87377e7eae078"},
+    {file = "openshift_python_utilities-5.0.39.tar.gz", hash = "sha256:5bf4c689a50bbd00229eaee7b7212b47053570714d2b502ef588f69da048b7ec"},
 ]
 
 [package.dependencies]
@@ -988,12 +988,12 @@ files = [
 
 [[package]]
 name = "python-simple-logger"
-version = "1.0.21"
+version = "1.0.22"
 description = "A simple logger for python"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "python_simple_logger-1.0.21.tar.gz", hash = "sha256:da012d77ab78995efe0fcc180684576758968ffa592bd4730d71ac8abd9aa441"},
+    {file = "python_simple_logger-1.0.22.tar.gz", hash = "sha256:4f8bd4fcb1e94117dbdc96429c73d8f328e0fa6a267ef5559ee6697a5d8e77c9"},
 ]
 
 [package.dependencies]
