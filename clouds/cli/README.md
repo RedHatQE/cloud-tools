@@ -1,5 +1,9 @@
 # Cloud nuke CLI tools
-* Run `make cloud-cli` to run with `cloud-cli` (requires root privileges).
+* To run with `cloud-cli`:
+```bash
+pipx install .
+cloud-cli --help
+```
 
 
 ### AWS nuke
