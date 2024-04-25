@@ -80,7 +80,7 @@ def set_and_verify_aws_config() -> None:
     )
 
 
-def delete_all_objects_from_s3_folder(bucket_name: str, boto_client: botocore.client.S3) -> None:  # type: ignore
+def delete_all_objects_from_s3_folder(bucket_name: str, boto_client: "botocore.client.S3") -> None:
     """
     Deletes all files in a folder of an S3 bucket
 
@@ -116,7 +116,7 @@ def delete_all_objects_from_s3_folder(bucket_name: str, boto_client: botocore.cl
         )
 
 
-def delete_bucket(bucket_name: str, boto_client: botocore.client.S3) -> None:  # type: ignore
+def delete_bucket(bucket_name: str, boto_client: "botocore.client.S3") -> None:
     """
     Delete velero bucket
 

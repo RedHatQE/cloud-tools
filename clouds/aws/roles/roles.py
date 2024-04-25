@@ -8,7 +8,7 @@ LOGGER = get_logger(name=__name__)
 DEFAULT_AWS_REGION: str = "us-east-1"
 
 
-def iam_client(region: str = DEFAULT_AWS_REGION) -> botocore.client.IAM:  # type: ignore
+def iam_client(region: str = DEFAULT_AWS_REGION) -> "botocore.client.IAM":
     """Creates an IAM client.
 
     Args:
@@ -22,7 +22,7 @@ def iam_client(region: str = DEFAULT_AWS_REGION) -> botocore.client.IAM:  # type
     return boto3.client(service_name="iam", region_name=region)
 
 
-def get_roles(client: botocore.client.IAM = None) -> List[Dict[str, Any]]:  # type: ignore
+def get_roles(client: "botocore.client.IAM" = None) -> List[Dict[str, Any]]:
     """
     Get all IAM roles.
 
