@@ -1,8 +1,10 @@
+from __future__ import annotations
 import os
 import re
-from typing import Union
+from typing import Any, List
 
 import boto3
+import botocore
 import click
 from simple_logger.logger import get_logger
 
@@ -11,14 +13,13 @@ from clouds.aws.aws_utils import delete_all_objects_from_s3_folder, delete_bucke
 LOGGER = get_logger(name=__name__)
 
 
-def delete_velero_cluster_buckets(cluster, boto_client) -> None:
+def delete_velero_cluster_buckets(cluster: str, boto_client: botocore.client.S3) -> None:  # type: ignore
     """
     Delete the velero bucket associated with a cluster
 
     Args:
-        cluster: The cluster name
-        boto_client: aws boto client
-
+        cluster (str): The cluster name
+        boto_client (botocore.client.S3): aws boto client
 
     """
 
@@ -44,7 +45,7 @@ def delete_velero_cluster_buckets(cluster, boto_client) -> None:
     LOGGER.info("No buckets deleted")
 
 
-def get_velero_buckets(boto_client) -> list:
+def get_velero_buckets(boto_client: botocore.client.S3) -> List[dict[str, Any]]:  # type: ignore
     """
     Get a list of velero buckets
 
@@ -60,7 +61,7 @@ def get_velero_buckets(boto_client) -> list:
     return [bucket for bucket in buckets if re.search("managed-velero-backups-", bucket["Name"])]
 
 
-def get_velero_infrastructure_name(bucket_name: str, boto_client) -> Union[str, None]:
+def get_velero_infrastructure_name(bucket_name: str, boto_client: botocore.client.S3) -> str | None:  # type: ignore
     """
     Get the velero bucket infrastructure name
 
@@ -81,7 +82,7 @@ def get_velero_infrastructure_name(bucket_name: str, boto_client) -> Union[str, 
 
 
 def verify_cluster_matches_velero_infrastructure_name(
-    boto_client,
+    boto_client: botocore.client.S3,  # type: ignore
     cluster_name: str,
     bucket_name: str,
 ) -> bool:
@@ -137,7 +138,7 @@ def verify_cluster_matches_velero_infrastructure_name(
     required=True,
     default=os.getenv("AWS_SECRET_ACCESS_KEY"),
 )
-def main(aws_access_key_id, aws_secret_access_key, cluster_name):
+def main(aws_access_key_id: str, aws_secret_access_key: str, cluster_name: str) -> None:
     boto_client = boto3.client(
         service_name="s3",
         aws_access_key_id=aws_access_key_id,
