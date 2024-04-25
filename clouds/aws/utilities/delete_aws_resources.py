@@ -22,28 +22,34 @@ LOGGER = get_logger(name="delete-aws-resources", filename="delete_aws_resources.
 MAX_ITEMS: int = 1000
 
 
-def delete_rds_instances(region_name: str) -> None:
+def delete_rds_instances(region_name: str) -> bool:
     db_instances = rds_client(region_name=region_name).describe_db_instances()["DBInstances"]
     for db_instance_identifier in db_instances:
         LOGGER.warning(f"DB instance identifier: {db_instance_identifier}")
-        # TODO: once we have the contents of db_instance_identifier, update code to delete it
+        # TODO: once we have the contents of db_instance_identifier, update code to delete it update return value
         # aws rds modify-db-instance --no-deletion-protection --db-instance-identifier "${rds}"
 
+    return False
 
-def delete_vpc_peering_connections(region_name: str) -> None:
+
+def delete_vpc_peering_connections(region_name: str) -> bool:
     for conn in ec2_client(region_name=region_name).describe_vpc_peering_connections()["VpcPeeringConnections"]:
         LOGGER.warning(f"VPC peering connection: {conn}")
-        # TODO: once we have the contents of conn, update code to delete it
+        # TODO: once we have the contents of conn, update code to delete it update return value
         # aws ec2 delete-vpc-peering-connection --vpc-peering-connection-id "${pc}"
 
+    return False
 
-def delete_open_id_connect_providers(region_name: str) -> None:
+
+def delete_open_id_connect_providers(region_name: str) -> bool:
     LOGGER.info("Executing delete_open_id_connect_provider")
     _iam_client = iam_client(region_name=region_name)
     for conn in _iam_client.list_open_id_connect_providers()["OpenIDConnectProviderList"]:
         conn_name = conn["Arn"]
         LOGGER.info(f"Delete open id connection provider {conn_name}")
         _iam_client.delete_open_id_connect_provider(OpenIDConnectProviderArn=conn_name)
+
+    return True
 
 
 def delete_instance_profiles(region_name: str) -> bool:
@@ -184,10 +190,10 @@ def clean_aws_region(aws_region: str, queue: Queue[str]) -> None:
 
     """
     LOGGER.info(f"Deleting resources in region {aws_region}")
-    rerun_results = [
-        delete_rds_instances(region_name=aws_region),  # type: ignore
-        delete_vpc_peering_connections(region_name=aws_region),  # type: ignore
-        delete_open_id_connect_providers(region_name=aws_region),  # type: ignore
+    rerun_results: List[bool] = [
+        delete_rds_instances(region_name=aws_region),
+        delete_vpc_peering_connections(region_name=aws_region),
+        delete_open_id_connect_providers(region_name=aws_region),
         delete_instance_profiles(region_name=aws_region),
         delete_roles(region_name=aws_region),
     ]
