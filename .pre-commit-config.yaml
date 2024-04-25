@@ -31,7 +31,7 @@ repos:
       - id: detect-secrets
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.3.7
+    rev: v0.4.1
     hooks:
       - id: ruff
       - id: ruff-format
@@ -40,6 +40,6 @@ repos:
     rev: v1.9.0
     hooks:
       - id: mypy
-        files: ^clouds/azure/.*$
+        files: clouds/*
         additional_dependencies: [types-all]
         args: [--ignore-missing-imports, --disallow-untyped-defs]
