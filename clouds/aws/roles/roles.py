@@ -1,11 +1,14 @@
+from typing import Any, Dict, List
+
 import boto3
+import botocore
 from simple_logger.logger import get_logger
 
 LOGGER = get_logger(name=__name__)
-DEFAULT_AWS_REGION = "us-east-1"
+DEFAULT_AWS_REGION: str = "us-east-1"
 
 
-def iam_client(region=DEFAULT_AWS_REGION):
+def iam_client(region: str = DEFAULT_AWS_REGION) -> "botocore.client.IAM":
     """Creates an IAM client.
 
     Args:
@@ -19,7 +22,7 @@ def iam_client(region=DEFAULT_AWS_REGION):
     return boto3.client(service_name="iam", region_name=region)
 
 
-def get_roles(client=None):
+def get_roles(client: "botocore.client.IAM" = None) -> List[Dict[str, Any]]:
     """
     Get all IAM roles.
 
@@ -27,7 +30,7 @@ def get_roles(client=None):
         client (botocore.client.IAM, optional): A boto3 client for IAM. Defaults to None.
 
     Returns:
-        List[Dict[Any, Any]]: A list of IAM roles
+        List[Dict[str, Any]]: A list of IAM roles
     """
     LOGGER.info("Retrieving all roles from IAM.")
 
@@ -44,7 +47,12 @@ def get_roles(client=None):
     return roles
 
 
-def create_or_update_role_policy(role_name, policy_name, policy_document, region=DEFAULT_AWS_REGION):
+def create_or_update_role_policy(
+    role_name: str,
+    policy_name: str,
+    policy_document: str,
+    region: str = DEFAULT_AWS_REGION,
+) -> None:
     """
     Create a new policy role or update an existing one.
 

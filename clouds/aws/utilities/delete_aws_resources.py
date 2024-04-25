@@ -1,7 +1,10 @@
+from __future__ import annotations
 import multiprocessing
 import re
 import shlex
 import shutil
+from multiprocessing import Queue
+from typing import List
 
 import click
 from ocp_utilities.utils import run_command
@@ -16,25 +19,29 @@ from clouds.aws.aws_utils import (
 from clouds.aws.session_clients import ec2_client, iam_client, rds_client, s3_client
 
 LOGGER = get_logger(name="delete-aws-resources", filename="delete_aws_resources.log")
-MAX_ITEMS = 1000
+MAX_ITEMS: int = 1000
 
 
-def delete_rds_instances(region_name):
+def delete_rds_instances(region_name: str) -> bool:
     db_instances = rds_client(region_name=region_name).describe_db_instances()["DBInstances"]
     for db_instance_identifier in db_instances:
         LOGGER.warning(f"DB instance identifier: {db_instance_identifier}")
-        # TODO: once we have the contents of db_instance_identifier, update code to delete it
+        # TODO: once we have the contents of db_instance_identifier, update code to delete it update return value
         # aws rds modify-db-instance --no-deletion-protection --db-instance-identifier "${rds}"
 
+    return False
 
-def delete_vpc_peering_connections(region_name):
+
+def delete_vpc_peering_connections(region_name: str) -> bool:
     for conn in ec2_client(region_name=region_name).describe_vpc_peering_connections()["VpcPeeringConnections"]:
         LOGGER.warning(f"VPC peering connection: {conn}")
-        # TODO: once we have the contents of conn, update code to delete it
+        # TODO: once we have the contents of conn, update code to delete it update return value
         # aws ec2 delete-vpc-peering-connection --vpc-peering-connection-id "${pc}"
 
+    return False
 
-def delete_open_id_connect_providers(region_name):
+
+def delete_open_id_connect_providers(region_name: str) -> bool:
     LOGGER.info("Executing delete_open_id_connect_provider")
     _iam_client = iam_client(region_name=region_name)
     for conn in _iam_client.list_open_id_connect_providers()["OpenIDConnectProviderList"]:
@@ -42,8 +49,10 @@ def delete_open_id_connect_providers(region_name):
         LOGGER.info(f"Delete open id connection provider {conn_name}")
         _iam_client.delete_open_id_connect_provider(OpenIDConnectProviderArn=conn_name)
 
+    return True
 
-def delete_instance_profiles(region_name):
+
+def delete_instance_profiles(region_name: str) -> bool:
     LOGGER.info("Executing delete_instance_profiles")
     _iam_client = iam_client(region_name=region_name)
     instance_profiles_dict = _iam_client.list_instance_profiles(MaxItems=MAX_ITEMS)
@@ -59,7 +68,7 @@ def delete_instance_profiles(region_name):
     return instance_profiles_dict["IsTruncated"]
 
 
-def delete_roles(region_name):
+def delete_roles(region_name: str) -> bool:
     LOGGER.info("Executing delete_roles")
     _iam_client = iam_client(region_name=region_name)
     roles_dict = _iam_client.list_roles(MaxItems=MAX_ITEMS)
@@ -95,7 +104,7 @@ def delete_roles(region_name):
     ])
 
 
-def delete_buckets(region_name):
+def delete_buckets(region_name: str) -> bool:
     LOGGER.info("Executing delete_buckets")
     _s3_client = s3_client(region_name=region_name)
     buckets_dict = _s3_client.list_buckets(MaxItems=MAX_ITEMS)
@@ -124,7 +133,7 @@ def delete_buckets(region_name):
         """,
     is_flag=True,
 )
-def main(aws_regions, all_aws_regions):
+def main(aws_regions: str, all_aws_regions: bool) -> None:
     if all_aws_regions:
         _aws_regions = aws_region_names()
     elif aws_regions:
@@ -142,10 +151,10 @@ def main(aws_regions, all_aws_regions):
     clean_aws_resources(aws_regions=_aws_regions)
 
 
-def clean_aws_resources(aws_regions):
+def clean_aws_resources(aws_regions: List[str]) -> None:
     rerun_cleanup_regions_list = []
     jobs = []
-    cleanup_queue = multiprocessing.Queue()
+    cleanup_queue: Queue[str] = multiprocessing.Queue()
 
     for region in aws_regions:
         job = multiprocessing.Process(
@@ -166,7 +175,7 @@ def clean_aws_resources(aws_regions):
         clean_aws_resources(aws_regions=rerun_cleanup_regions_list)
 
 
-def clean_aws_region(aws_region, queue):
+def clean_aws_region(aws_region: str, queue: Queue[str]) -> None:
     """Deletes AWS resources.
 
     Deletes open id connector providers, instance profiles and roles.
@@ -181,7 +190,7 @@ def clean_aws_region(aws_region, queue):
 
     """
     LOGGER.info(f"Deleting resources in region {aws_region}")
-    rerun_results = [
+    rerun_results: List[bool] = [
         delete_rds_instances(region_name=aws_region),
         delete_vpc_peering_connections(region_name=aws_region),
         delete_open_id_connect_providers(region_name=aws_region),
