@@ -1,22 +1,27 @@
+from __future__ import annotations
 import json
 import os
 from configparser import ConfigParser, NoOptionError, NoSectionError
 from http import HTTPStatus
+from typing import List, Optional
 
+import botocore
 from simple_logger.logger import get_logger
 
 from clouds.aws.session_clients import ec2_client
 
 LOGGER = get_logger(name=__name__)
-AWS_CONFIG_FILE = os.environ.get("AWS_CONFIG_FILE", os.path.expanduser("~/.aws/config"))
-AWS_CREDENTIALS_FILE = os.environ.get("AWS_SHARED_CREDENTIALS_FILE", os.path.expanduser("~/.aws/credentials"))
+AWS_CONFIG_FILE: str = os.environ.get("AWS_CONFIG_FILE", os.path.expanduser("~/.aws/config"))
+AWS_CREDENTIALS_FILE: str = os.environ.get("AWS_SHARED_CREDENTIALS_FILE", os.path.expanduser("~/.aws/credentials"))
 
 
 class AWSConfigurationError(Exception):
     pass
 
 
-def set_and_verify_existing_config_in_env_vars_or_file(vars_list, file_path, section="default"):
+def set_and_verify_existing_config_in_env_vars_or_file(
+    vars_list: List[str], file_path: str, section: str = "default"
+) -> None:
     """
     Verify vars are either set as environment variables or in a config file.
 
@@ -59,7 +64,7 @@ def set_and_verify_existing_config_in_env_vars_or_file(vars_list, file_path, sec
         raise AWSConfigurationError()
 
 
-def set_and_verify_aws_credentials(region_name=None):
+def set_and_verify_aws_credentials(region_name: Optional[str | None]) -> None:
     set_and_verify_existing_config_in_env_vars_or_file(
         vars_list=["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY"],
         file_path=AWS_CREDENTIALS_FILE,
@@ -68,14 +73,14 @@ def set_and_verify_aws_credentials(region_name=None):
     ec2_client(region_name=region_name).describe_regions()
 
 
-def set_and_verify_aws_config():
+def set_and_verify_aws_config() -> None:
     set_and_verify_existing_config_in_env_vars_or_file(
         vars_list=["AWS_REGION"],
         file_path=AWS_CONFIG_FILE,
     )
 
 
-def delete_all_objects_from_s3_folder(bucket_name: str, boto_client) -> None:
+def delete_all_objects_from_s3_folder(bucket_name: str, boto_client: "botocore.client.S3") -> None:
     """
     Deletes all files in a folder of an S3 bucket
 
@@ -111,7 +116,7 @@ def delete_all_objects_from_s3_folder(bucket_name: str, boto_client) -> None:
         )
 
 
-def delete_bucket(bucket_name: str, boto_client) -> None:
+def delete_bucket(bucket_name: str, boto_client: "botocore.client.S3") -> None:
     """
     Delete velero bucket
 
@@ -141,7 +146,7 @@ def delete_bucket(bucket_name: str, boto_client) -> None:
     )
 
 
-def aws_region_names():
+def aws_region_names() -> List[str]:
     """
     Lists AWS regions
 
@@ -153,7 +158,7 @@ def aws_region_names():
     return [region["RegionName"] for region in regions]
 
 
-def get_least_crowded_aws_vpc_region(region_list):
+def get_least_crowded_aws_vpc_region(region_list: List[str]) -> str:
     """
     Selects region with the least number of VPCs.
 
