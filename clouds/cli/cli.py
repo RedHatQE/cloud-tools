@@ -11,12 +11,12 @@ LOGGER = get_logger(name="nuke-cli")
 
 
 @click.group()
-def aws():
+def aws() -> None:
     pass
 
 
 @aws.command()
-@aws.option(
+@click.option(
     "--aws-regions",
     help="""
         \b
@@ -25,7 +25,7 @@ def aws():
         """,
     required=False,
 )
-@aws.option(
+@click.option(
     "--all-aws-regions",
     help="""
         \b
@@ -33,7 +33,7 @@ def aws():
         """,
     is_flag=True,
 )
-def aws_nuke_cli(aws_regions: str, all_aws_regions: bool):
+def aws_nuke_cli(aws_regions: str, all_aws_regions: bool) -> None:
     """
     Nuke all AWS cloud resources in given/all regions
     """
@@ -55,45 +55,47 @@ def aws_nuke_cli(aws_regions: str, all_aws_regions: bool):
     clean_aws_resources(aws_regions=_aws_regions)
 
 
-@click.group
-def azure():
+@click.group()
+def azure() -> None:
     pass
 
 
 @azure.command()
-@azure.option(
+@click.option(
     "--azure-tenant-id",
     help="Azure's managed identity tenant ID, needed for Azure API clients.",
     type=str,
     default=os.environ.get("AZURE_TENANT_ID"),
 )
-@azure.option(
+@click.option(
     "--azure-client-id",
     help="Azure's managed identity client ID, needed for Azure API clients.",
     type=str,
     default=os.environ.get("AZURE_CLIENT_ID"),
 )
-@azure.option(
+@click.option(
     "--azure-client-secret",
     help="Azure's managed identity client secret, needed for Azure API clients.",
     type=str,
     default=os.environ.get("AZURE_CLIENT_SECRET"),
 )
-@azure.option(
+@click.option(
     "--azure-subscription-id",
     help="Azure subscription ID, needed for Azure API clients.",
     type=str,
     default=os.environ.get("AZURE_SUBSCRIPTION_ID"),
 )
-def azure_nuke_cli(**kwargs):
+def azure_nuke_cli(
+    azure_tenant_id: str, azure_client_id: str, azure_client_secret: str, azure_subscription_id: str
+) -> None:
     """
     Nuke all Azure cloud resources.
     """
     nuke_all_azure_resources(
-        tenant_id=kwargs.get("azure_tenant_id"),
-        client_id=kwargs.get("azure_client_id"),
-        client_secret=kwargs.get("azure_client_secret"),
-        subscription_id=kwargs.get("azure_subscription_id"),
+        tenant_id=azure_tenant_id,
+        client_id=azure_client_id,
+        client_secret=azure_client_secret,
+        subscription_id=azure_subscription_id,
     )
 
 
