@@ -11,8 +11,8 @@ from simple_logger.logger import get_logger
 from clouds.aws.session_clients import ec2_client
 
 LOGGER = get_logger(name=__name__)
-AWS_CONFIG_FILE = os.environ.get("AWS_CONFIG_FILE", os.path.expanduser("~/.aws/config"))
-AWS_CREDENTIALS_FILE = os.environ.get("AWS_SHARED_CREDENTIALS_FILE", os.path.expanduser("~/.aws/credentials"))
+AWS_CONFIG_FILE: str = os.environ.get("AWS_CONFIG_FILE", os.path.expanduser("~/.aws/config"))
+AWS_CREDENTIALS_FILE: str = os.environ.get("AWS_SHARED_CREDENTIALS_FILE", os.path.expanduser("~/.aws/credentials"))
 
 
 class AWSConfigurationError(Exception):

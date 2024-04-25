@@ -19,7 +19,7 @@ from clouds.aws.aws_utils import (
 from clouds.aws.session_clients import ec2_client, iam_client, rds_client, s3_client
 
 LOGGER = get_logger(name="delete-aws-resources", filename="delete_aws_resources.log")
-MAX_ITEMS = 1000
+MAX_ITEMS: int = 1000
 
 
 def delete_rds_instances(region_name: str) -> None:

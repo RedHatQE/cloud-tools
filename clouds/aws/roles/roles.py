@@ -5,7 +5,7 @@ import botocore
 from simple_logger.logger import get_logger
 
 LOGGER = get_logger(name=__name__)
-DEFAULT_AWS_REGION = "us-east-1"
+DEFAULT_AWS_REGION: str = "us-east-1"
 
 
 def iam_client(region: str = DEFAULT_AWS_REGION) -> botocore.client.IAM:  # type: ignore
