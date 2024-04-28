@@ -188,17 +188,17 @@ lxml = ["lxml"]
 
 [[package]]
 name = "boto3"
-version = "1.34.90"
+version = "1.34.93"
 description = "The AWS SDK for Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "boto3-1.34.90-py3-none-any.whl", hash = "sha256:b2e5cb5b95efcc881e25a3bc872d7a24e75ff4e76f368138e4baf7b9d6ee3422"},
-    {file = "boto3-1.34.90.tar.gz", hash = "sha256:2824e3dd18743ca50e5b10439d20e74647b1416e8a94509cb30beac92d27a18d"},
+    {file = "boto3-1.34.93-py3-none-any.whl", hash = "sha256:b59355bf4a1408563969526f314611dbeacc151cf90ecb22af295dcc4fe18def"},
+    {file = "boto3-1.34.93.tar.gz", hash = "sha256:e39516e4ca21612932599819662759c04485d53ca457996a913163da11f052a4"},
 ]
 
 [package.dependencies]
-botocore = ">=1.34.90,<1.35.0"
+botocore = ">=1.34.93,<1.35.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.10.0,<0.11.0"
 
@@ -207,13 +207,13 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.34.90"
+version = "1.34.93"
 description = "Low-level, data-driven core of boto 3."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "botocore-1.34.90-py3-none-any.whl", hash = "sha256:d48f152498e2c60b43ce25b579d26642346a327b6fb2c632d57219e0a4f63392"},
-    {file = "botocore-1.34.90.tar.gz", hash = "sha256:113cd4c0cb63e13163ccbc2bb13d551be314ba7f8ba5bfab1c51a19ca01aa133"},
+    {file = "botocore-1.34.93-py3-none-any.whl", hash = "sha256:6fbd5a53a2adc9b3d4ebd90ae0ede83a91a41d96231f8a5984051f75495f246d"},
+    {file = "botocore-1.34.93.tar.gz", hash = "sha256:79d39b0b87e962991c6dd55e78ce15155099f6fb741be88b1b8a456a702cc150"},
 ]
 
 [package.dependencies]
@@ -1091,12 +1091,12 @@ signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openshift-python-utilities"
-version = "5.0.38"
+version = "5.0.39"
 description = "A utilities repository for https://github.com/RedHatQE/openshift-python-wrapper"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "openshift_python_utilities-5.0.38.tar.gz", hash = "sha256:906c479ff615862e1d0f17e41cddaeb2b115a184f13d34ffd3a87377e7eae078"},
+    {file = "openshift_python_utilities-5.0.39.tar.gz", hash = "sha256:5bf4c689a50bbd00229eaee7b7212b47053570714d2b502ef588f69da048b7ec"},
 ]
 
 [package.dependencies]
@@ -1112,12 +1112,12 @@ timeout-sampler = ">=0.0.17"
 
 [[package]]
 name = "openshift-python-wrapper"
-version = "10.0.35"
+version = "10.0.36"
 description = "Wrapper around https://github.com/kubernetes-client/python"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "openshift_python_wrapper-10.0.35.tar.gz", hash = "sha256:5e593726332a7d2ce06e4088caae4adb1bec7f25e420f439d0bebec19060f988"},
+    {file = "openshift_python_wrapper-10.0.36.tar.gz", hash = "sha256:a915b9ae2c0930a35fd3e562639bb3a5ccef88feb2a6c49dfa7d9f8a8dd4722b"},
 ]
 
 [package.dependencies]
@@ -1132,12 +1132,12 @@ xmltodict = ">=0.13.0,<0.14.0"
 
 [[package]]
 name = "openshift-python-wrapper-data-collector"
-version = "1.0.41"
+version = "1.0.42"
 description = "Data collector for https://github.com/openshift/openshift-python-wrapper when running with PyTest"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "openshift_python_wrapper_data_collector-1.0.41.tar.gz", hash = "sha256:a1abd6194308c953ce872920643e8abf7a51ca014ccc747f25955f1b15d7ecec"},
+    {file = "openshift_python_wrapper_data_collector-1.0.42.tar.gz", hash = "sha256:e38c13ab9cac669eb1fd95c1b72ed8907936eefd757661e5bafeeb8f61537c13"},
 ]
 
 [package.dependencies]
@@ -1396,13 +1396,13 @@ tests = ["coverage[toml] (==5.0.4)", "pytest (>=6.0.0,<7.0.0)"]
 
 [[package]]
 name = "pytest"
-version = "8.1.1"
+version = "8.2.0"
 description = "pytest: simple powerful testing with Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pytest-8.1.1-py3-none-any.whl", hash = "sha256:2a8386cfc11fa9d2c50ee7b2a57e7d898ef90470a7a34c4b949ff59662bb78b7"},
-    {file = "pytest-8.1.1.tar.gz", hash = "sha256:ac978141a75948948817d360297b7aae0fcb9d6ff6bc9ec6d514b85d5a65c044"},
+    {file = "pytest-8.2.0-py3-none-any.whl", hash = "sha256:1733f0620f6cda4095bbf0d9ff8022486e91892245bb9e7d5542c018f612f233"},
+    {file = "pytest-8.2.0.tar.gz", hash = "sha256:d507d4482197eac0ba2bae2e9babf0672eb333017bcedaa5fb1a3d42c1174b3f"},
 ]
 
 [package.dependencies]
@@ -1410,11 +1410,11 @@ colorama = {version = "*", markers = "sys_platform == \"win32\""}
 exceptiongroup = {version = ">=1.0.0rc8", markers = "python_version < \"3.11\""}
 iniconfig = "*"
 packaging = "*"
-pluggy = ">=1.4,<2.0"
+pluggy = ">=1.5,<2.0"
 tomli = {version = ">=1", markers = "python_version < \"3.11\""}
 
 [package.extras]
-testing = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "pygments (>=2.7.2)", "requests", "setuptools", "xmlschema"]
+dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "pygments (>=2.7.2)", "requests", "setuptools", "xmlschema"]
 
 [[package]]
 name = "pytest-testconfig"
@@ -1485,12 +1485,12 @@ files = [
 
 [[package]]
 name = "python-simple-logger"
-version = "1.0.21"
+version = "1.0.22"
 description = "A simple logger for python"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "python_simple_logger-1.0.21.tar.gz", hash = "sha256:da012d77ab78995efe0fcc180684576758968ffa592bd4730d71ac8abd9aa441"},
+    {file = "python_simple_logger-1.0.22.tar.gz", hash = "sha256:4f8bd4fcb1e94117dbdc96429c73d8f328e0fa6a267ef5559ee6697a5d8e77c9"},
 ]
 
 [package.dependencies]
@@ -1750,12 +1750,12 @@ files = [
 
 [[package]]
 name = "timeout-sampler"
-version = "0.0.24"
+version = "0.0.25"
 description = "Timeout utility class to wait for any function output and interact with it in given time"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "timeout_sampler-0.0.24.tar.gz", hash = "sha256:797ac10c4ef53be1bb149da783914333d870e7cce50479758bc473f4a7f4b119"},
+    {file = "timeout_sampler-0.0.25.tar.gz", hash = "sha256:9f7ef75a83cdc940a0bf8b83c6052fd99bc1e4d88e7f6de8e137778e9e8d6deb"},
 ]
 
 [package.dependencies]
@@ -1872,4 +1872,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "187c4bd6b03be65abca9d287394e32fd09da0ca4fe0f50cc4e66304529cb07e8"
+content-hash = "e71e8ca68fa069e055ffb0039c6e27569f7c51677cec2dc20e0cec0eab57d977"

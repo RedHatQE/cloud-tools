@@ -4,7 +4,7 @@ import shutil
 from simple_logger.logger import get_logger
 from clouds.cli.aws.aws_cli import clean_aws_resources
 from pyhelper_utils.runners import function_runner_with_pdb
-from clouds.cli.azure.azure_cli import nuke_all_azure_resources
+from clouds.cli.microsoft_azure.microsoft_azure_cli import nuke_all_azure_resources
 from clouds.aws.aws_utils import set_and_verify_aws_credentials, aws_region_names
 
 LOGGER = get_logger(name="nuke-cli")
@@ -33,7 +33,7 @@ def aws() -> None:
         """,
     is_flag=True,
 )
-def aws_nuke_cli(aws_regions: str, all_aws_regions: bool) -> None:
+def aws_nuke(aws_regions: str, all_aws_regions: bool) -> None:
     """
     Nuke all AWS cloud resources in given/all regions
     """
@@ -85,11 +85,11 @@ def azure() -> None:
     type=str,
     default=os.environ.get("AZURE_SUBSCRIPTION_ID"),
 )
-def azure_nuke_cli(
+def azure_nuke(
     azure_tenant_id: str, azure_client_id: str, azure_client_secret: str, azure_subscription_id: str
 ) -> None:
     """
-    Nuke all Azure cloud resources.
+    Nuke all Microsoft Azure cloud resources.
     """
     nuke_all_azure_resources(
         tenant_id=azure_tenant_id,
