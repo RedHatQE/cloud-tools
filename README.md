@@ -17,6 +17,7 @@ poetry install
 
 ## Docs
 - [AWS Readme](clouds/aws/README.md)
+- [Cloud nuke CLI tools Readme](clouds/cli/README.md)
 
 ## Release new version
 ### requirements:
