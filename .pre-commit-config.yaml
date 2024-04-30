@@ -42,4 +42,3 @@ repos:
       - id: mypy
         files: clouds\/.*
         additional_dependencies: [types-all]
-        args: [--ignore-missing-imports, --disallow-untyped-defs]

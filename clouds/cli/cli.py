@@ -7,7 +7,11 @@ from pyhelper_utils.runners import function_runner_with_pdb
 from clouds.cli.microsoft_azure.microsoft_azure_cli import nuke_all_azure_resources
 from clouds.aws.aws_utils import set_and_verify_aws_credentials, aws_region_names
 
-LOGGER = get_logger(name="nuke-cli")
+LOGGER = get_logger(name="cloud-cli")
+
+
+class CloudCLIError(Exception):
+    pass
 
 
 @click.group()
@@ -21,9 +25,8 @@ def aws() -> None:
     help="""
         \b
         Comma-separated string of AWS regions to delete resources from.
-        If not provided will iterate over all regions.
+        If passed with --all-aws-regions, all AWS regions resources will be deleted.
         """,
-    required=False,
 )
 @click.option(
     "--all-aws-regions",
@@ -38,17 +41,16 @@ def aws_nuke(aws_regions: str, all_aws_regions: bool) -> None:
     Nuke all AWS cloud resources in given/all regions
     """
 
+    if not shutil.which("cloud-nuke"):
+        click.echo("cloud-nuke is not installed; install from" " https://github.com/gruntwork-io/cloud-nuke")
+        raise click.Abort()
+
     if all_aws_regions:
         _aws_regions = aws_region_names()
     elif aws_regions:
         _aws_regions = aws_regions.split(",")
     else:
-        click.echo("Either pass --all-aws-regions or --aws-regions to run cleanup")
-        raise click.Abort()
-
-    if not shutil.which("cloud-nuke"):
-        click.echo("cloud-nuke is not installed; install from" " https://github.com/gruntwork-io/cloud-nuke")
-        raise click.Abort()
+        raise CloudCLIError("Either pass --all-aws-regions or --aws-regions to run cleanup")
 
     set_and_verify_aws_credentials(region_name=_aws_regions[0])
 
@@ -99,8 +101,8 @@ def azure_nuke(
     )
 
 
-nuke_cli = click.CommandCollection(sources=[aws, azure])
+cloud_cli = click.CommandCollection(sources=[aws, azure])
 
 
 if __name__ == "__main__":
-    function_runner_with_pdb(func=nuke_cli)
+    function_runner_with_pdb(func=cloud_cli)

@@ -1,7 +1,7 @@
 # Cloud nuke CLI tools
 * To run with `cloud-cli`:
 ```bash
-pipx install .
+pipx install redhat-qe-cloud-tools
 cloud-cli --help
 ```
 
