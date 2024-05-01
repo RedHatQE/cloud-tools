@@ -40,5 +40,4 @@ repos:
     rev: v1.10.0
     hooks:
       - id: mypy
-        files: clouds\/.*
         additional_dependencies: [types-all]

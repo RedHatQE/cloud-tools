@@ -25,7 +25,6 @@ def aws() -> None:
     help="""
         \b
         Comma-separated string of AWS regions to delete resources from.
-        If passed with --all-aws-regions, all AWS regions resources will be deleted.
         """,
 )
 @click.option(
@@ -42,15 +41,18 @@ def aws_nuke(aws_regions: str, all_aws_regions: bool) -> None:
     """
 
     if not shutil.which("cloud-nuke"):
-        click.echo("cloud-nuke is not installed; install from" " https://github.com/gruntwork-io/cloud-nuke")
-        raise click.Abort()
+        raise CloudCLIError("cloud-nuke is not installed; install from: https://github.com/gruntwork-io/cloud-nuke")
 
-    if all_aws_regions:
+    cli_args_error_msg = "Either pass --all-aws-regions or --aws-regions to run cleanup"
+
+    if all_aws_regions and aws_regions:
+        raise CloudCLIError(cli_args_error_msg)
+    elif all_aws_regions:
         _aws_regions = aws_region_names()
     elif aws_regions:
         _aws_regions = aws_regions.split(",")
     else:
-        raise CloudCLIError("Either pass --all-aws-regions or --aws-regions to run cleanup")
+        raise CloudCLIError(cli_args_error_msg)
 
     set_and_verify_aws_credentials(region_name=_aws_regions[0])
 

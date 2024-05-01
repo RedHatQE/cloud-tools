@@ -4,7 +4,7 @@ from azure.mgmt.subscription import SubscriptionClient
 from azure.mgmt.redhatopenshift import AzureRedHatOpenShiftClient
 
 
-LOGGER = get_logger(name="microsoft_azure-utils")
+LOGGER = get_logger(name="microsoft-azure-utils")
 
 
 def get_aro_supported_versions(aro_client: AzureRedHatOpenShiftClient, region: str) -> List[str]:
