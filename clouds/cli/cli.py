@@ -45,14 +45,12 @@ def aws_nuke(aws_regions: str, all_aws_regions: bool) -> None:
 
     cli_args_error_msg = "Either pass --all-aws-regions or --aws-regions to run cleanup"
 
-    if all_aws_regions and aws_regions:
+    if all_aws_regions and aws_regions or not (all_aws_regions or aws_regions):
         raise CloudCLIError(cli_args_error_msg)
-    elif all_aws_regions:
+    if all_aws_regions:
         _aws_regions = aws_region_names()
-    elif aws_regions:
-        _aws_regions = aws_regions.split(",")
     else:
-        raise CloudCLIError(cli_args_error_msg)
+        _aws_regions = aws_regions.split(",")
 
     set_and_verify_aws_credentials(region_name=_aws_regions[0])
 
