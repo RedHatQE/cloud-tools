@@ -43,10 +43,8 @@ def aws_nuke(aws_regions: str, all_aws_regions: bool) -> None:
     if not shutil.which("cloud-nuke"):
         raise CloudCLIError("cloud-nuke is not installed; install from: https://github.com/gruntwork-io/cloud-nuke")
 
-    cli_args_error_msg = "Either pass --all-aws-regions or --aws-regions to run cleanup"
-
     if all_aws_regions and aws_regions or not (all_aws_regions or aws_regions):
-        raise CloudCLIError(cli_args_error_msg)
+        raise CloudCLIError("Either pass --all-aws-regions or --aws-regions to run cleanup")
     if all_aws_regions:
         _aws_regions = aws_region_names()
     else:
@@ -101,7 +99,16 @@ def azure_nuke(
     )
 
 
-cloud_cli = click.CommandCollection(sources=[aws, azure])
+@click.command(cls=click.CommandCollection, sources=[aws, azure])  # type: ignore
+@click.option(
+    "--pdb",
+    help="Drop to `ipdb` shell on exception",
+    is_flag=True,
+    show_default=True,
+)
+def cloud_cli(pdb: bool) -> None:
+    # This command is only to group aws and azure sub commands
+    pass
 
 
 if __name__ == "__main__":
