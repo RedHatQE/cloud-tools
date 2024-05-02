@@ -15,11 +15,18 @@ class CloudCLIError(Exception):
 
 
 @click.group()
-def aws() -> None:
+@click.option(
+    "--pdb",
+    help="Drop to `ipdb` shell on exception",
+    is_flag=True,
+    show_default=True,
+)
+def cloud_cli(pdb: bool) -> None:
+    # This command is only to group aws and azure sub commands
     pass
 
 
-@aws.command()
+@cloud_cli.command()
 @click.option(
     "--aws-regions",
     help="""
@@ -55,12 +62,7 @@ def aws_nuke(aws_regions: str, all_aws_regions: bool) -> None:
     clean_aws_resources(aws_regions=_aws_regions)
 
 
-@click.group()
-def azure() -> None:
-    pass
-
-
-@azure.command()
+@cloud_cli.command()
 @click.option(
     "--azure-tenant-id",
     help="Azure's managed identity tenant ID, needed for Azure API clients.",
@@ -97,18 +99,6 @@ def azure_nuke(
         client_secret=azure_client_secret,
         subscription_id=azure_subscription_id,
     )
-
-
-@click.command(cls=click.CommandCollection, sources=[aws, azure])  # type: ignore
-@click.option(
-    "--pdb",
-    help="Drop to `ipdb` shell on exception",
-    is_flag=True,
-    show_default=True,
-)
-def cloud_cli(pdb: bool) -> None:
-    # This command is only to group aws and azure sub commands
-    pass
 
 
 if __name__ == "__main__":
