@@ -124,13 +124,13 @@ isodate = ">=0.6.1,<1.0.0"
 
 [[package]]
 name = "azure-mgmt-resource"
-version = "23.1.0"
+version = "23.1.1"
 description = "Microsoft Azure Resource Management Client Library for Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "azure-mgmt-resource-23.1.0.tar.gz", hash = "sha256:fecc3fe1685dd6a27a56e033becccc798464af5be25f55138539cef49d876028"},
-    {file = "azure_mgmt_resource-23.1.0-py3-none-any.whl", hash = "sha256:12726627037de3623d3c4a140a08d9eb97502e33ef4680243f310d5004df5e96"},
+    {file = "azure-mgmt-resource-23.1.1.tar.gz", hash = "sha256:20b6b006b544fdb19607f3f6a381105625e0bb60fbf3036f39885c4646d3343e"},
+    {file = "azure_mgmt_resource-23.1.1-py3-none-any.whl", hash = "sha256:fcaa4eca357d216f285b04e20b7f7bfaefda738ba6d30d956193090d3e325248"},
 ]
 
 [package.dependencies]
