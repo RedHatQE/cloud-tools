@@ -1137,12 +1137,12 @@ signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openshift-python-utilities"
-version = "5.0.41"
+version = "5.0.40"
 description = "A utilities repository for https://github.com/RedHatQE/openshift-python-wrapper"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "openshift_python_utilities-5.0.41.tar.gz", hash = "sha256:552469a7f33868864409b188be4d55db575d61bf9e3a855d9ec5c00e5c1da19b"},
+    {file = "openshift_python_utilities-5.0.40.tar.gz", hash = "sha256:b6d679014c10b843609b98b28894141f03cbb9e9fcab3d3188c8bdf9d0653f52"},
 ]
 
 [package.dependencies]
@@ -1150,7 +1150,6 @@ beautifulsoup4 = ">=4.12.3,<5.0.0"
 colorlog = ">=6.7.0,<7.0.0"
 openshift-python-wrapper = ">=10.0.4"
 openshift-python-wrapper-data-collector = ">=1.0.4"
-pyhelper-utils = ">=0.0.15,<0.0.16"
 python-simple-logger = ">=1.0.5"
 pyyaml = ">=6.0.1,<7.0.0"
 requests = ">=2.31.0,<3.0.0"
@@ -1438,12 +1437,12 @@ windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "pyhelper-utils"
-version = "0.0.15"
+version = "0.0.17"
 description = "Collective utility functions for python projects"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "pyhelper_utils-0.0.15.tar.gz", hash = "sha256:bea149ec231d323e98c77a8d5df308860ec06c1611ea965a815b2a694c0e51c7"},
+    {file = "pyhelper_utils-0.0.17.tar.gz", hash = "sha256:9d1be6097c7d1b093e85c7fa49bf52f5b557939596b83f3403e5f40bbcdd3a28"},
 ]
 
 [package.dependencies]
@@ -1993,4 +1992,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "818f12afdc306be2e1f7d6ac63d32aa1d05487b5c7556e8921474280f25a764a"
+content-hash = "87132e355592e91e870d21dbb814b476c21a4e0136543ba617df2056b15641a7"
