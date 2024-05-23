@@ -37,7 +37,7 @@ cloud-cli = "clouds.cli.cli:cloud_cli"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-boto3 = "^1.34.18"
+boto3 = "^1.34.110"
 colorlog = "^6.7.0"
 python-simple-logger = ">=1.0.5"
 click = "^8.1.4"
