@@ -1137,12 +1137,12 @@ signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openshift-python-utilities"
-version = "5.0.47"
+version = "5.0.49"
 description = "A utilities repository for https://github.com/RedHatQE/openshift-python-wrapper"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "openshift_python_utilities-5.0.47.tar.gz", hash = "sha256:24fa1012cf49d0ea7e8cbfe2b4131a728207ccc9e88fc5d9d45e250db2c527a2"},
+    {file = "openshift_python_utilities-5.0.49.tar.gz", hash = "sha256:5d39c55ba7e02b5ada2b62019926003bffc29bca511f35264133e8f29d4b2c49"},
 ]
 
 [package.dependencies]
@@ -1150,7 +1150,7 @@ beautifulsoup4 = ">=4.12.3,<5.0.0"
 colorlog = ">=6.7.0,<7.0.0"
 openshift-python-wrapper = ">=10.0.4"
 openshift-python-wrapper-data-collector = ">=1.0.4"
-pyhelper-utils = ">=0.0.21,<0.0.22"
+pyhelper-utils = ">=0.0.22,<0.0.23"
 python-simple-logger = ">=1.0.5"
 pyyaml = ">=6.0.1,<7.0.0"
 requests = ">=2.31.0,<3.0.0"
@@ -1312,13 +1312,13 @@ tests = ["pytest (>=5.4.1)", "pytest-cov (>=2.8.1)", "pytest-mypy (>=0.8.0)", "p
 
 [[package]]
 name = "prompt-toolkit"
-version = "3.0.44"
+version = "3.0.45"
 description = "Library for building powerful interactive command lines in Python"
 optional = false
 python-versions = ">=3.7.0"
 files = [
-    {file = "prompt_toolkit-3.0.44-py3-none-any.whl", hash = "sha256:205a20669633d042d3722a528b8e7cd3f4dbd9e1450935f596c2cc61166762dd"},
-    {file = "prompt_toolkit-3.0.44.tar.gz", hash = "sha256:c1dfd082c4259964bc8bcce1f8460d9dbeb5d4a37bfc25b8082bc02cd41c8af6"},
+    {file = "prompt_toolkit-3.0.45-py3-none-any.whl", hash = "sha256:a29b89160e494e3ea8622b09fa5897610b437884dcdcd054fdc1308883326c2a"},
+    {file = "prompt_toolkit-3.0.45.tar.gz", hash = "sha256:07c60ee4ab7b7e90824b61afa840c8f5aad2d46b3e2e10acc33d8ecc94a49089"},
 ]
 
 [package.dependencies]
@@ -1438,12 +1438,12 @@ windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "pyhelper-utils"
-version = "0.0.21"
+version = "0.0.22"
 description = "Collective utility functions for python projects"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "pyhelper_utils-0.0.21.tar.gz", hash = "sha256:4a8a0dbcbb4145851c43d28953e6dc6b51644bd72b2411c343fbf6fe40ae9e0b"},
+    {file = "pyhelper_utils-0.0.22.tar.gz", hash = "sha256:9706d61ed25bb273277285c062b165be65824f76e543084ff0a3af6217166d28"},
 ]
 
 [package.dependencies]
@@ -1993,4 +1993,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "717a2d4f85de1a22c2b570499f77170bd62d11c8a7bd1391e6485b924cda669e"
+content-hash = "114417c2c45d25d6a447f130477e6b79c3f24e7ed7369b041321908bdc615e96"
