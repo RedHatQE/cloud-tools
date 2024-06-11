@@ -228,17 +228,17 @@ lxml = ["lxml"]
 
 [[package]]
 name = "boto3"
-version = "1.34.123"
+version = "1.34.124"
 description = "The AWS SDK for Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "boto3-1.34.123-py3-none-any.whl", hash = "sha256:56bec52d485d5670ce96d53ae7b2cd4ae4e8a705fb2298a21093cdd77d642331"},
-    {file = "boto3-1.34.123.tar.gz", hash = "sha256:42b140fc850cf261ee4b1e8ef527fa071b1f1592a6d6a68d34b29f37cc46b4dd"},
+    {file = "boto3-1.34.124-py3-none-any.whl", hash = "sha256:549d9735bbb7cf8e1a2f4b3b676be32946717c59f33c47234586835dc904d04e"},
+    {file = "boto3-1.34.124.tar.gz", hash = "sha256:a91ee58fa54b170f17b2e144f038e155f92cf515f1c073ac2595e9ee45f125a8"},
 ]
 
 [package.dependencies]
-botocore = ">=1.34.123,<1.35.0"
+botocore = ">=1.34.124,<1.35.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.10.0,<0.11.0"
 
@@ -247,13 +247,13 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.34.123"
+version = "1.34.124"
 description = "Low-level, data-driven core of boto 3."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "botocore-1.34.123-py3-none-any.whl", hash = "sha256:8c34ada2a708c82e7174bff700611643db7ce2cb18f1130c35045c24310d299d"},
-    {file = "botocore-1.34.123.tar.gz", hash = "sha256:a8577f6574600c4d159b5cd103ee05744a443d77f7778304e17307940b369c4f"},
+    {file = "botocore-1.34.124-py3-none-any.whl", hash = "sha256:fede092c7f8f414f78f3e7991e47cb0cf2279d90c027606ad7cba79fa370b827"},
+    {file = "botocore-1.34.124.tar.gz", hash = "sha256:3f0bf79c17d656acdfdb53581224f6a38867ff2829f7428c586198f67a90ea26"},
 ]
 
 [package.dependencies]
@@ -573,6 +573,20 @@ files = [
     {file = "decorator-5.1.1-py3-none-any.whl", hash = "sha256:b8c3f85900b9dc423225913c5aace94729fe1fa9763b38939a95226f02d37186"},
     {file = "decorator-5.1.1.tar.gz", hash = "sha256:637996211036b6385ef91435e4fae22989472f9d571faba8927ba8253acbc330"},
 ]
+
+[[package]]
+name = "deprecation"
+version = "2.1.0"
+description = "A library to handle automated deprecations"
+optional = false
+python-versions = "*"
+files = [
+    {file = "deprecation-2.1.0-py2.py3-none-any.whl", hash = "sha256:a10811591210e1fb0e768a8c25517cabeabcba6f0bf96564f8ff45189f90b14a"},
+    {file = "deprecation-2.1.0.tar.gz", hash = "sha256:72b3bde64e5d778694b0cf68178aed03d15e15477116add3fb773e581f9518ff"},
+]
+
+[package.dependencies]
+packaging = "*"
 
 [[package]]
 name = "exceptiongroup"
@@ -1137,17 +1151,18 @@ signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openshift-python-utilities"
-version = "5.0.49"
+version = "5.0.51"
 description = "A utilities repository for https://github.com/RedHatQE/openshift-python-wrapper"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "openshift_python_utilities-5.0.49.tar.gz", hash = "sha256:5d39c55ba7e02b5ada2b62019926003bffc29bca511f35264133e8f29d4b2c49"},
+    {file = "openshift_python_utilities-5.0.51.tar.gz", hash = "sha256:11b911e63c7e42ba50dd69c3db04c5c70453e0c6828a0b8b47adbda9f8bfd055"},
 ]
 
 [package.dependencies]
 beautifulsoup4 = ">=4.12.3,<5.0.0"
 colorlog = ">=6.7.0,<7.0.0"
+deprecation = ">=2.1.0,<3.0.0"
 openshift-python-wrapper = ">=10.0.4"
 openshift-python-wrapper-data-collector = ">=1.0.4"
 pyhelper-utils = ">=0.0.22,<0.0.23"
@@ -1606,12 +1621,12 @@ six = "*"
 
 [[package]]
 name = "python-simple-logger"
-version = "1.0.28"
+version = "1.0.30"
 description = "A simple logger for python"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "python_simple_logger-1.0.28.tar.gz", hash = "sha256:c72630dea43780b3714de111192189291d1f38b7a4f6e56d4880b493382cb2f0"},
+    {file = "python_simple_logger-1.0.30.tar.gz", hash = "sha256:3ae7f5f2496c11c0be7d289d1eecae484c23cd561b5423340b1071315760371d"},
 ]
 
 [package.dependencies]
