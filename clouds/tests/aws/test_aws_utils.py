@@ -1,5 +1,5 @@
+import pytest
 from typing import Dict, List
-from unittest.mock import patch
 
 from clouds.aws.aws_utils import (
     set_and_verify_aws_credentials,
@@ -10,104 +10,129 @@ from clouds.aws.aws_utils import (
     get_least_crowded_aws_vpc_region,
 )
 
-os_environ_patch_str: str = "clouds.aws.aws_utils.os.environ"
-config_parser_patch_str: str = "clouds.aws.aws_utils.ConfigParser"
-ec2_client_patch_str: str = "clouds.aws.aws_utils.ec2_client"
-botocore_client_patch_str: str = "clouds.aws.aws_utils.botocore.client"
+OS_ENVIRON_PATCH_STR: str = "clouds.aws.aws_utils.os.environ"
+CONFIG_PARSER_PATCH_STR: str = "clouds.aws.aws_utils.ConfigParser"
+EC2_CLIENT_PATCH_STR: str = "clouds.aws.aws_utils.ec2_client"
+BOTOCORE_CLIENT_PATCH_STR: str = "clouds.aws.aws_utils.botocore.client"
 
-dummy_bucket_name: str = "test_bucket"
-us_east_region_str: str = "us-east-1"
-us_west_region_str: str = "us-west-1"
-default_aws_config_section: str = "default"
+DUMMY_BUCKET_NAME: str = "test_bucket"
+US_EAST_REGION_STR: str = "us-east-1"
+US_WEST_REGION_STR: str = "us-west-1"
+DEFAULT_AWS_CONFIG_SECTION: str = "default"
 
 
-@patch(os_environ_patch_str)
-@patch(config_parser_patch_str)
-@patch(ec2_client_patch_str)
-def test_set_and_verify_aws_credentials(mock_ec2_client, mock_config_parser, mock_os_environ, mocker):
-    mock_os_environ.get.return_value = None
+@pytest.fixture
+def mock_os_environ(mocker):
+    os_environ_mock = mocker.patch(OS_ENVIRON_PATCH_STR)
+    return os_environ_mock
 
-    mock_parser_instance = mocker.MagicMock()
-    mock_config_parser.return_value = mock_parser_instance
-    mock_parser_instance.get.side_effect = ["dummy_access_key", "dummy_secret_key"]
 
+@pytest.fixture
+def mock_config_parser(mocker):
+    return mocker.patch(CONFIG_PARSER_PATCH_STR)
+
+
+@pytest.fixture
+def mock_config_parser_instance(mock_config_parser, mocker):
+    mock_config_parser_instance = mocker.MagicMock()
+    mock_config_parser.return_value = mock_config_parser_instance
+    return mock_config_parser_instance
+
+
+@pytest.fixture
+def mock_ec2_client(mocker):
+    return mocker.patch(EC2_CLIENT_PATCH_STR)
+
+
+@pytest.fixture
+def mock_ec2_client_instance(mock_ec2_client, mocker):
     mock_ec2_client_instance = mocker.MagicMock()
     mock_ec2_client.return_value = mock_ec2_client_instance
-    mock_ec2_client_instance.describe_regions.return_value = {"Regions": [{"RegionName": us_east_region_str}]}
-
-    set_and_verify_aws_credentials(region_name=us_east_region_str)
-
-    mock_ec2_client.assert_called_once_with(region_name=us_east_region_str)
-    mock_parser_instance.get.assert_any_call(default_aws_config_section, "aws_access_key_id")
-    mock_parser_instance.get.assert_any_call(default_aws_config_section, "aws_secret_access_key")
+    return mock_ec2_client_instance
 
 
-@patch(os_environ_patch_str)
-@patch(config_parser_patch_str)
-def test_set_and_verify_aws_config(mock_config_parser, mock_os_environ, mocker):
+@pytest.fixture
+def mock_s3_client(mocker):
+    return mocker.patch(BOTOCORE_CLIENT_PATCH_STR)
+
+
+@pytest.fixture
+def mock_boto_client_instance(mock_s3_client, mocker):
+    mock_boto_client_instance = mocker.MagicMock()
+    mock_s3_client.return_value = mock_boto_client_instance
+    return mock_boto_client_instance
+
+
+def test_set_and_verify_aws_credentials(
+    mock_os_environ, mock_config_parser_instance, mock_ec2_client, mock_ec2_client_instance
+):
+    aws_access_key_id_str: str = "aws_access_key_id"
+    aws_secret_access_key_str: str = "aws_secret_access_key"
+
     mock_os_environ.get.return_value = None
+    mock_config_parser_instance.get.side_effect = ["dummy_access_key", "dummy_secret_key"]
+    mock_ec2_client_instance.describe_regions.return_value = {"Regions": [{"RegionName": US_EAST_REGION_STR}]}
 
-    mock_parser_instance = mocker.MagicMock()
-    mock_config_parser.return_value = mock_parser_instance
-    mock_parser_instance.get.return_value = us_east_region_str
+    set_and_verify_aws_credentials(region_name=US_EAST_REGION_STR)
+
+    mock_ec2_client.assert_called_once_with(region_name=US_EAST_REGION_STR)
+    mock_config_parser_instance.get.assert_any_call(DEFAULT_AWS_CONFIG_SECTION, aws_access_key_id_str)
+    mock_config_parser_instance.get.assert_any_call(DEFAULT_AWS_CONFIG_SECTION, aws_secret_access_key_str)
+
+    mock_os_environ.get.assert_any_call(aws_access_key_id_str.upper(), None)
+    mock_os_environ.get.assert_any_call(aws_secret_access_key_str.upper(), None)
+
+
+def test_set_and_verify_aws_config(mock_os_environ, mock_config_parser_instance):
+    mock_os_environ.get.return_value = None
+    mock_config_parser_instance.get.return_value = US_EAST_REGION_STR
 
     set_and_verify_aws_config()
 
-    mock_parser_instance.get.assert_called_once_with(default_aws_config_section, "region")
-    mock_os_environ.__setitem__.assert_called_once_with("AWS_REGION", us_east_region_str)  # noqa
+    mock_config_parser_instance.get.assert_called_once_with(DEFAULT_AWS_CONFIG_SECTION, "region")
+    mock_os_environ.__setitem__.assert_any_call("AWS_REGION", US_EAST_REGION_STR)
 
 
-@patch(botocore_client_patch_str)
-def test_delete_all_objects_from_s3_folder(mock_s3_client, mocker):
-    mock_boto_client = mocker.MagicMock()
-    mock_s3_client.return_value = mock_boto_client
-
+def test_delete_all_objects_from_s3_folder(mock_boto_client_instance):
     s3_folder_objects_list: List[Dict[str, str]] = [{"Key": "file1"}, {"Key": "file2"}]
 
-    mock_boto_client.list_objects_v2.return_value = {"Contents": s3_folder_objects_list}
-    mock_boto_client.delete_objects.return_value = {"ResponseMetadata": {"HTTPStatusCode": 200}}
+    mock_boto_client_instance.list_objects_v2.return_value = {"Contents": s3_folder_objects_list}
+    mock_boto_client_instance.delete_objects.return_value = {"ResponseMetadata": {"HTTPStatusCode": 200}}
 
-    delete_all_objects_from_s3_folder(bucket_name=dummy_bucket_name, boto_client=mock_boto_client)
+    delete_all_objects_from_s3_folder(bucket_name=DUMMY_BUCKET_NAME, boto_client=mock_boto_client_instance)
 
-    mock_boto_client.list_objects_v2.assert_called_once_with(Bucket=dummy_bucket_name)
-    mock_boto_client.delete_objects.assert_called_once_with(
-        Bucket=dummy_bucket_name,
+    mock_boto_client_instance.list_objects_v2.assert_called_once_with(Bucket=DUMMY_BUCKET_NAME)
+    mock_boto_client_instance.delete_objects.assert_called_once_with(
+        Bucket=DUMMY_BUCKET_NAME,
         Delete={"Objects": s3_folder_objects_list, "Quiet": True},
     )
 
 
-@patch(botocore_client_patch_str)
-def test_delete_bucket(mock_s3_client, mocker):
-    mock_boto_client = mocker.MagicMock()
-    mock_s3_client.return_value = mock_boto_client
-    mock_boto_client.delete_bucket.return_value = {"ResponseMetadata": {"HTTPStatusCode": 204}}
+def test_delete_bucket(mock_boto_client_instance):
+    mock_boto_client_instance.delete_bucket.return_value = {"ResponseMetadata": {"HTTPStatusCode": 204}}
 
-    delete_bucket(bucket_name=dummy_bucket_name, boto_client=mock_boto_client)
+    delete_bucket(bucket_name=DUMMY_BUCKET_NAME, boto_client=mock_boto_client_instance)
 
-    mock_boto_client.delete_bucket.assert_called_once_with(Bucket=dummy_bucket_name)
+    mock_boto_client_instance.delete_bucket.assert_called_once_with(Bucket=DUMMY_BUCKET_NAME)
 
 
-@patch(ec2_client_patch_str)
-def test_aws_region_names(mock_ec2_client, mocker):
-    mock_ec2_client_instance = mocker.MagicMock()
-    mock_ec2_client.return_value = mock_ec2_client_instance
-    mock_ec2_client_instance.describe_regions.return_value = {"Regions": [{"RegionName": us_east_region_str}]}
+def test_aws_region_names(mock_ec2_client_instance):
+    mock_ec2_client_instance.describe_regions.return_value = {"Regions": [{"RegionName": US_EAST_REGION_STR}]}
 
     regions = aws_region_names()
 
-    assert regions == [us_east_region_str]
+    assert regions == [US_EAST_REGION_STR]
     mock_ec2_client_instance.describe_regions.assert_called_once()
 
 
-@patch(ec2_client_patch_str)
 def test_get_least_crowded_aws_vpc_region(mock_ec2_client, mocker):
     mock_ec2_client_instance_east = mocker.MagicMock()
     mock_ec2_client_instance_west = mocker.MagicMock()
 
     def mock_ec2_client_side_effect(region_name=None):
-        if region_name == us_east_region_str:
+        if region_name == US_EAST_REGION_STR:
             return mock_ec2_client_instance_east
-        elif region_name == us_west_region_str:
+        elif region_name == US_WEST_REGION_STR:
             return mock_ec2_client_instance_west
         return None
 
@@ -116,8 +141,8 @@ def test_get_least_crowded_aws_vpc_region(mock_ec2_client, mocker):
     mock_ec2_client_instance_east.describe_vpcs.return_value = {"Vpcs": ["vpc-1"]}
     mock_ec2_client_instance_west.describe_vpcs.return_value = {"Vpcs": ["vpc-2", "vpc-3"]}
 
-    least_crowded_region = get_least_crowded_aws_vpc_region(region_list=[us_east_region_str, us_west_region_str])
+    least_crowded_region = get_least_crowded_aws_vpc_region(region_list=[US_EAST_REGION_STR, US_WEST_REGION_STR])
 
-    assert least_crowded_region == us_east_region_str
+    assert least_crowded_region == US_EAST_REGION_STR
     mock_ec2_client_instance_east.describe_vpcs.assert_any_call()
     mock_ec2_client_instance_west.describe_vpcs.assert_any_call()

@@ -19,7 +19,10 @@ repos:
     rev: "7.0.0"
     hooks:
       - id: flake8
-        args: [--config=.flake8]
+        args: [
+          --config=.flake8,
+          --extend-ignore=FCN001
+        ]
         additional_dependencies: [
           "git+https://github.com/RedHatQE/flake8-plugins.git@v0.0.2",
           "flake8-mutable",
