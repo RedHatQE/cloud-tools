@@ -60,6 +60,23 @@ Download = "https://pypi.org/project/redhat-qe-cloud-tools/"
 ipdb = "^0.13.13"
 ipython = "*"
 
+[tool.coverage.run]
+omit = [
+    "clouds/tests/*",
+]
+
+[tool.coverage.report]
+fail_under = 20
+skip_empty = true
+
+[tool.coverage.html]
+directory = ".tests_coverage"
+
+[tool.poetry.group.tests.dependencies]
+pytest-mock = "^3.14.0"
+pytest = "^8.1.1"
+pytest-cov = "^5.0.0"
+
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
 build-backend = "poetry_dynamic_versioning.backend"

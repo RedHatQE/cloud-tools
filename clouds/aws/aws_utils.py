@@ -142,7 +142,7 @@ def delete_bucket(bucket_name: str, boto_client: "botocore.client.S3") -> None:
 
     LOGGER.error(
         f"Bucket {bucket_name} not deleted",
-        json.dumps(response, defualt=str, indent=4),
+        json.dumps(response, default=str, indent=4),
     )
 
 
