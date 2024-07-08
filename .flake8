@@ -16,6 +16,13 @@ fcn_exclude_functions =
     parser,
     click,
     put,
+    assert_any_call,
+    mocker,
+    mock_os_environ,
+    mock_config_parser_instance,
+    mock_ec2_client,
+    mock_boto_client_instance,
+    mock_ec2_client_instance,
 
 enable-extensions =
     FCN,
