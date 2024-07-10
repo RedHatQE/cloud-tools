@@ -10,21 +10,20 @@ from clouds.aws.aws_utils import (
     get_least_crowded_aws_vpc_region,
 )
 
-OS_ENVIRON_PATCH_STR: str = "clouds.aws.aws_utils.os.environ"
-CONFIG_PARSER_PATCH_STR: str = "clouds.aws.aws_utils.ConfigParser"
-EC2_CLIENT_PATCH_STR: str = "clouds.aws.aws_utils.ec2_client"
-BOTOCORE_CLIENT_PATCH_STR: str = "clouds.aws.aws_utils.botocore.client"
+OS_ENVIRON_PATCH_STR = "clouds.aws.aws_utils.os.environ"
+CONFIG_PARSER_PATCH_STR = "clouds.aws.aws_utils.ConfigParser"
+EC2_CLIENT_PATCH_STR = "clouds.aws.aws_utils.ec2_client"
+BOTOCORE_CLIENT_PATCH_STR = "clouds.aws.aws_utils.botocore.client"
 
-DUMMY_BUCKET_NAME: str = "test_bucket"
-US_EAST_REGION_STR: str = "us-east-1"
-US_WEST_REGION_STR: str = "us-west-1"
-DEFAULT_AWS_CONFIG_SECTION: str = "default"
+DUMMY_BUCKET_NAME = "test_bucket"
+US_EAST_REGION_STR = "us-east-1"
+US_WEST_REGION_STR = "us-west-1"
+DEFAULT_AWS_CONFIG_SECTION = "default"
 
 
 @pytest.fixture
 def mock_os_environ(mocker):
-    os_environ_mock = mocker.patch(OS_ENVIRON_PATCH_STR)
-    return os_environ_mock
+    return mocker.patch(OS_ENVIRON_PATCH_STR)
 
 
 @pytest.fixture
@@ -34,9 +33,9 @@ def mock_config_parser(mocker):
 
 @pytest.fixture
 def mock_config_parser_instance(mock_config_parser, mocker):
-    mock_config_parser_instance = mocker.MagicMock()
-    mock_config_parser.return_value = mock_config_parser_instance
-    return mock_config_parser_instance
+    _mock_config_parser_instance = mocker.MagicMock()
+    mock_config_parser.return_value = _mock_config_parser_instance
+    return _mock_config_parser_instance
 
 
 @pytest.fixture
