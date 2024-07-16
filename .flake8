@@ -16,6 +16,8 @@ fcn_exclude_functions =
     parser,
     click,
     put,
+    assert_any_call,
+    mocker,
 
 enable-extensions =
     FCN,
