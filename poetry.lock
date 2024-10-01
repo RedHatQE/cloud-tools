@@ -1217,12 +1217,12 @@ signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openshift-python-utilities"
-version = "5.0.66"
+version = "5.0.67"
 description = "A utilities repository for https://github.com/RedHatQE/openshift-python-wrapper"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "openshift_python_utilities-5.0.66.tar.gz", hash = "sha256:ff01faf0bdc33b2bdb8f15c94e8bfb593f8c1bcc2af9e0c060208bc8afe8dc53"},
+    {file = "openshift_python_utilities-5.0.67.tar.gz", hash = "sha256:87fa949dd8f96e4fff28b8f9f45ac7dbd3f0a134839440bc485826b70713b521"},
 ]
 
 [package.dependencies]
@@ -1519,12 +1519,12 @@ windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "pyhelper-utils"
-version = "0.0.41"
+version = "0.0.42"
 description = "Collective utility functions for python projects"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "pyhelper_utils-0.0.41.tar.gz", hash = "sha256:cbe67c1f4b7385605f65ae7dfc254d6aa651958203fa69e935e1fd48cd01a44e"},
+    {file = "pyhelper_utils-0.0.42.tar.gz", hash = "sha256:45d60797b92d463d534e253f9dd5a7e2e2e1c26ea98becc5928cc4546130c20e"},
 ]
 
 [package.dependencies]
@@ -1722,12 +1722,12 @@ six = "*"
 
 [[package]]
 name = "python-simple-logger"
-version = "1.0.39"
+version = "1.0.40"
 description = "A simple logger for python"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "python_simple_logger-1.0.39.tar.gz", hash = "sha256:e66957ec05d03fd064d1753d6477da7864fe108c6c7ed9aad3b0f03d6d210e24"},
+    {file = "python_simple_logger-1.0.40.tar.gz", hash = "sha256:5194447ca8dd743e668f32df880ccd766100339f0d24f922dd4e849066770946"},
 ]
 
 [package.dependencies]
@@ -2109,4 +2109,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "d17671f5de0dd98944bc2a6e71e17364e2c389175380cc9d68e73e566db04c10"
+content-hash = "77fa35e524c9945291e29054cdc58b7247e0ee53ffb4aa228aa8abe33e9d128f"
