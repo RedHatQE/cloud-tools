@@ -101,7 +101,7 @@ def verify_cluster_matches_velero_infrastructure_name(
     """
 
     LOGGER.info(
-        "Verify cluster matches a velero infrastructure name via its bucket tag:" f" {bucket_name}",
+        f"Verify cluster matches a velero infrastructure name via its bucket tag: {bucket_name}",
     )
 
     velero_infrastructure_name = get_velero_infrastructure_name(bucket_name=bucket_name, boto_client=boto_client)
@@ -123,13 +123,13 @@ def verify_cluster_matches_velero_infrastructure_name(
 @click.command()
 @click.option(
     "--aws-access-key-id",
-    help=("Set AWS access key id, default if taken from environment variable:" " AWS_ACCESS_KEY_ID"),
+    help=("Set AWS access key id, default if taken from environment variable: AWS_ACCESS_KEY_ID"),
     required=True,
     default=os.getenv("AWS_ACCESS_KEY_ID"),
 )
 @click.option(
     "--aws-secret-access-key",
-    help=("Set AWS secret access key id,default if taken from environment variable:" " AWS_SECRET_ACCESS_KEY"),
+    help=("Set AWS secret access key id,default if taken from environment variable: AWS_SECRET_ACCESS_KEY"),
     required=True,
     default=os.getenv("AWS_SECRET_ACCESS_KEY"),
 )

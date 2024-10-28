@@ -45,7 +45,7 @@ def set_and_verify_existing_config_in_env_vars_or_file(
         if os.getenv(var.upper()):
             continue
 
-        LOGGER.info(f"Variable {var} is not set as environment variables, checking in config" " file.")
+        LOGGER.info(f"Variable {var} is not set as environment variables, checking in config file.")
         try:
             var_in_file = var.lower()
             # `AWS_REGION` environment variable is set as `region` in the config file
@@ -112,7 +112,7 @@ def delete_all_objects_from_s3_folder(bucket_name: str, boto_client: "botocore.c
         return
     else:
         LOGGER.error(
-            "Objects not deleted:\n:" f"{json.dumps(delete_response, default=str, indent=4)}",
+            f"Objects not deleted:\n:{json.dumps(delete_response, default=str, indent=4)}",
         )
 
 
