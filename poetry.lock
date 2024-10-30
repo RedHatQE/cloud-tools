@@ -110,13 +110,13 @@ typing-extensions = ">=4.6.0"
 
 [[package]]
 name = "azure-mgmt-redhatopenshift"
-version = "1.5.0"
+version = "2.0.0"
 description = "Microsoft Azure Red Hat Openshift Management Client Library for Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "azure-mgmt-redhatopenshift-1.5.0.tar.gz", hash = "sha256:51fb7429c39c88acc9fa273d9f89f19303520662996a6d7d8e1122a98f5f2527"},
-    {file = "azure_mgmt_redhatopenshift-1.5.0-py3-none-any.whl", hash = "sha256:45d8145ae11709cd80c01df879d29442cf08272c2b3ee557b4692dd2c1039b5d"},
+    {file = "azure_mgmt_redhatopenshift-2.0.0-py3-none-any.whl", hash = "sha256:c18c47253f18c7751a941ee939e645f9739786a0117e27fbe408012b980f7f44"},
+    {file = "azure_mgmt_redhatopenshift-2.0.0.tar.gz", hash = "sha256:9d304acbba7c9f42561269f707210aada9c7b5ea0990f2722df60599a08e3aae"},
 ]
 
 [package.dependencies]
@@ -2113,4 +2113,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "7d842cb5a5d444953773ad6852a2c690b282ead2a32a4202f2d25f4c6c5a18c1"
+content-hash = "a91319c7141306070afec3518f56dcb86c26e94df3f9b8f659bae2ff6b5be9eb"
