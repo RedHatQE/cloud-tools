@@ -58,7 +58,6 @@ Download = "https://pypi.org/project/redhat-qe-cloud-tools/"
 
 [tool.poetry.group.dev.dependencies]
 ipdb = "^0.13.13"
-ipython = "*"
 
 [tool.coverage.run]
 omit = ["clouds/tests/*"]
@@ -69,6 +68,7 @@ skip_empty = true
 
 [tool.coverage.html]
 directory = ".tests_coverage"
+
 
 [tool.poetry.group.tests.dependencies]
 pytest-mock = "^3.14.0"
