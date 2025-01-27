@@ -843,14 +843,14 @@ requests = ["requests (>=2.20.0,<3.0.0.dev0)"]
 
 [[package]]
 name = "google-cloud-compute"
-version = "1.23.0"
+version = "1.24.0"
 description = "Google Cloud Compute API client library"
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
 files = [
-    {file = "google_cloud_compute-1.23.0-py2.py3-none-any.whl", hash = "sha256:785b94b4bb948494d6a0fa77c2b1cfc4092f08840099b5b4d9caddd599365eb8"},
-    {file = "google_cloud_compute-1.23.0.tar.gz", hash = "sha256:2cb02563af528f7460f2c8c905230996873e284fffe69ccfe2e47890f9e5490b"},
+    {file = "google_cloud_compute-1.24.0-py2.py3-none-any.whl", hash = "sha256:e50b4827b6d7027eaf480f472f4a0d4b097d38a6d3cc10704bc9135dca69e190"},
+    {file = "google_cloud_compute-1.24.0.tar.gz", hash = "sha256:3538830f77cdae6e4ac5d9cee1827180c36a2a4574c4ce4a4ffef7562b23c078"},
 ]
 
 [package.dependencies]
@@ -1352,13 +1352,13 @@ signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openshift-python-utilities"
-version = "6.0.5"
+version = "6.0.6"
 description = "A utilities repository for https://github.com/RedHatQE/openshift-python-wrapper"
 optional = false
 python-versions = "~=3.9"
 groups = ["main"]
 files = [
-    {file = "openshift_python_utilities-6.0.5.tar.gz", hash = "sha256:d626637e71291812ad5111f25f9dbddfdf476a25cf66efd8509a1a9b3fcbcc36"},
+    {file = "openshift_python_utilities-6.0.6.tar.gz", hash = "sha256:ad4f1f1c9a9a78f1332ed7330fa4b5fa2db1c7e069cd12242c1f445f922bf6b2"},
 ]
 
 [package.dependencies]
@@ -1685,13 +1685,13 @@ windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "pyhelper-utils"
-version = "1.0.7"
+version = "1.0.8"
 description = "Collective utility functions for python projects"
 optional = false
 python-versions = "~=3.9"
 groups = ["main"]
 files = [
-    {file = "pyhelper_utils-1.0.7.tar.gz", hash = "sha256:559b1fd567d5a6f99ee67f4e963d22acde50d3357ca9c48b471f1f9467e70c7b"},
+    {file = "pyhelper_utils-1.0.8.tar.gz", hash = "sha256:8c0d09f4c4b707c238e6b4744f1e60a9841c70f9ec1423ac8fdfa38fafa0e087"},
 ]
 
 [package.dependencies]
@@ -1914,13 +1914,13 @@ six = "*"
 
 [[package]]
 name = "python-simple-logger"
-version = "2.0.4"
+version = "2.0.5"
 description = "A simple logger for python"
 optional = false
 python-versions = "~=3.9"
 groups = ["main"]
 files = [
-    {file = "python_simple_logger-2.0.4.tar.gz", hash = "sha256:9ace48532dd9ded3a7e10e2d95f46eed2e48ce7cea4ca40c55d098aa8d4ddca3"},
+    {file = "python_simple_logger-2.0.5.tar.gz", hash = "sha256:22f75d7c2ea306c3184c99b9e9818b84a0320a6f2f77509fd8255b9f3cf96667"},
 ]
 
 [package.dependencies]
