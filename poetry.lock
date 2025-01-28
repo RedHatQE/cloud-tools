@@ -216,18 +216,18 @@ lxml = ["lxml"]
 
 [[package]]
 name = "boto3"
-version = "1.36.6"
+version = "1.36.7"
 description = "The AWS SDK for Python"
 optional = false
 python-versions = ">=3.8"
 groups = ["main"]
 files = [
-    {file = "boto3-1.36.6-py3-none-any.whl", hash = "sha256:6d473f0f340d02b4e9ad5b8e68786a09728101a8b950231b89ebdaf72b6dca21"},
-    {file = "boto3-1.36.6.tar.gz", hash = "sha256:b36feae061dc0793cf311468956a0a9e99215ce38bc99a1a4e55a5b105f16297"},
+    {file = "boto3-1.36.7-py3-none-any.whl", hash = "sha256:ab501f75557863e2d2c9fa731e4fe25c45f35e0d92ea0ee11a4eaa63929d3ede"},
+    {file = "boto3-1.36.7.tar.gz", hash = "sha256:ae98634efa7b47ced1b0d7342e2940b32639eee913f33ab406590b8ed55ee94b"},
 ]
 
 [package.dependencies]
-botocore = ">=1.36.6,<1.37.0"
+botocore = ">=1.36.7,<1.37.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.11.0,<0.12.0"
 
@@ -236,22 +236,22 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.36.6"
+version = "1.36.7"
 description = "Low-level, data-driven core of boto 3."
 optional = false
 python-versions = ">=3.8"
 groups = ["main"]
 files = [
-    {file = "botocore-1.36.6-py3-none-any.whl", hash = "sha256:f77bbbb03fb420e260174650fb5c0cc142ec20a96967734eed2b0ef24334ef34"},
-    {file = "botocore-1.36.6.tar.gz", hash = "sha256:4864c53d638da191a34daf3ede3ff1371a3719d952cc0c6bd24ce2836a38dd77"},
+    {file = "botocore-1.36.7-py3-none-any.whl", hash = "sha256:a6c6772d777af2957ac9975207fac1ccc4ce101408b85e9b5e3c5ba0bb949102"},
+    {file = "botocore-1.36.7.tar.gz", hash = "sha256:9abc64bde5e7d8f814ea91d6fc0a8142511fc96427c19fe9209677c20a0c9e6e"},
 ]
 
 [package.dependencies]
 jmespath = ">=0.7.1,<2.0.0"
 python-dateutil = ">=2.1,<3.0.0"
 urllib3 = [
-    {version = ">=1.25.4,<2.2.0 || >2.2.0,<3", markers = "python_version >= \"3.10\""},
     {version = ">=1.25.4,<1.27", markers = "python_version < \"3.10\""},
+    {version = ">=1.25.4,<2.2.0 || >2.2.0,<3", markers = "python_version >= \"3.10\""},
 ]
 
 [package.extras]
@@ -796,16 +796,16 @@ files = [
 google-auth = ">=2.14.1,<3.0.dev0"
 googleapis-common-protos = ">=1.56.2,<2.0.dev0"
 grpcio = [
-    {version = ">=1.49.1,<2.0dev", optional = true, markers = "python_version >= \"3.11\" and extra == \"grpc\""},
     {version = ">=1.33.2,<2.0dev", optional = true, markers = "python_version < \"3.11\" and extra == \"grpc\""},
+    {version = ">=1.49.1,<2.0dev", optional = true, markers = "python_version >= \"3.11\" and extra == \"grpc\""},
 ]
 grpcio-status = [
-    {version = ">=1.49.1,<2.0.dev0", optional = true, markers = "python_version >= \"3.11\" and extra == \"grpc\""},
     {version = ">=1.33.2,<2.0.dev0", optional = true, markers = "python_version < \"3.11\" and extra == \"grpc\""},
+    {version = ">=1.49.1,<2.0.dev0", optional = true, markers = "python_version >= \"3.11\" and extra == \"grpc\""},
 ]
 proto-plus = [
-    {version = ">=1.25.0,<2.0.0dev", markers = "python_version >= \"3.13\""},
     {version = ">=1.22.3,<2.0.0dev", markers = "python_version < \"3.13\""},
+    {version = ">=1.25.0,<2.0.0dev", markers = "python_version >= \"3.13\""},
 ]
 protobuf = ">=3.19.5,<3.20.0 || >3.20.0,<3.20.1 || >3.20.1,<4.21.0 || >4.21.0,<4.21.1 || >4.21.1,<4.21.2 || >4.21.2,<4.21.3 || >4.21.3,<4.21.4 || >4.21.4,<4.21.5 || >4.21.5,<6.0.0.dev0"
 requests = ">=2.18.0,<3.0.0.dev0"
@@ -843,22 +843,22 @@ requests = ["requests (>=2.20.0,<3.0.0.dev0)"]
 
 [[package]]
 name = "google-cloud-compute"
-version = "1.23.0"
+version = "1.24.0"
 description = "Google Cloud Compute API client library"
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
 files = [
-    {file = "google_cloud_compute-1.23.0-py2.py3-none-any.whl", hash = "sha256:785b94b4bb948494d6a0fa77c2b1cfc4092f08840099b5b4d9caddd599365eb8"},
-    {file = "google_cloud_compute-1.23.0.tar.gz", hash = "sha256:2cb02563af528f7460f2c8c905230996873e284fffe69ccfe2e47890f9e5490b"},
+    {file = "google_cloud_compute-1.24.0-py2.py3-none-any.whl", hash = "sha256:e50b4827b6d7027eaf480f472f4a0d4b097d38a6d3cc10704bc9135dca69e190"},
+    {file = "google_cloud_compute-1.24.0.tar.gz", hash = "sha256:3538830f77cdae6e4ac5d9cee1827180c36a2a4574c4ce4a4ffef7562b23c078"},
 ]
 
 [package.dependencies]
 google-api-core = {version = ">=1.34.1,<2.0.dev0 || >=2.11.dev0,<3.0.0dev", extras = ["grpc"]}
 google-auth = ">=2.14.1,<2.24.0 || >2.24.0,<2.25.0 || >2.25.0,<3.0.0dev"
 proto-plus = [
-    {version = ">=1.25.0,<2.0.0dev", markers = "python_version >= \"3.13\""},
     {version = ">=1.22.3,<2.0.0dev", markers = "python_version < \"3.13\""},
+    {version = ">=1.25.0,<2.0.0dev", markers = "python_version >= \"3.13\""},
 ]
 protobuf = ">=3.20.2,<4.21.0 || >4.21.0,<4.21.1 || >4.21.1,<4.21.2 || >4.21.2,<4.21.3 || >4.21.3,<4.21.4 || >4.21.4,<4.21.5 || >4.21.5,<6.0.0dev"
 
@@ -1352,13 +1352,13 @@ signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openshift-python-utilities"
-version = "6.0.5"
+version = "6.0.6"
 description = "A utilities repository for https://github.com/RedHatQE/openshift-python-wrapper"
 optional = false
 python-versions = "~=3.9"
 groups = ["main"]
 files = [
-    {file = "openshift_python_utilities-6.0.5.tar.gz", hash = "sha256:d626637e71291812ad5111f25f9dbddfdf476a25cf66efd8509a1a9b3fcbcc36"},
+    {file = "openshift_python_utilities-6.0.6.tar.gz", hash = "sha256:ad4f1f1c9a9a78f1332ed7330fa4b5fa2db1c7e069cd12242c1f445f922bf6b2"},
 ]
 
 [package.dependencies]
@@ -1685,13 +1685,13 @@ windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "pyhelper-utils"
-version = "1.0.7"
+version = "1.0.8"
 description = "Collective utility functions for python projects"
 optional = false
 python-versions = "~=3.9"
 groups = ["main"]
 files = [
-    {file = "pyhelper_utils-1.0.7.tar.gz", hash = "sha256:559b1fd567d5a6f99ee67f4e963d22acde50d3357ca9c48b471f1f9467e70c7b"},
+    {file = "pyhelper_utils-1.0.8.tar.gz", hash = "sha256:8c0d09f4c4b707c238e6b4744f1e60a9841c70f9ec1423ac8fdfa38fafa0e087"},
 ]
 
 [package.dependencies]
@@ -1914,13 +1914,13 @@ six = "*"
 
 [[package]]
 name = "python-simple-logger"
-version = "2.0.4"
+version = "2.0.5"
 description = "A simple logger for python"
 optional = false
 python-versions = "~=3.9"
 groups = ["main"]
 files = [
-    {file = "python_simple_logger-2.0.4.tar.gz", hash = "sha256:9ace48532dd9ded3a7e10e2d95f46eed2e48ce7cea4ca40c55d098aa8d4ddca3"},
+    {file = "python_simple_logger-2.0.5.tar.gz", hash = "sha256:22f75d7c2ea306c3184c99b9e9818b84a0320a6f2f77509fd8255b9f3cf96667"},
 ]
 
 [package.dependencies]
