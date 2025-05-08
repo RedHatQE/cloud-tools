@@ -251,8 +251,8 @@ files = [
 jmespath = ">=0.7.1,<2.0.0"
 python-dateutil = ">=2.1,<3.0.0"
 urllib3 = [
-    {version = ">=1.25.4,<1.27", markers = "python_version < \"3.10\""},
     {version = ">=1.25.4,<2.2.0 || >2.2.0,<3", markers = "python_version >= \"3.10\""},
+    {version = ">=1.25.4,<1.27", markers = "python_version < \"3.10\""},
 ]
 
 [package.extras]
@@ -801,16 +801,16 @@ files = [
 google-auth = ">=2.14.1,<3.0.dev0"
 googleapis-common-protos = ">=1.56.2,<2.0.dev0"
 grpcio = [
-    {version = ">=1.33.2,<2.0dev", optional = true, markers = "python_version < \"3.11\" and extra == \"grpc\""},
     {version = ">=1.49.1,<2.0dev", optional = true, markers = "python_version >= \"3.11\" and extra == \"grpc\""},
+    {version = ">=1.33.2,<2.0dev", optional = true, markers = "python_version < \"3.11\" and extra == \"grpc\""},
 ]
 grpcio-status = [
-    {version = ">=1.33.2,<2.0.dev0", optional = true, markers = "python_version < \"3.11\" and extra == \"grpc\""},
     {version = ">=1.49.1,<2.0.dev0", optional = true, markers = "python_version >= \"3.11\" and extra == \"grpc\""},
+    {version = ">=1.33.2,<2.0.dev0", optional = true, markers = "python_version < \"3.11\" and extra == \"grpc\""},
 ]
 proto-plus = [
-    {version = ">=1.22.3,<2.0.0dev", markers = "python_version < \"3.13\""},
     {version = ">=1.25.0,<2.0.0dev", markers = "python_version >= \"3.13\""},
+    {version = ">=1.22.3,<2.0.0dev", markers = "python_version < \"3.13\""},
 ]
 protobuf = ">=3.19.5,<3.20.0 || >3.20.0,<3.20.1 || >3.20.1,<4.21.0 || >4.21.0,<4.21.1 || >4.21.1,<4.21.2 || >4.21.2,<4.21.3 || >4.21.3,<4.21.4 || >4.21.4,<4.21.5 || >4.21.5,<6.0.0.dev0"
 requests = ">=2.18.0,<3.0.0.dev0"
@@ -862,8 +862,8 @@ files = [
 google-api-core = {version = ">=1.34.1,<2.0.dev0 || >=2.11.dev0,<3.0.0", extras = ["grpc"]}
 google-auth = ">=2.14.1,<2.24.0 || >2.24.0,<2.25.0 || >2.25.0,<3.0.0"
 proto-plus = [
-    {version = ">=1.22.3,<2.0.0", markers = "python_version < \"3.13\""},
     {version = ">=1.25.0,<2.0.0", markers = "python_version >= \"3.13\""},
+    {version = ">=1.22.3,<2.0.0", markers = "python_version < \"3.13\""},
 ]
 protobuf = ">=3.20.2,<4.21.0 || >4.21.0,<4.21.1 || >4.21.1,<4.21.2 || >4.21.2,<4.21.3 || >4.21.3,<4.21.4 || >4.21.4,<4.21.5 || >4.21.5,<7.0.0"
 
@@ -1357,13 +1357,13 @@ signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openshift-python-utilities"
-version = "6.0.11"
+version = "6.0.12"
 description = "A utilities repository for https://github.com/RedHatQE/openshift-python-wrapper"
 optional = false
 python-versions = "~=3.9"
 groups = ["main"]
 files = [
-    {file = "openshift_python_utilities-6.0.11.tar.gz", hash = "sha256:ab00b7d880802bb6bf67c4e3c0bf3d75785c7febf48e32d287a4931a57ebdac4"},
+    {file = "openshift_python_utilities-6.0.12.tar.gz", hash = "sha256:900a778f73ad9af6c83f47d0fa1c8b4452bcfa5a145f3e476f0f25b77e36b54f"},
 ]
 
 [package.dependencies]
@@ -1690,13 +1690,13 @@ windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "pyhelper-utils"
-version = "1.0.14"
+version = "1.0.15"
 description = "Collective utility functions for python projects"
 optional = false
 python-versions = "~=3.9"
 groups = ["main"]
 files = [
-    {file = "pyhelper_utils-1.0.14.tar.gz", hash = "sha256:1b2aec256f7cc8c158fa55c99b25abeedc3732dbb773b59a079bb13645dbf6be"},
+    {file = "pyhelper_utils-1.0.15.tar.gz", hash = "sha256:b21862a018545c7d09a77e22f5f070ff332565adf07ca5f7dd325218096c9a9a"},
 ]
 
 [package.dependencies]
@@ -1919,13 +1919,13 @@ six = "*"
 
 [[package]]
 name = "python-simple-logger"
-version = "2.0.10"
+version = "2.0.11"
 description = "A simple logger for python"
 optional = false
 python-versions = "~=3.9"
 groups = ["main"]
 files = [
-    {file = "python_simple_logger-2.0.10.tar.gz", hash = "sha256:082a98eb374b0a22925d8354ea7515d0d21659f756c29f405dc9ab44c7786617"},
+    {file = "python_simple_logger-2.0.11.tar.gz", hash = "sha256:db6588e5bbd162513346f2bbbd2836259ce24d3b02351fa346ff5990c99958d5"},
 ]
 
 [package.dependencies]
