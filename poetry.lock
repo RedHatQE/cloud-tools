@@ -217,18 +217,18 @@ lxml = ["lxml"]
 
 [[package]]
 name = "boto3"
-version = "1.39.16"
+version = "1.40.1"
 description = "The AWS SDK for Python"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "boto3-1.39.16-py3-none-any.whl", hash = "sha256:cf843228928fd1caebb46c21fbd757a390ce22672b937a354ae89a1d16cb99f8"},
-    {file = "boto3-1.39.16.tar.gz", hash = "sha256:d4ce6ba5c030d7ff2033b35e5574d2414e42b80b937bf40d080e11c4d9d0acc1"},
+    {file = "boto3-1.40.1-py3-none-any.whl", hash = "sha256:7c007d5c8ee549e9fcad0927536502da199b27891006ef515330f429aca9671f"},
+    {file = "boto3-1.40.1.tar.gz", hash = "sha256:985ed4bf64729807f870eadbc46ad98baf93096917f7194ec39d743ff75b3f1d"},
 ]
 
 [package.dependencies]
-botocore = ">=1.39.16,<1.40.0"
+botocore = ">=1.40.1,<1.41.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.13.0,<0.14.0"
 
@@ -237,14 +237,14 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.39.16"
+version = "1.40.1"
 description = "Low-level, data-driven core of boto 3."
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "botocore-1.39.16-py3-none-any.whl", hash = "sha256:1f1c3b614ac88fd68f824c481cfd7686460c38fe13c01e2963556e7186be3248"},
-    {file = "botocore-1.39.16.tar.gz", hash = "sha256:b5a1416849637aa8e72292ee3e7b11cd0c22f9b96f6043d2ac6ba0092a193188"},
+    {file = "botocore-1.40.1-py3-none-any.whl", hash = "sha256:e039774b55fbd6fe59f0f4fea51d156a2433bd4d8faa64fc1b87aee9a03f415d"},
+    {file = "botocore-1.40.1.tar.gz", hash = "sha256:bdf30e2c0e8cdb939d81fc243182a6d1dd39c416694b406c5f2ea079b1c2f3f5"},
 ]
 
 [package.dependencies]
@@ -1921,13 +1921,13 @@ six = "*"
 
 [[package]]
 name = "python-simple-logger"
-version = "2.0.15"
+version = "2.0.16"
 description = "A simple logger for python"
 optional = false
-python-versions = "~=3.9"
+python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "python_simple_logger-2.0.15.tar.gz", hash = "sha256:0a8d355e0e91c363e649fe37bda2fad9d5d13dde18c029a7a030c97e796a9ca9"},
+    {file = "python_simple_logger-2.0.16.tar.gz", hash = "sha256:1e89f01568dab7ad16732b2fd3f0fd1fe9cefc05e0073abcef305b1efa5533a7"},
 ]
 
 [package.dependencies]
