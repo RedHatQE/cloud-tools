@@ -848,14 +848,14 @@ requests = ["requests (>=2.20.0,<3.0.0.dev0)"]
 
 [[package]]
 name = "google-cloud-compute"
-version = "1.34.0"
+version = "1.35.0"
 description = "Google Cloud Compute API client library"
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
 files = [
-    {file = "google_cloud_compute-1.34.0-py3-none-any.whl", hash = "sha256:8d0ab1a84e204af06870a4a8b2787fc4f5bfe35239304f58e94fc82197ba2617"},
-    {file = "google_cloud_compute-1.34.0.tar.gz", hash = "sha256:492e97fff3c406cebf47febceca0c0ab499a301c215213edd4f83f24375f71c2"},
+    {file = "google_cloud_compute-1.35.0-py3-none-any.whl", hash = "sha256:9a6df3833f773e7ee3522907a9df8257851cd3a089c3ab54032039c7c1f7386f"},
+    {file = "google_cloud_compute-1.35.0.tar.gz", hash = "sha256:f13946ddbea27ceaa55cc3a32026177d1af6d247a76e9ed4407256067fabdacf"},
 ]
 
 [package.dependencies]
