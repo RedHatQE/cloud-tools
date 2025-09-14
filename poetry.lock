@@ -30,14 +30,14 @@ files = [
 
 [[package]]
 name = "azure-core"
-version = "1.35.0"
+version = "1.35.1"
 description = "Microsoft Azure Core Library for Python"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "azure_core-1.35.0-py3-none-any.whl", hash = "sha256:8db78c72868a58f3de8991eb4d22c4d368fae226dac1002998d6c50437e7dad1"},
-    {file = "azure_core-1.35.0.tar.gz", hash = "sha256:c0be528489485e9ede59b6971eb63c1eaacf83ef53001bfe3904e475e972be5c"},
+    {file = "azure_core-1.35.1-py3-none-any.whl", hash = "sha256:12da0c9e08e48e198f9158b56ddbe33b421477e1dc98c2e1c8f9e254d92c468b"},
+    {file = "azure_core-1.35.1.tar.gz", hash = "sha256:435d05d6df0fff2f73fb3c15493bb4721ede14203f1ff1382aa6b6b2bdd7e562"},
 ]
 
 [package.dependencies]
@@ -51,14 +51,14 @@ tracing = ["opentelemetry-api (>=1.26,<2.0)"]
 
 [[package]]
 name = "azure-identity"
-version = "1.24.0"
+version = "1.25.0"
 description = "Microsoft Azure Identity Library for Python"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "azure_identity-1.24.0-py3-none-any.whl", hash = "sha256:9e04997cde0ab02ed66422c74748548e620b7b29361c72ce622acab0267ff7c4"},
-    {file = "azure_identity-1.24.0.tar.gz", hash = "sha256:6c3a40b2a70af831e920b89e6421e8dcd4af78a0cb38b9642d86c67643d4930c"},
+    {file = "azure_identity-1.25.0-py3-none-any.whl", hash = "sha256:becaec086bbdf8d1a6aa4fb080c2772a0f824a97d50c29637ec8cc4933f1e82d"},
+    {file = "azure_identity-1.25.0.tar.gz", hash = "sha256:4177df34d684cddc026e6cf684e1abb57767aa9d84e7f2129b080ec45eee7733"},
 ]
 
 [package.dependencies]
@@ -217,18 +217,18 @@ lxml = ["lxml"]
 
 [[package]]
 name = "boto3"
-version = "1.40.28"
+version = "1.40.30"
 description = "The AWS SDK for Python"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "boto3-1.40.28-py3-none-any.whl", hash = "sha256:fd5cb71b6390e870974e56969e10868f1cf391babeef0b18f91cf8d4f00557cd"},
-    {file = "boto3-1.40.28.tar.gz", hash = "sha256:dd44710ab908b0b38cf127053cac83608a15358c85fa267a498e3dbac6fd5789"},
+    {file = "boto3-1.40.30-py3-none-any.whl", hash = "sha256:04e89abf61240857bf7dec160e22f097eec68c502509b2bb3c5010a22cb91052"},
+    {file = "boto3-1.40.30.tar.gz", hash = "sha256:e95db539c938710917f4cb4fc5915f71b27f2c836d949a1a95df7895d2e9ec8b"},
 ]
 
 [package.dependencies]
-botocore = ">=1.40.28,<1.41.0"
+botocore = ">=1.40.30,<1.41.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.14.0,<0.15.0"
 
@@ -237,14 +237,14 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.40.28"
+version = "1.40.30"
 description = "Low-level, data-driven core of boto 3."
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "botocore-1.40.28-py3-none-any.whl", hash = "sha256:fcd393da6cb4d97cff3823d4085cd034d1c80f1cc22a57b1f84d3f863b337a03"},
-    {file = "botocore-1.40.28.tar.gz", hash = "sha256:4a26c662dcce2e675209c23cd3a569e137a59fdc9692b8bb9dabed522cbe2d8c"},
+    {file = "botocore-1.40.30-py3-none-any.whl", hash = "sha256:1d87874ad81234bec3e83f9de13618f67ccdfefd08d6b8babc041cd45007447e"},
+    {file = "botocore-1.40.30.tar.gz", hash = "sha256:8a74f77cfe5c519826d22f7613f89544cbb8491a1a49d965031bd997f89a8e3f"},
 ]
 
 [package.dependencies]
