@@ -1,6 +1,6 @@
 [project]
 name = "redhat-qe-cloud-tools"
-version = "2.0.18"
+version = "2.0.19"
 description = "Python utilities to manage cloud services, such as AWS."
 authors = [
   { name = "Meni Yakove", email = "myakove@gmail.com" },
