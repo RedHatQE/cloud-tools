@@ -1,11 +1,13 @@
 import os
-import click
 import shutil
-from simple_logger.logger import get_logger
-from clouds.cli.aws.aws_cli import clean_aws_resources
+
+import click
 from pyhelper_utils.runners import function_runner_with_pdb
+from simple_logger.logger import get_logger
+
+from clouds.aws.aws_utils import aws_region_names, set_and_verify_aws_credentials
+from clouds.cli.aws.aws_cli import clean_aws_resources
 from clouds.cli.microsoft_azure.microsoft_azure_cli import nuke_all_azure_resources
-from clouds.aws.aws_utils import set_and_verify_aws_credentials, aws_region_names
 
 LOGGER = get_logger(name="cloud-cli")
 

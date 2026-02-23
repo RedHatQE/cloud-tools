@@ -1,9 +1,9 @@
 from __future__ import annotations
+
 import multiprocessing
 import re
 import shlex
 from multiprocessing import Queue
-from typing import List
 
 from ocp_utilities.utils import run_command
 from simple_logger.logger import get_logger
@@ -111,7 +111,7 @@ def delete_buckets(region_name: str) -> bool:
     return buckets_dict.get("IsTruncated")
 
 
-def clean_aws_resources(aws_regions: List[str]) -> None:
+def clean_aws_resources(aws_regions: list[str]) -> None:
     rerun_cleanup_regions_list = []
     jobs = []
     cleanup_queue: Queue[str] = multiprocessing.Queue()
@@ -150,7 +150,7 @@ def clean_aws_region(aws_region: str, queue: Queue[str]) -> None:
 
     """
     LOGGER.info(f"Deleting resources in region {aws_region}")
-    rerun_results: List[bool] = [
+    rerun_results: list[bool] = [
         delete_rds_instances(region_name=aws_region),
         delete_vpc_peering_connections(region_name=aws_region),
         delete_open_id_connect_providers(region_name=aws_region),

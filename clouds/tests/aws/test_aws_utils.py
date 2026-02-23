@@ -1,13 +1,12 @@
 import pytest
-from typing import Dict, List
 
 from clouds.aws.aws_utils import (
-    set_and_verify_aws_credentials,
-    set_and_verify_aws_config,
+    aws_region_names,
     delete_all_objects_from_s3_folder,
     delete_bucket,
-    aws_region_names,
     get_least_crowded_aws_vpc_region,
+    set_and_verify_aws_config,
+    set_and_verify_aws_credentials,
 )
 
 OS_ENVIRON_PATCH_STR = "clouds.aws.aws_utils.os.environ"
@@ -93,7 +92,7 @@ def test_set_and_verify_aws_config(mock_os_environ, mock_config_parser_instance)
 
 
 def test_delete_all_objects_from_s3_folder(mock_boto_client_instance):
-    s3_folder_objects_list: List[Dict[str, str]] = [{"Key": "file1"}, {"Key": "file2"}]
+    s3_folder_objects_list: list[dict[str, str]] = [{"Key": "file1"}, {"Key": "file2"}]
 
     mock_boto_client_instance.list_objects_v2.return_value = {"Contents": s3_folder_objects_list}
     mock_boto_client_instance.delete_objects.return_value = {"ResponseMetadata": {"HTTPStatusCode": 200}}
