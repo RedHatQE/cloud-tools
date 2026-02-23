@@ -1,7 +1,8 @@
 from __future__ import annotations
+
 import os
 import re
-from typing import Any, List
+from typing import Any
 
 import boto3
 import botocore
@@ -13,7 +14,7 @@ from clouds.aws.aws_utils import delete_all_objects_from_s3_folder, delete_bucke
 LOGGER = get_logger(name=__name__)
 
 
-def delete_velero_cluster_buckets(cluster: str, boto_client: "botocore.client.S3") -> None:
+def delete_velero_cluster_buckets(cluster: str, boto_client: botocore.client.S3) -> None:
     """
     Delete the velero bucket associated with a cluster
 
@@ -45,7 +46,7 @@ def delete_velero_cluster_buckets(cluster: str, boto_client: "botocore.client.S3
     LOGGER.info("No buckets deleted")
 
 
-def get_velero_buckets(boto_client: "botocore.client.S3") -> List[dict[str, Any]]:
+def get_velero_buckets(boto_client: botocore.client.S3) -> list[dict[str, Any]]:
     """
     Get a list of velero buckets
 
@@ -61,7 +62,7 @@ def get_velero_buckets(boto_client: "botocore.client.S3") -> List[dict[str, Any]
     return [bucket for bucket in buckets if re.search("managed-velero-backups-", bucket["Name"])]
 
 
-def get_velero_infrastructure_name(bucket_name: str, boto_client: "botocore.client.S3") -> str | None:
+def get_velero_infrastructure_name(bucket_name: str, boto_client: botocore.client.S3) -> str | None:
     """
     Get the velero bucket infrastructure name
 
@@ -84,7 +85,7 @@ def get_velero_infrastructure_name(bucket_name: str, boto_client: "botocore.clie
 
 
 def verify_cluster_matches_velero_infrastructure_name(
-    boto_client: "botocore.client.S3",
+    boto_client: botocore.client.S3,
     cluster_name: str,
     bucket_name: str,
 ) -> bool:

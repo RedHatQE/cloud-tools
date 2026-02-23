@@ -1,6 +1,6 @@
-from typing import List
-from simple_logger.logger import get_logger
 from azure.core.exceptions import HttpResponseError
+from simple_logger.logger import get_logger
+
 from clouds.microsoft_azure.session_clients import azure_credentials, resource_client
 
 LOGGER = get_logger(name="azure-nuke-cli")
@@ -26,7 +26,7 @@ def nuke_all_azure_resources(tenant_id: str, client_id: str, client_secret: str,
         subscription_id=subscription_id,
     )
 
-    failed_delete_resource_groups: List[str] = []
+    failed_delete_resource_groups: list[str] = []
     azure_post_cleanup_message: str = "Azure cleanup completed"
 
     LOGGER.info("Starting Azure resources cleanup")

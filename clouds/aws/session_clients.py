@@ -11,17 +11,17 @@ def aws_session(**kwargs: Any) -> boto3.session.Session:
     return boto3.session.Session(**kwargs)
 
 
-def iam_client(**kwargs: Any) -> "botocore.client.IAM":
+def iam_client(**kwargs: Any) -> botocore.client.IAM:
     return aws_session(**kwargs).client(service_name="iam")
 
 
-def ec2_client(**kwargs: Any) -> "botocore.client.EC2":
+def ec2_client(**kwargs: Any) -> botocore.client.EC2:
     return aws_session(**kwargs).client(service_name="ec2")
 
 
-def s3_client(**kwargs: Any) -> "botocore.client.S3":
+def s3_client(**kwargs: Any) -> botocore.client.S3:
     return aws_session(**kwargs).client(service_name="s3")
 
 
-def rds_client(**kwargs: Any) -> "botocore.client.RDS":
+def rds_client(**kwargs: Any) -> botocore.client.RDS:
     return aws_session(**kwargs).client(service_name="rds")

@@ -1,4 +1,4 @@
-from typing import Any, Dict, List
+from typing import Any
 
 import boto3
 import botocore
@@ -22,7 +22,7 @@ def iam_client(region: str = DEFAULT_AWS_REGION) -> "botocore.client.IAM":
     return boto3.client(service_name="iam", region_name=region)
 
 
-def get_roles(client: "botocore.client.IAM" = None) -> List[Dict[str, Any]]:
+def get_roles(client: "botocore.client.IAM" = None) -> list[dict[str, Any]]:
     """
     Get all IAM roles.
 

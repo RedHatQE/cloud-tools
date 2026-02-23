@@ -1,8 +1,8 @@
 from azure.identity import ClientSecretCredential
-from azure.mgmt.subscription import SubscriptionClient
 from azure.mgmt.network import NetworkManagementClient
-from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.redhatopenshift import AzureRedHatOpenShiftClient
+from azure.mgmt.resource import ResourceManagementClient
+from azure.mgmt.subscription import SubscriptionClient
 
 
 def azure_credentials(tenant_id: str, client_id: str, client_secret: str) -> ClientSecretCredential:

@@ -1,9 +1,9 @@
 from __future__ import annotations
+
 import json
 import os
 from configparser import ConfigParser, NoOptionError, NoSectionError
 from http import HTTPStatus
-from typing import List, Optional
 
 import botocore
 from simple_logger.logger import get_logger
@@ -20,7 +20,7 @@ class AWSConfigurationError(Exception):
 
 
 def set_and_verify_existing_config_in_env_vars_or_file(
-    vars_list: List[str], file_path: str, section: str = "default"
+    vars_list: list[str], file_path: str, section: str = "default"
 ) -> None:
     """
     Verify vars are either set as environment variables or in a config file.
@@ -64,7 +64,7 @@ def set_and_verify_existing_config_in_env_vars_or_file(
         raise AWSConfigurationError()
 
 
-def set_and_verify_aws_credentials(region_name: Optional[str | None]) -> None:
+def set_and_verify_aws_credentials(region_name: str | None) -> None:
     set_and_verify_existing_config_in_env_vars_or_file(
         vars_list=["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY"],
         file_path=AWS_CREDENTIALS_FILE,
@@ -80,7 +80,7 @@ def set_and_verify_aws_config() -> None:
     )
 
 
-def delete_all_objects_from_s3_folder(bucket_name: str, boto_client: "botocore.client.S3") -> None:
+def delete_all_objects_from_s3_folder(bucket_name: str, boto_client: botocore.client.S3) -> None:
     """
     Deletes all files in a folder of an S3 bucket
 
@@ -116,7 +116,7 @@ def delete_all_objects_from_s3_folder(bucket_name: str, boto_client: "botocore.c
         )
 
 
-def delete_bucket(bucket_name: str, boto_client: "botocore.client.S3") -> None:
+def delete_bucket(bucket_name: str, boto_client: botocore.client.S3) -> None:
     """
     Delete velero bucket
 
@@ -146,7 +146,7 @@ def delete_bucket(bucket_name: str, boto_client: "botocore.client.S3") -> None:
     )
 
 
-def aws_region_names() -> List[str]:
+def aws_region_names() -> list[str]:
     """
     Lists AWS regions
 
@@ -158,7 +158,7 @@ def aws_region_names() -> List[str]:
     return [region["RegionName"] for region in regions]
 
 
-def get_least_crowded_aws_vpc_region(region_list: List[str]) -> str:
+def get_least_crowded_aws_vpc_region(region_list: list[str]) -> str:
     """
     Selects region with the least number of VPCs.
 
