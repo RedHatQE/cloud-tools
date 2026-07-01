@@ -146,16 +146,16 @@ wheels = [
 
 [[package]]
 name = "azure-mgmt-network"
-version = "30.2.0"
+version = "31.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "azure-mgmt-core" },
     { name = "isodate" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9a/e5/31cf174ef67087532f159083e2e007507fe163f58c58fbd0e08d05209cf4/azure_mgmt_network-30.2.0.tar.gz", hash = "sha256:9b17c259e6344808aaa80a34bbc4b13f16bc01185dd9db137eaa0ae26664861a", size = 708178, upload-time = "2026-02-13T03:45:39.617Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/61/b1/326f22167e49001d2433d51894e8c294799713f51c45142ebeec50e3526b/azure_mgmt_network-31.0.0.tar.gz", hash = "sha256:c0f4edf7dc40da8abeeb6924e882f4658e9196b921480663d6fdc9d63710d4c9", size = 934459, upload-time = "2026-07-01T06:59:08.382Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a0/5a/14c8cfb1655267dfed7529d35e5dd6581746238c9f50d4307b9e2faaacf8/azure_mgmt_network-30.2.0-py3-none-any.whl", hash = "sha256:a87edffd7c38aa9d3494daa8d42914213b0863a9072cf8c7c7e48018b12b6532", size = 631894, upload-time = "2026-02-13T03:45:41.738Z" },
+    { url = "https://files.pythonhosted.org/packages/5a/c1/86e507e4f4f30194088118410d518495609b5efbd2663316615d6363d4ef/azure_mgmt_network-31.0.0-py3-none-any.whl", hash = "sha256:15f76ca831dd4c06ee56c4113fa2a57ebb19356d44ea99ac8dd9ff22241ab3e7", size = 736576, upload-time = "2026-07-01T06:59:10.795Z" },
 ]
 
 [[package]]
@@ -2588,7 +2588,7 @@ tests = [
 requires-dist = [
     { name = "azure-core", specifier = ">=1.30.1,<2" },
     { name = "azure-identity", specifier = ">=1.15.0,<2" },
-    { name = "azure-mgmt-network", specifier = ">=30,<31" },
+    { name = "azure-mgmt-network", specifier = ">=31,<32" },
     { name = "azure-mgmt-redhatopenshift", specifier = ">=3,<4" },
     { name = "azure-mgmt-resource", specifier = ">=26,<27" },
     { name = "azure-mgmt-subscription", specifier = ">=3.1.1,<4" },
