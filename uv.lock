@@ -160,16 +160,16 @@ wheels = [
 
 [[package]]
 name = "azure-mgmt-redhatopenshift"
-version = "3.0.0"
+version = "4.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "azure-mgmt-core" },
     { name = "isodate" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/87/ac/0ac26581db62b5492c6f0b83e284861eeadb12b495799923c220e401fb6b/azure_mgmt_redhatopenshift-3.0.0.tar.gz", hash = "sha256:4775c9bdf363238834da145e5f59f97683ab04f8ddbd250de45d45e33798327f", size = 57828, upload-time = "2026-02-06T06:00:45.062Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/4d/50/88772fde19e6b5d1d38c31b2dd7db1759e8c665c3f9506f44db02ecbb0b3/azure_mgmt_redhatopenshift-4.0.0.tar.gz", hash = "sha256:72e3e76cabe3e2264806791b17b211a1a077a89c60b4b7d3e894a08d171d66b2", size = 80449, upload-time = "2026-07-14T05:40:59.19Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/cb/10/1573376163a87d72de258e93d4646833bef6103512117ed6c46bb3c67bb3/azure_mgmt_redhatopenshift-3.0.0-py3-none-any.whl", hash = "sha256:6e86f143e3d39c6245475353e6d6ea8a403fea09f212b8c1f007e4ba20ac7c52", size = 74992, upload-time = "2026-02-06T06:00:46.413Z" },
+    { url = "https://files.pythonhosted.org/packages/2b/3c/5b36bbde9d1019eaab19acf3e4cf3e6b3c2356472cb0ae43d31b82e9abc3/azure_mgmt_redhatopenshift-4.0.0-py3-none-any.whl", hash = "sha256:0e0078f0025ea836a6759a67a14dcae6dd74f445ba13a2821c9ab1ae1c3fdd56", size = 80385, upload-time = "2026-07-14T05:41:00.521Z" },
 ]
 
 [[package]]
@@ -2599,7 +2599,7 @@ requires-dist = [
     { name = "azure-core", specifier = ">=1.30.1,<2" },
     { name = "azure-identity", specifier = ">=1.15.0,<2" },
     { name = "azure-mgmt-network", specifier = ">=31,<32" },
-    { name = "azure-mgmt-redhatopenshift", specifier = ">=3,<4" },
+    { name = "azure-mgmt-redhatopenshift", specifier = ">=4,<5" },
     { name = "azure-mgmt-resource", specifier = ">=26,<27" },
     { name = "azure-mgmt-subscription", specifier = ">=3.1.1,<4" },
     { name = "boto3", specifier = ">=1.34.110,<2" },
