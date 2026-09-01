@@ -59,7 +59,7 @@ def get_velero_buckets(boto_client: botocore.client.S3) -> list[dict[str, Any]]:
     LOGGER.info("Get a list of velero buckets")
 
     buckets = boto_client.list_buckets()["Buckets"]
-    return [bucket for bucket in buckets if re.search("managed-velero-backups-", bucket["Name"])]
+    return [bucket for bucket in buckets if "managed-velero-backups-" in bucket["Name"]]
 
 
 def get_velero_infrastructure_name(bucket_name: str, boto_client: botocore.client.S3) -> str | None:
