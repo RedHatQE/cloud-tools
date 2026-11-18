@@ -53,7 +53,7 @@ def set_and_verify_existing_config_in_env_vars_or_file(
                 var_in_file = aws_region_str
 
             os.environ[var.upper()] = parser.get(section, var_in_file)
-        except (NoSectionError, NoOptionError):
+        except NoSectionError, NoOptionError:
             missing_vars.append(var)
 
     if missing_vars:
